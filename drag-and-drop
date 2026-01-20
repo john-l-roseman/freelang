@@ -1,6 +1,5 @@
-Add English translations to the dataset. Eliminate the authorship (if it is
-there) in the translated text. The authorship would be a long dash and one or two
-words at the end of the translated text.
+Add English translations to the dataset. 
+In the English translation, delete text after the long dash.
 
 Act as an expert Frontend Engineer. Build a single, standalone HTML file for a
 language learning game.
@@ -17,13 +16,13 @@ Layout:
 - Two vertical columns side-by-side (50% width each). No Column Headers.
 - Left Column: 9 Draggable Cards (English). Be sure that the same card does
 not appear twice.
-- Right Column: 9 Drop Zone Cards (Belarusian), shuffled relative to the left
+- Right Column: 9 Drop Zone Cards (LANGUAGE), shuffled relative to the left
 column
 - Reduce excess white space above and below words on the cards.
-- Verify that the English and Belarusian cards have the same height.
+- Verify that the English and LANGUAGE cards have the same height.
 - Space the cards vertically so that they occupy 95% of the container
 space.
--  Put speaker icons on the English and Belarusian cards. Use the browser's
+-  Put speaker icons on the English and LANGUAGE cards. Use the browser's
 Web Speech API for audio generation. When selecting a voice, write logic to
 specifically filter for voices where localService is true to ensure the audio
 works offline without an internet connection.
@@ -31,14 +30,14 @@ works offline without an internet connection.
 telephone.
 
 Interaction:
-- Drag an English card to the corresponding Belarusian card.
+- Drag an English card to the corresponding LANGUAGE card.
 - Desktop: Use HTML5 Drag and Drop API.
 - Mobile: Implement custom Touch events (touchstart, touchmove, touchend)
 because HTML5 DnD doesn't work on mobile.
 - Mobile Visuals: When dragging on mobile, render a fixed-position "ghost
 card" that follows the finger coordinates.
 - Hint Interaction: Double-click (Desktop) or Double-tap (Mobile) on an
-English card causes the corresponding Belarusian card to flash for 2 seconds. The
+English card causes the corresponding LANGUAGE card to flash for 2 seconds. The
 cards remain on the screen, and the user still has to drag and drop the card
 before it is removed.
 
@@ -82,7 +81,7 @@ hint), remove it from the main dataset entirely.
 with 9 new random words from the dataset.
 
 After all words are correctly guessed, pop up a message saying “Congratulations!
-You've learned all words!”. When the player clicks OK, redirect to /Belarusian
+You've learned all words!”. When the player clicks OK, redirect to /LANGUAGE
 
 Visuals:
 - Muted Green color scheme.
@@ -94,7 +93,7 @@ PWA Features:
 - Include a Service Worker (embedded) to cache the CDNs for offline use.
 - Create a minimalist SVG string in the JavaScript (a square with a Green
 background color matching the game theme and the two letter country code for the
-origin country of Belarusian in white text).
+origin country of LANGUAGE in white text).
 Convert this SVG string to a Base64 Data URI using the btoa() function.
 Inject this Data URI into the embedded manifest.json blob as the src for icons of
 sizes "192x192" and "512x512".
@@ -104,7 +103,6 @@ Add a Header with these elements (compressed to fit on a single line):
 - Score + percent of words that have been learned (eliminated from the deck).
 For example: “Score 65 10.3% Learned”.  Update the % learned every time the score
 is updated. Score should start at 0.0 when the game begins.
-
 - Button with the text “Mute”. The Mute button should only suppress the buzzer
 and chime sounds, not the Text-to-Speech.
 - Button with the text “Rules”, pop-up with rules and scoring summary. You need
@@ -114,25 +112,22 @@ streak bonus is calculated.
 install on mobile (using PWA). You need to create the content for this pop-up.
 Instructions for iOS should describe the share icon as an arrow going up. After
 instructions for installation on iOS and Android, it should list the advantages
-of PWA.
-
-This button should not appear when the game is being used as PWA.
-
-- Button with the text “Source”, link to file /Belarusian/Intermediate/source.html (HTML
+of PWA.  This button should not appear when the game is being used as PWA.
+- Button with the text “Source”, link to file /LANGUAGE/Intermediate/source.html (HTML
 file already exists at that location).
+
 All buttons should be the same color.
 Pop-ups should close with the Escape key.
 
 1.  **Two-Stage Animation Logic:* Use `successIds` state to handle the "Green
 Flash" phase and a `matchedIds` state to handle the "Slide Up/Collapse" phase.
-
 2.  **CSS Transitions:** Add a `.card-wrapper` class. When a match is confirmed,
 the wrapper transitions its `max-height`, `opacity`, and `margin` to 0. This
 causes the remaining cards to smoothly slide up to fill the empty space.
-
 3.  **DOM Management:** Instead of replacing matched cards with fixed-height
 placeholders (which prevented sliding), the matched cards remain in the DOM but
 collapse to zero size.
+
 To ensure Mobile Drag and Drop works correctly in React/HTML5 without external
 libraries:
 1. Ghost Element CSS: The fixed-position "ghost" card following the finger MUST
