@@ -165,7 +165,6 @@ height) instead of 100vh or 100%. This prevents the mobile browser's address
 bar from covering the bottom of the app.
 2. Flexbox Structure: Do not use position: absolute for the footer. Instead, use
 a Flexbox Column layout for the Game Container:
-
 * Header: Fixed height (flex-none).
 * Game Board: Fills remaining space (flex-1), handles its own scrolling
 (overflow-y: auto).
