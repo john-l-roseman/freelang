@@ -160,3 +160,4 @@ a Flexbox Column layout for the Game Container:
 (overflow-y: auto).
 * Footer: Fixed height (flex-none), pinned to the bottom by the flex container.
 
+Do not add any notes at the top of the index.html file.
