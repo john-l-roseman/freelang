@@ -37,8 +37,8 @@ because HTML5 DnD doesn't work on mobile.
 - Mobile Visuals: When dragging on mobile, render a fixed-position "ghost
 card" that follows the finger coordinates.
 - Hint Interaction: Double-click (Desktop) or Double-tap (Mobile) on an
-English card causes the corresponding LANGUAGE card to flash for 2 seconds. The
-cards remain on the screen, and the user still has to drag and drop the card
+English card causes the corresponding LANGUAGE card to flash bright orange for 2 seconds. 
+The cards remain on the screen, and the user still has to drag and drop the card
 before it is removed.
 
 Robust Double-Click/Tap Hint Logic:
