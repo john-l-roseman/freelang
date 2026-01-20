@@ -1,83 +1,162 @@
-Find 100 interesting, surprising or funny short (maximum 24 words) English quotes from these sources:
-The Bible, The Quran, The Talmud, US Founding Documents,
-Mao's Little Red Book, Confucius, Bhagavad Gita,
-Albert Einstein, Mark Twain, Winston Churchill, Karl Marx,
-Vladimir Lenin, Socrates, Plato, Oscar Wilde, Benjamin Franklin,
-Che Guevara, Ho Chi Minh, Mahatma Gandhi, Thucydides
+Add English translations to the dataset. Eliminate the authorship (if it is
+there) in the translated text. The authorship would be a long dash and one or two
+words at the end of the translated text.
 
-Find at least 3 quotes from each source, more from the ones toward the top.
+Act as an expert Frontend Engineer. Build a single, standalone HTML file for a
+language learning game.
 
-Act as an expert Frontend Engineer. 
-Build a SINGLE, STANDALONE HTML file based on the game requirements above.
-- Use React, ReactDOM, Babel, and TailwindCSS via CDN. 
-- Embed all CSS and Javascript within the HTML file. 
-- Do not include any markdown formatting (no ```html fences). 
-- Output ONLY the raw code.
+Technical Stack:
+- Use React, ReactDOM, and Babel via CDN.
+- Use TailwindCSS via CDN for styling.
+- Embed all CSS and Javascript within the HTML file.
+- No external assets (images/sounds must be generated or base64).
 
-Create a dataset with these fields:
-QUOTE_TEXT | Translation of the quote into LANGUAGE | SOURCE
+Game Requirements:
 
-Add two fields to the dataset with blobs containing the TTS of the QUOTE_TEXT and of its translation.
-Use a human-sounding Text-to-Speech service, and OPUS format for the blobs.
+Layout:
+- Two vertical columns side-by-side (50% width each). No Column Headers.
+- Left Column: 9 Draggable Cards (English). Be sure that the same card does
+not appear twice.
+- Right Column: 9 Drop Zone Cards (Belarusian), shuffled relative to the left
+column
+- Reduce excess white space above and below words on the cards.
+- Verify that the English and Belarusian cards have the same height.
+- Space the cards vertically so that they occupy 95% of the container
+space.
+-  Put speaker icons on the English and Belarusian cards. Use the browser's
+Web Speech API for audio generation. When selecting a voice, write logic to
+specifically filter for voices where localService is true to ensure the audio
+works offline without an internet connection.
+- On desktop, the layout should appear as it would on a large screen
+telephone.
 
-An English card contains the entire QUOTE_TEXT and, immediately below it, the SOURCE, in this format:
-QUOTE_TEXT 
--- SOURCE (in italics)
+Interaction:
+- Drag an English card to the corresponding Belarusian card.
+- Desktop: Use HTML5 Drag and Drop API.
+- Mobile: Implement custom Touch events (touchstart, touchmove, touchend)
+because HTML5 DnD doesn't work on mobile.
+- Mobile Visuals: When dragging on mobile, render a fixed-position "ghost
+card" that follows the finger coordinates.
+- Hint Interaction: Double-click (Desktop) or Double-tap (Mobile) on an
+English card causes the corresponding Belarusian card to flash for 2 seconds. The
+cards remain on the screen, and the user still has to drag and drop the card
+before it is removed.
 
-The QUOTE_TEXT and the SOURCE should be left-justified. Wrap the SOURCE in a `<span>` with  `mt-0` and `block` classes. Eliminate white space between the Quote and the SOURCE. Eliminate excess white space at the top and bottom of all the cards.
+Robust Double-Click/Tap Hint Logic:
+Desktop: Use the standard React onDoubleClick event listener on the English cards
+to trigger the hint.
+Mobile (Custom Double-Tap):
+Standard dblclick events are unreliable on touch devices and often conflict with
+zooming. Implement custom logic within the touchstart handler:
+Use a useRef to store the timestamp of the lastTap.
+On touchstart, compare the current time to lastTap.
+If the difference is less than 300ms, treat it as a Double Tap.
+Crucial: If a Double Tap is detected, trigger the hint logic and return
+immediately to abort the drag-and-drop ghost generation.
+If the difference is greater than 300ms, update lastTap to the current time and
+proceed with the standard Drag/Touch logic.
 
-The corresponding LANGUAGE card contains only the translated quote, not the source. It should be left-justified.
+Mobile Drag Fix:
+1. CSS Requirement: Apply the CSS property touch-action: none; specifically to
+the English Draggable Cards. This is critical to prevent the browser from
+scrolling the page when the user tries to drag a card.
+2. Event Handling: Inside the onTouchMove event handler, you must call
+e.preventDefault() conditional on whether a drag is currently active (i.e.,
+if the 'ghost card' exists). This ensures that the custom drag logic
+overrides the native browser scrolling."
 
-Each card should have an icon allowing the OPUS blob to be played. 
-To start a new game:
-Sort all quotes by their English length.
-Take seven cards from the sorted dataset — a contiguous window of 7 adjacent quotes starting from a random element in the dataset. This ensures all displayed quotes have nearly identical lengths, making it impossible to match by size alone.
-No column headers.
-Two vertical columns that are ALWAYS side-by-side (never stacked). 
-Left Side: A column of 7 'Draggable Cards' (LANGUAGE word cards). The Drop Zone cards should be shuffled in relation to the Draggable Cards, so the correct answer does not line up across from its English version.
-Right Side: A column of 7  ‘Drop Zone Cards' (English word cards).
-The Draggable Cards should be shuffled so the correct answer does not line up across from its English version. The Drop Zone Cards (English) remain in their original order.
-Layout: On mobile: ensure both columns are always visible side by side. Reduce the font size and eliminate blank space on the cards if necessary to fit two columns on mobile devices. 
-Store the shuffled order in state instead of re-shuffling on every render.
-Interaction Visuals and Audio
-To determine whether a match is successful, compare quote IDs and not array indexes.
-If a match is successful, both the English and LANGUAGE cards should turn green for 0.3 seconds then disappear + pleasant soft  chime sound. 
-After a correct match, the matched cards fade out, and the remaining  cards slide up to fill the gap with a smooth transition.
-If a match is wrong, the English card should flash red for 0.3 seconds and go back to its place + short buzzer using Web Audio API-generated sound (a  sawtooth wave that drops from 200Hz to 100Hz over 0.3 seconds)
-Add touch event handlers to support mobile devices.
-Implement Drag and Drop functionality that works on both Desktop and Mobile.
-1. For Desktop: Use standard HTML5 `draggable` attributes and events (`onDragStart`, `onDrop`).
-2. For Mobile: HTML5 Drag API is not supported. You must implement custom `touchstart`, `touchmove`, and `touchend` handlers.
-3. On mobile touch start, create a fixed-position 'ghost' clone of the card that follows the finger coordinates.
-4. On mobile touch end, use `document.elementFromPoint(x, y)` to determine if the finger was released over a valid drop zone.
-5. Prevent default scrolling behavior while dragging on mobile.
-After each round, start a new round with new LANGUAGE and English cards starting from a random card in the quotes dataset.
-Give a bonus for streaks. Subtract a penalty for wrong guesses.
-Scoring accumulates from round to round. 
+Game Logic:
+- Match Success: Compare IDs. If correct: Play a soft chime (Web Audio
+API), flash both cards green, remove them from the screen, remaining cards on
+both sides slide up to fill the empty space. If no double-click hint was given
+for this word, then increment Score (+10 + streak bonus), increment Streak. If
+there was a hint, then don’t increment Score.
+- Streak Bonus: Equal to the length of the streak.
+- Match Fail: If wrong: Play a buzzer (Web Audio API), flash the English
+card red for one second, reset Streak, decrement Score (-5).
+
+- Mastery System: When a word is guessed correctly (without double-click
+hint), remove it from the main dataset entirely.
+
+- Rounds: When all 9 pairs are matched, automatically start a new round
+with 9 new random words from the dataset.
+
+After all words are correctly guessed, pop up a message saying “Congratulations!
+You've learned all words!”. When the player clicks OK, redirect to /Belarusian
+
+Visuals:
+- Muted Green color scheme.
+- Sans-serif fonts.
+- Smooth CSS transitions for disappearing cards.
+
+PWA Features:
+- Include a `manifest.json` (embedded as a Blob).
+- Include a Service Worker (embedded) to cache the CDNs for offline use.
+- Create a minimalist SVG string in the JavaScript (a square with a Green
+background color matching the game theme and the two letter country code for the
+origin country of Belarusian in white text).
+Convert this SVG string to a Base64 Data URI using the btoa() function.
+Inject this Data URI into the embedded manifest.json blob as the src for icons of
+sizes "192x192" and "512x512".
+The text description under the icon should be Intermediate.
 
 Add a Header with these elements (compressed to fit on a single line):
-   - Score 
-   - Button with the text “Mute”.
-   - Button with the text “Source”, link to file /LANG/quotes/source.html (HTML file already exists at that location).
-   - Button with the text “Install”, that pops up a window with instructions for install on mobile (using PWA) and explains advantages of PWA install (no ads, off-line). You need to create the content of that pop-up.
+- Score + percent of words that have been learned (eliminated from the deck).
+For example: “Score 65 10.3% Learned”.  Update the % learned every time the score
+is updated. Score should start at 0.0 when the game begins.
 
+- Button with the text “Mute”. The Mute button should only suppress the buzzer
+and chime sounds, not the Text-to-Speech.
+- Button with the text “Rules”, pop-up with rules and scoring summary. You need
+to create the content of that pop-up. Rules should include explanation of how the
+streak bonus is calculated.
+- Button with the text “Install”, that pops up a window with instructions for
+install on mobile (using PWA). You need to create the content for this pop-up.
+Instructions for iOS should describe the share icon as an arrow going up. After
+instructions for installation on iOS and Android, it should list the advantages
+of PWA.
 
-Muted color scheme with grays and browns. Sans serif font.
+This button should not appear when the game is being used as PWA.
 
-- Create two PWA PNG  icons (192px and 512px) showing a speech bubble with three short lines inside the bubble.
-- Install complete PWA support for offline use  (manifest.json, sw.js, icons).
+- Button with the text “Source”, link to file /Belarusian/Intermediate/source.html (HTML
+file already exists at that location).
+All buttons should be the same color.
+Pop-ups should close with the Escape key.
 
-Mobile Layout & Typography:
-   Maximize Readability: Use a minimum font size of 15px for main card text on mobile. Do not use `text-xs` for primary content.
-   Minimize Whitespace: Reduce padding inside cards (e.g., `p-1.5`) and margins between cards (e.g., `mb-1.5`) to maximize screen real estate for text.
-   Compact Verticality: Ensure cards are compact vertically but maintain a minimum touch target height (approx 4.5rem).
-   Full Width: Utilize the full width of the mobile screen with minimal container padding.
+1.  **Two-Stage Animation Logic:* Use `successIds` state to handle the "Green
+Flash" phase and a `matchedIds` state to handle the "Slide Up/Collapse" phase.
 
-Do not create a landing page, only the game page.
-Place header in upper left corner: “word-play.ai” (large bold) which links to https://word-play.ai.
-Center header: “LANGUAGE Quote Match”.
+2.  **CSS Transitions:** Add a `.card-wrapper` class. When a match is confirmed,
+the wrapper transitions its `max-height`, `opacity`, and `margin` to 0. This
+causes the remaining cards to smoothly slide up to fill the empty space.
 
+3.  **DOM Management:** Instead of replacing matched cards with fixed-height
+placeholders (which prevented sliding), the matched cards remain in the DOM but
+collapse to zero size.
+To ensure Mobile Drag and Drop works correctly in React/HTML5 without external
+libraries:
+1. Ghost Element CSS: The fixed-position "ghost" card following the finger MUST
+have the CSS property `pointer-events: none`.
+2. Drop Detection Logic: In the `touchend` event, use
+`document.elementFromPoint(e.changedTouches[0].clientX,
+e.changedTouches[0].clientY)` to find the target.
+3. DOM Traversal: The element found by `elementFromPoint` might be a child (like
+a text <span> or icon).
 
-Copyright (C) 2026 Functional AI Inc. [ https://functional.by ]
-Licensed under the MIT License [ opensource.org/licenses/MIT ]
+Always use `element.closest('.drop-zone')` (or specific selector) to resolve
+the actual drop container.
+4. Scroll Prevention: Apply `touch-action: none` to the draggable element via
+CSS. This prevents the browser from interpreting the drag as a page scroll.
+
+Mobile Viewport & Footer Layout:
+1. Dynamic Height: Set the main container height to 100dvh (dynamic viewport
+height) instead of 100vh or 100%. This prevents the mobile browser's address
+bar from covering the bottom of the app.
+2. Flexbox Structure: Do not use position: absolute for the footer. Instead, use
+a Flexbox Column layout for the Game Container:
+
+* Header: Fixed height (flex-none).
+* Game Board: Fills remaining space (flex-1), handles its own scrolling
+(overflow-y: auto).
+* Footer: Fixed height (flex-none), pinned to the bottom by the flex container.
 
