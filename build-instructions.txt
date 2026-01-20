@@ -11,8 +11,9 @@ Technical Stack:
 - Embed all CSS and Javascript within the HTML file.
 - No external assets (images/sounds must be generated or base64).
 
-Game Requirements:
-
+-----------------
+Game Requirements
+-----------------
 Layout:
 - Two vertical columns side-by-side (50% width each). No Column Headers.
 - Left Column: 9 Draggable Cards (English). Be sure that the same card does
@@ -20,9 +21,7 @@ not appear twice.
 - Right Column: 9 Drop Zone Cards (LANGUAGE), shuffled relative to the left
 column
 - Reduce excess white space above and below words on the cards.
-
 - Verify that the English and LANGUAGE cards have the same height.
-
 - Space the cards vertically so that they occupy 95% of the container
 space.
 -  Put speaker icons on the English and LANGUAGE cards. Use the browser's
@@ -44,8 +43,9 @@ English card causes the corresponding LANGUAGE card to flash for 2 seconds. The
 cards remain on the screen, and the user still has to drag and drop the card
 before it is removed.
 
-Robust Double-Click/Tap Hint Logic:
-
+----------------------------------
+Robust Double-Click/Tap Hint Logic
+----------------------------------
 Desktop: Use the standard React onDoubleClick event listener on the English cards
 to trigger the hint.
 
@@ -104,11 +104,17 @@ Inject this Data URI into the embedded manifest.json blob as the src for icons o
 sizes "192x192" and "512x512".
 The text description under the icon should be GAME.
 
+--------
+Header
+--------
 Add a Header with these elements (compressed to fit on a single line):
 - Score + percent of words that have been learned (eliminated from the deck).
 For example: “Score 65 10.3% Learned”.  Update the % learned every time the score
 is updated. Score should start at 0.0 when the game begins.
 
+-------
+Buttons
+-------
 - Button with the text “Mute”. The Mute button should only suppress the buzzer
 and chime sounds, not the Text-to-Speech.
 - Button with the text “Rules”, pop-up with rules and scoring summary. You need
@@ -119,21 +125,20 @@ install on mobile (using PWA). You need to create the content for this pop-up.
 Instructions for iOS should describe the share icon as an arrow going up. After
 instructions for installation on iOS and Android, it should list the advantages
 of PWA.
-
 This button should not appear when the game is being used as PWA.
-
 - Button with the text “Source”, link to file /LANGUAGE/GAME/source.html (HTML
 file already exists at that location).
 All buttons should be the same color.
 Pop-ups should close with the Escape key.
 
+-------------------
+Drag and Drop Fixes
+-------------------
 1.  **Two-Stage Animation Logic:* Use `successIds` state to handle the "Green
 Flash" phase and a `matchedIds` state to handle the "Slide Up/Collapse" phase.
-
 2.  **CSS Transitions:** Add a `.card-wrapper` class. When a match is confirmed,
 the wrapper transitions its `max-height`, `opacity`, and `margin` to 0. This
 causes the remaining cards to smoothly slide up to fill the empty space.
-
 3.  **DOM Management:** Instead of replacing matched cards with fixed-height
 placeholders (which prevented sliding), the matched cards remain in the DOM but
 collapse to zero size.
@@ -152,7 +157,9 @@ the actual drop container.
 4. Scroll Prevention: Apply `touch-action: none` to the draggable element via
 CSS. This prevents the browser from interpreting the drag as a page scroll.
 
-Mobile Viewport & Footer Layout:
+-------------------------------
+Mobile Viewport & Footer Layout
+-------------------------------
 1. Dynamic Height: Set the main container height to 100dvh (dynamic viewport
 height) instead of 100vh or 100%. This prevents the mobile browser's address
 bar from covering the bottom of the app.
