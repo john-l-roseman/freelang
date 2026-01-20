@@ -1,0 +1,26 @@
+Create a variable called INSTRUCTIONS with the text “Drag the English cards to
+the right column, double-tap card for hint.”.
+
+Add this text to the INSTRUCTIONS variable (separated by a horizontal rule): the
+translation into Belarusian of the original INSTRUCTIONS text.
+
+Display INSTRUCTIONS in a block.
+
+Create a dataset with a single field called NAME, containing these elements:
+Beginner, Longer Phrases, Neologisms, Quotes, Short Phrases.
+
+Add another field IMAGE to the dataset containing an SVG representation of a
+thumbnail-size clip-art image that represents the NAME field in the context of
+language learning.
+
+Display a grid of buttons that contain NAME and IMAGE. Link each button to this
+URL: “/Belarusian/NAME” (where NAME is the text of the first field).
+
+Middle header: Belarusian Language Learning
+
+Left side header: openlang.ai  (large bold)
+
+Put a button with the text “Source” in the upper right corner, link to
+/Belarusian/source.html (HTML file already exists at that location).
+
+Do not add any notes at the top of the index.html file.
