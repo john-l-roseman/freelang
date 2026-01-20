@@ -16,8 +16,8 @@ Layout:
 - Two vertical columns side-by-side (50% width each). No Column Headers.
 - Left Column: 9 Draggable Cards (English). Be sure that the same card does
 not appear twice.
-- Right Column: 9 Drop Zone Cards (LANGUAGE), shuffled relative to the left
-column
+- Right Column: 9 Drop Zone Cards (LANGUAGE), shuffled using the Fisher-Yates 
+algorithm relative to the left column.
 - Reduce excess white space above and below words on the cards.
 - Verify that the English and LANGUAGE cards have the same height.
 - Space the cards vertically so that they occupy 95% of the container
