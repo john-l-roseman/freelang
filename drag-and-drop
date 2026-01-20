@@ -20,9 +20,9 @@ not appear twice.
 algorithm relative to the left column.
 - Reduce excess white space above and below words on the cards.
 - Verify that the English and LANGUAGE cards have the same height.
-- Space the cards vertically so that they occupy 95% of the container
-space.
--  Put speaker icons on the English and LANGUAGE cards. Use the browser's
+- Align cards to the top of the column (flex-start) with a consistent 
+fixed gap (e.g., 0.5rem) between them. Do not distribute space between cards.
+- Put speaker icons on the English and LANGUAGE cards. Use the browser's
 Web Speech API for audio generation. When selecting a voice, write logic to
 specifically filter for voices where localService is true to ensure the audio
 works offline without an internet connection.
