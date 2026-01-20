@@ -3,7 +3,7 @@ DELETE="NOTHING";
 if [ "$1" == "test" ];
 then PROGRAM="chat"; DELETE="Do not add any notes";
 fi
-URL="https://docs.google.com/document/d/1tHCEOk5PnHQYZd_zLYezNtLOhlxH8ahxk--bvpEOR1w/export?format=html" 
+PROMPT="../../Scripts/drag-and-drop"
 LANGUAGE=`pwd | awk -F/ '{print $(NF-1)}'`;
 GAME=`pwd | awk -F/ '{print $NF}'`;
 LANG_TEXT=`echo $LANGUAGE | sed 's/./\u&/'` # Capitalize the first letter
@@ -12,7 +12,7 @@ COLOR=`cat ../color`;
 (
 echo -n "Create a dataset of ";
 cat "../../Rules/$GAME";
-curl -s -L $URL |lynx -stdin --dump -nolist -width=90 | sed 's/^ *//' | sed "/$DELETE/d";
+cat $PROMPT | sed "/$DELETE/d";
 cat ../addendum
 cat ../../Copyright
 )| sed "s/LANGUAGE/$LANG_TEXT/g" | sed "s/LANG/$LANGUAGE/g" | sed "s/COLOR/$COLOR/" | 
