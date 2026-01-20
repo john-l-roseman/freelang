@@ -1,0 +1,167 @@
+Add English translations to the dataset. Eliminate the authorship (if it is
+there) in the translated text. The authorship would be a long dash and one or two
+words at the end of the translated text.
+
+Act as an expert Frontend Engineer. Build a single, standalone HTML file for a
+language learning game.
+
+Technical Stack:
+- Use React, ReactDOM, and Babel via CDN.
+- Use TailwindCSS via CDN for styling.
+- Embed all CSS and Javascript within the HTML file.
+- No external assets (images/sounds must be generated or base64).
+
+Game Requirements:
+
+Layout:
+- Two vertical columns side-by-side (50% width each). No Column Headers.
+- Left Column: 9 Draggable Cards (English). Be sure that the same card does
+not appear twice.
+- Right Column: 9 Drop Zone Cards (LANGUAGE), shuffled relative to the left
+column
+- Reduce excess white space above and below words on the cards.
+
+- Verify that the English and LANGUAGE cards have the same height.
+
+- Space the cards vertically so that they occupy 95% of the container
+space.
+-  Put speaker icons on the English and LANGUAGE cards. Use the browser's
+Web Speech API for audio generation. When selecting a voice, write logic to
+specifically filter for voices where localService is true to ensure the audio
+works offline without an internet connection.
+- On desktop, the layout should appear as it would on a large screen
+telephone.
+
+Interaction:
+- Drag an English card to the corresponding LANGUAGE card.
+- Desktop: Use HTML5 Drag and Drop API.
+- Mobile: Implement custom Touch events (touchstart, touchmove, touchend)
+because HTML5 DnD doesn't work on mobile.
+- Mobile Visuals: When dragging on mobile, render a fixed-position "ghost
+card" that follows the finger coordinates.
+- Hint Interaction: Double-click (Desktop) or Double-tap (Mobile) on an
+English card causes the corresponding LANGUAGE card to flash for 2 seconds. The
+cards remain on the screen, and the user still has to drag and drop the card
+before it is removed.
+
+Robust Double-Click/Tap Hint Logic:
+
+Desktop: Use the standard React onDoubleClick event listener on the English cards
+to trigger the hint.
+
+Mobile (Custom Double-Tap):
+Standard dblclick events are unreliable on touch devices and often conflict with
+zooming. Implement custom logic within the touchstart handler:
+Use a useRef to store the timestamp of the lastTap.
+On touchstart, compare the current time to lastTap.
+If the difference is less than 300ms, treat it as a Double Tap.
+Crucial: If a Double Tap is detected, trigger the hint logic and return
+immediately to abort the drag-and-drop ghost generation.
+If the difference is greater than 300ms, update lastTap to the current time and
+proceed with the standard Drag/Touch logic.
+
+Mobile Drag Fix:
+1. CSS Requirement: Apply the CSS property touch-action: none; specifically to
+the English Draggable Cards. This is critical to prevent the browser from
+scrolling the page when the user tries to drag a card.
+2. Event Handling: Inside the onTouchMove event handler, you must call
+e.preventDefault() conditional on whether a drag is currently active (i.e.,
+if the 'ghost card' exists). This ensures that the custom drag logic
+overrides the native browser scrolling."
+
+Game Logic:
+- Match Success: Compare IDs. If correct: Play a soft chime (Web Audio
+API), flash both cards green, remove them from the screen, remaining cards on
+both sides slide up to fill the empty space. If no double-click hint was given
+for this word, then increment Score (+10 + streak bonus), increment Streak. If
+there was a hint, then don’t increment Score.
+- Streak Bonus: Equal to the length of the streak.
+- Match Fail: If wrong: Play a buzzer (Web Audio API), flash the English
+card red for one second, reset Streak, decrement Score (-5).
+
+- Mastery System: When a word is guessed correctly (without double-click
+hint), remove it from the main dataset entirely.
+
+- Rounds: When all 9 pairs are matched, automatically start a new round
+with 9 new random words from the dataset.
+
+After all words are correctly guessed, pop up a message saying “Congratulations!
+You've learned all words!”. When the player clicks OK, redirect to /LANGUAGE
+
+Visuals:
+- Muted COLOR color scheme.
+- Sans-serif fonts.
+- Smooth CSS transitions for disappearing cards.
+
+PWA Features:
+- Include a `manifest.json` (embedded as a Blob).
+- Include a Service Worker (embedded) to cache the CDNs for offline use.
+- Create a minimalist SVG string in the JavaScript (a square with a COLOR
+background color matching the game theme and the two letter country code for the
+origin country of LANGUAGE in white text).
+Convert this SVG string to a Base64 Data URI using the btoa() function.
+Inject this Data URI into the embedded manifest.json blob as the src for icons of
+sizes "192x192" and "512x512".
+The text description under the icon should be GAME.
+
+Add a Header with these elements (compressed to fit on a single line):
+- Score + percent of words that have been learned (eliminated from the deck).
+For example: “Score 65 10.3% Learned”.  Update the % learned every time the score
+is updated. Score should start at 0.0 when the game begins.
+
+- Button with the text “Mute”. The Mute button should only suppress the buzzer
+and chime sounds, not the Text-to-Speech.
+- Button with the text “Rules”, pop-up with rules and scoring summary. You need
+to create the content of that pop-up. Rules should include explanation of how the
+streak bonus is calculated.
+- Button with the text “Install”, that pops up a window with instructions for
+install on mobile (using PWA). You need to create the content for this pop-up.
+Instructions for iOS should describe the share icon as an arrow going up. After
+instructions for installation on iOS and Android, it should list the advantages
+of PWA.
+
+This button should not appear when the game is being used as PWA.
+
+- Button with the text “Source”, link to file /LANGUAGE/GAME/source.html (HTML
+file already exists at that location).
+All buttons should be the same color.
+Pop-ups should close with the Escape key.
+
+1.  **Two-Stage Animation Logic:* Use `successIds` state to handle the "Green
+Flash" phase and a `matchedIds` state to handle the "Slide Up/Collapse" phase.
+
+2.  **CSS Transitions:** Add a `.card-wrapper` class. When a match is confirmed,
+the wrapper transitions its `max-height`, `opacity`, and `margin` to 0. This
+causes the remaining cards to smoothly slide up to fill the empty space.
+
+3.  **DOM Management:** Instead of replacing matched cards with fixed-height
+placeholders (which prevented sliding), the matched cards remain in the DOM but
+collapse to zero size.
+To ensure Mobile Drag and Drop works correctly in React/HTML5 without external
+libraries:
+1. Ghost Element CSS: The fixed-position "ghost" card following the finger MUST
+have the CSS property `pointer-events: none`.
+2. Drop Detection Logic: In the `touchend` event, use
+`document.elementFromPoint(e.changedTouches[0].clientX,
+e.changedTouches[0].clientY)` to find the target.
+3. DOM Traversal: The element found by `elementFromPoint` might be a child (like
+a text <span> or icon).
+
+Always use `element.closest('.drop-zone')` (or specific selector) to resolve
+the actual drop container.
+4. Scroll Prevention: Apply `touch-action: none` to the draggable element via
+CSS. This prevents the browser from interpreting the drag as a page scroll.
+
+Mobile Viewport & Footer Layout:
+1. Dynamic Height: Set the main container height to 100dvh (dynamic viewport
+height) instead of 100vh or 100%. This prevents the mobile browser's address
+bar from covering the bottom of the app.
+2. Flexbox Structure: Do not use position: absolute for the footer. Instead, use
+a Flexbox Column layout for the Game Container:
+
+* Header: Fixed height (flex-none).
+* Game Board: Fills remaining space (flex-1), handles its own scrolling
+(overflow-y: auto).
+* Footer: Fixed height (flex-none), pinned to the bottom by the flex container.
+
+Do not add any notes at the top of the index.html file.
