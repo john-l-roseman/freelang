@@ -146,15 +146,14 @@ the actual drop container.
 CSS. This prevents the browser from interpreting the drag as a page scroll.
 
 Mobile Viewport & Footer Layout:
-1. Dynamic Height: Set the main container height to 100dvh (dynamic viewport
-height) instead of 100vh or 100%. This prevents the mobile browser's address
-bar from covering the bottom of the app.
-2. Flexbox Structure: Do not use position: absolute for the footer. Instead, use
-a Flexbox Column layout for the Game Container:
-
-* Header: Fixed height (flex-none).
-* Game Board: Fills remaining space (flex-1), handles its own scrolling
-(overflow-y: auto).
-* Footer: Fixed height (flex-none), pinned to the bottom by the flex container.
+Main Container: Set the top-level app container to height: 100dvh, display: flex, 
+and flex-direction: column.
+Three Explicit Sections: The Main Container must have exactly three direct children:
+Header: flex: none (Fixed height).
+Game Area: flex: 1 and overflow-y: auto. Crucial: The game cards must reside here. 
+This ensures only the middle section scrolls while the header and footer stay pinned.
+Footer: flex: none (Fixed height). Crucial: Place the copyright text here. Ensure 
+it has a distinct background color and z-index: 10 to sit above any other elements.
+Additionally, replace the previous Copyright instruction with this clearer version:
 
 Do not add any notes at the top of the index.html file.
