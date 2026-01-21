@@ -145,6 +145,36 @@ the actual drop container.
 4. Scroll Prevention: Apply `touch-action: none` to the draggable element via
 CSS. This prevents the browser from interpreting the drag as a page scroll.
 
+Crucial Data Structure Requirement:
+Use a useRef hook (e.g., deckRef) to store the main dataset of 250 words. 
+Do not use useState for the main deck.
+Why: This prevents "stale state" bugs where the game thinks the deck is 
+empty after the first round.
+Flow:
+Initialize deckRef.current with the full shuffled dataset on mount.
+When a word is mastered (guessed without hint), remove it from 
+deckRef.current using .splice() or .filter() immediately.
+To start a new round, simply slice the first 9 items from 
+deckRef.current and pass them to the currentRound state.
+
+Rounds Logic:
+Track the number of matches in the current round using a local 
+variable or ref (not state).
+When the last match occurs:
+Immediately select the next batch of words from deckRef.current.
+Call setCurrentRound(...) with these new words.
+Do not wait for animations or useEffects to trigger the next round. 
+Force the update immediately.
+
+Safety Check: Inside the function that starts a new round, 
+check if deckRef.current.length is greater than 0. If words remain 
+but are fewer than 9, take all of them. Only trigger the "Win" 
+message if deckRef.current.length is exactly 0.
+
+By moving the deck to a useRef, the AI will generate code that 
+accesses the data directly in memory, ensuring that when Round 1 
+finishes, Round 2 definitely receives the remaining words.
+
 Mobile Viewport & Footer Layout:
 Main Container: Set the top-level app container to height: 100dvh, display: flex, 
 and flex-direction: column.
@@ -154,6 +184,5 @@ Game Area: flex: 1 and overflow-y: auto. Crucial: The game cards must reside her
 This ensures only the middle section scrolls while the header and footer stay pinned.
 Footer: flex: none (Fixed height). Crucial: Place the copyright text here. Ensure 
 it has a distinct background color and z-index: 10 to sit above any other elements.
-Additionally, replace the previous Copyright instruction with this clearer version:
 
-Do not add any notes at the top of the index.html file.
+IMPORTANT: Do not add any notes at the top of the index.html file.
