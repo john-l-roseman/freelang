@@ -77,8 +77,10 @@ card red for one second, reset Streak, decrement Score (-5).
 - Mastery System: When a word is guessed correctly (without double-click
 hint), remove it from the main dataset entirely.
 
-- Rounds: When all 9 pairs are matched, automatically start a new round
-with 9 new random words from the dataset.
+-Rounds: When all 9 pairs are matched, automatically start a new round. 
+IMPORTANT: Detect round completion explicitly within the match logic 
+(not via useEffect). Pass the updated deck directly to the new round function 
+to ensure the next set of cards loads immediately without a blank screen.
 
 After all words are correctly guessed, pop up a message saying “Congratulations!
 You've learned all words!”. When the player clicks OK, redirect to /LANGUAGE
