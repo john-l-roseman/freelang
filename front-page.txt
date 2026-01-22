@@ -1,7 +1,6 @@
 Use Minimalist design.
 Do not display any commentary or notes.
 
-
 -------
 Top Bar
 -------
@@ -12,7 +11,6 @@ already exists at that location).
 
 Navigation:
 Contact 
-
 
 ------------
 Main Content
@@ -51,11 +49,8 @@ Display the container “MAIN_LANGUAGES”, with the header "Choose a Language".
 Below that, display “ADDITIONAL_LANGUAGES”, collapsed by default, 
 with the heading “More Languages”.
 
-
-
-
 Second Column:
-Create a block "Open Source for Everyone" with this text: 
+Create a block "Open Source for Everyone". 
 --------------
 The Open Source movement was a revolution for programmers, allowing 
 them to build on exiting libraries and systems. With the advent of vibecoding, 
@@ -63,15 +58,12 @@ Open Source can be used by anyone.
 
 Every page on this site has a "Source" button in the top corner. You can download
 the source text for any game, change it to for your needs, and produce a fully-functional 
-customized game. Now workw with Google Gemini 3 Pro and Anthropic Claude Opus 4.5.
+customized game (works with Google Gemini and Anthropic Claude).
 --------------
-
 
 ------
 Footer
 ------
-
-
 Add copyright text as footer on a single line in small print. The copyright text
 should be in a container independent of the container containing the game. On
 desktop, the copyright text should be inside the mobile window.
