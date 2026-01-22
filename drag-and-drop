@@ -4,6 +4,8 @@ Add English translations to the dataset.
 Act as an expert Frontend Engineer. Build a single, standalone HTML file for a
 language learning game.
 
+IMPORTANT: Do not add any notes at the top of the HTML file.
+
 Technical Stack:
 - Use React, ReactDOM, and Babel via CDN.
 - Use TailwindCSS via CDN for styling.
@@ -42,20 +44,6 @@ card" that follows the finger coordinates.
 English card causes the corresponding LANGUAGE card to flash bright orange for 2 seconds. 
 The cards remain on the screen, and the user still has to drag and drop the card
 before it is removed.
-
-Robust Double-Click/Tap Hint Logic:
-Desktop: Use the standard React onDoubleClick event listener on the English cards
-to trigger the hint.
-Mobile (Custom Double-Tap):
-Standard dblclick events are unreliable on touch devices and often conflict with
-zooming. Implement custom logic within the touchstart handler:
-Use a useRef to store the timestamp of the lastTap.
-On touchstart, compare the current time to lastTap.
-If the difference is less than 300ms, treat it as a Double Tap.
-Crucial: If a Double Tap is detected, trigger the hint logic and return
-immediately to abort the drag-and-drop ghost generation.
-If the difference is greater than 300ms, update lastTap to the current time and
-proceed with the standard Drag/Touch logic.
 
 Mobile Drag Fix:
 1. CSS Requirement: Apply the CSS property touch-action: none; specifically to
@@ -123,6 +111,24 @@ file already exists at that location).
 All buttons should be the same color.
 Pop-ups should close with the Escape key.
 
+---------------------
+Fixes Suggested by AI
+---------------------
+
+Robust Double-Click/Tap Hint Logic:
+Desktop: Use the standard React onDoubleClick event listener on the English cards
+to trigger the hint.
+Mobile (Custom Double-Tap):
+Standard dblclick events are unreliable on touch devices and often conflict with
+zooming. Implement custom logic within the touchstart handler:
+Use a useRef to store the timestamp of the lastTap.
+On touchstart, compare the current time to lastTap.
+If the difference is less than 300ms, treat it as a Double Tap.
+Crucial: If a Double Tap is detected, trigger the hint logic and return
+immediately to abort the drag-and-drop ghost generation.
+If the difference is greater than 300ms, update lastTap to the current time and
+proceed with the standard Drag/Touch logic.
+
 1.  **Two-Stage Animation Logic:* Use `successIds` state to handle the "Green
 Flash" phase and a `matchedIds` state to handle the "Slide Up/Collapse" phase.
 2.  **CSS Transitions:** Add a `.card-wrapper` class. When a match is confirmed,
@@ -187,4 +193,26 @@ This ensures only the middle section scrolls while the header and footer stay pi
 Footer: flex: none (Fixed height). Crucial: Place the copyright text here. Ensure 
 it has a distinct background color and z-index: 10 to sit above any other elements.
 
-IMPORTANT: Do not add any notes at the top of the index.html file.
+Round Transition Logic:
+When the last match of a round is completed:
+1. Immediately filter the main word dataset (stored in the ref) to remove 
+   only the words that were correctly guessed WITHOUT using hints
+2. Add defensive logging to verify the dataset still contains words:
+   - Log the length of the remaining dataset
+   - Log a sample of the next words to be used
+3. Use a setTimeout with 500ms delay before starting the next round
+4. Inside the setTimeout, call the function that starts a new round
+
+The new round function must:
+- First check if the dataset has any remaining words
+- If words remain, take up to 9 words from the dataset
+- Immediately update the state with these new words (never set to empty array)
+- Create a shuffled version for the second column
+- Reset match tracking for the new round
+
+Common mistake to avoid:
+Do NOT clear the current round state to an empty array before starting 
+the new round. This causes a blank screen. Instead, directly replace the 
+current round with the new set of words in a single state update.
+
+
