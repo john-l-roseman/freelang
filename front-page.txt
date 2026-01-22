@@ -53,8 +53,8 @@ Second Column:
 Create a block "Open Source for Everyone". 
 --------------
 The Open Source movement was a revolution for programmers, allowing 
-them to build on exiting libraries and systems. With the advent of vibecoding, 
-Open Source can be used by anyone.
+them to reuse exiting tools and systems. With the advent of vibecoding, 
+anyone can build with Open Source.
 
 Every page on this site has a "Source" button in the top corner. You can download
 the source text for any game, change it to for your needs, and produce a fully-functional 
@@ -69,5 +69,6 @@ should be in a container independent of the container containing the game. On
 desktop, the copyright text should be inside the mobile window.
 Link for “Functional AI Inc”: https://functional.by
 Link for “MIT License”: https://opensource.org/licenses/MIT
-The text should appear exactly as below, with the above href link markup added.
+The text should appear exactly as below, with the above href link markup added as
+underlined link.
 Copyright (C) 2026 by Functional AI Inc.  Licensed under the MIT License.
