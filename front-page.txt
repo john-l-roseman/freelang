@@ -1,4 +1,4 @@
-Use Minimalist design.
+Use Editorial/Magazine theme.
 Do not display any commentary or notes.
 
 -------
@@ -60,6 +60,7 @@ Every page on this site has a "Source" button in the top corner. You can downloa
 the source text for any game, change it to for your needs, and produce a fully-functional 
 customized game (works with Google Gemini and Anthropic Claude).
 --------------
+Link Google Gemini and Anthropic Claude to their respective home pages.
 
 ------
 Footer
