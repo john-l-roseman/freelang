@@ -1,7 +1,6 @@
-PROGRAM="build";
-DELETE="NOTHING";
-if [ "$1" == "test" ];
-then PROGRAM="chat"; DELETE="Do not add any notes";
+ENGINE="claude";
+if [ "$1" != "" ]
+then ENGINE=$1;
 fi
 PROMPT="../../Scripts/drag-and-drop"
 LANGUAGE=`pwd | awk -F/ '{print $(NF-1)}'`;
@@ -12,7 +11,7 @@ COLOR=`cat ../color`;
 (
 echo -n "Create a dataset of ";
 cat "../../Rules/$GAME";
-cat $PROMPT | sed "/$DELETE/d";
+cat $PROMPT ;
 cat ../addendum
 cat ../../Copyright
 )| sed "s/LANGUAGE/$LANG_TEXT/g" | sed "s/LANG/$LANGUAGE/g" | sed "s/COLOR/$COLOR/" | 
@@ -24,6 +23,6 @@ echo "</pre>") | \
 	 iconv -c -f UTF-8 -t ASCII//TRANSLIT > source.html 
 
 date;
-python3.10 /usr/local/bin/"$PROGRAM"_game.py build-instructions.txt index.html 
+python3.10 /usr/local/bin/run-"$ENGINE".py build-instructions.txt index.html 
 date;
 
