@@ -1,0 +1,79 @@
+Use Minimalist design.
+Do not display any commentary or notes.
+
+
+-------
+Top Bar
+-------
+Left: “openlang.ai” in larger bold type.
+Center: “Free, open source language learning games”
+CTA: A button with the text “Source”, link to file /source.html (HTML file
+already exists at that location).
+
+Navigation:
+Contact 
+
+
+------------
+Main Content
+------------
+Two column layout. 
+First column:
+Display all character sets natively (Chinese, Arabic, Korean, etc).
+Create a dataset of languages containing one field called “LANGUAGE”:
+Chinese Spanish French German Portuguese Ukrainian Korean Japanese Persian Hindi
+Arabic Swahili
+
+Add a second field NATIVE_NAME to the dataset containing the name of the language
+in the language itself, using the language’s primary character set.
+
+Create buttons for each language  in this format:
+NATIVE_NAME (bold, large) above LANGUAGE (medium) compact styling
+Link the buttons to an internal URL in this format:  /LANGUAGE
+
+Create a language selection block containing all of the language buttons in a
+grid. Maximum width of the grid on desktop: 4 buttons. Call this container
+“MAIN_LANGUAGES”.
+
+Create another dataset of languages containing:
+Azerbaijani Belarusian Bengali Bulgarian Burmese Czech Danish Dutch Estonian
+Georgian Greek Hausa Hungarian Indonesian Italian Lao Latin Latvian Lithuanian
+Madurese Malay Malayalam Nepali Norwegian Pashto Polish Punjabi Romanian Russian
+Serbo-Croatian Sindhi Somali Swedish Tagalog Tamil Telugu Thai Turkish Urdu
+Vietnamese
+
+Create another block with language buttons using the same method as
+“MAIN_LANGUAGE”.
+Call this container “ADDITIONAL LANGUAGES”.  Make it collapsible.
+
+Language Picker Block:
+Display the container “MAIN_LANGUAGES”, with the header "Choose a Language".
+Below that, display “ADDITIONAL_LANGUAGES”, collapsed by default, 
+with the heading “More Languages”.
+
+
+
+
+Second Column:
+Create a block with the heading: "Open Source for the Everyone".
+Explain how the Open Source movement was a revolution for programmers, allowing 
+them to build on exiting libraries and systems. With the advent of vibecoding, 
+Open Source can be used by anyone, by customizing English language prompts.
+
+Every page on this site has a "Source" button in the top corner. You can download
+the source text for any game, change to for your needs, and produce a fully-functional 
+customized game. This works for Google Gemini 3 Pro and Anthropic Claude Opus 4.5.
+
+
+------
+Footer
+------
+
+
+Add copyright text as footer on a single line in small print. The copyright text
+should be in a container independent of the container containing the game. On
+desktop, the copyright text should be inside the mobile window.
+Link for “Functional AI Inc”: https://functional.by
+Link for “MIT License”: https://opensource.org/licenses/MIT
+The text should appear exactly as below, with the above href link markup added.
+Copyright (C) 2026 by Functional AI Inc.  Licensed under the MIT License.
