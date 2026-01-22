@@ -18,6 +18,8 @@ Layout:
 not appear twice.
 - Right Column: 9 Drop Zone Cards (LANGUAGE), shuffled using the Fisher-Yates 
 algorithm relative to the left column.
+- Store the shuffled Russian card order in state when the round starts, 
+not in the render phase.
 - Elminate white space above and below words on the cards.
 - Verify that the English and LANGUAGE cards have the same height.
 - Align cards to the top of the column (flex-start) with a consistent 
