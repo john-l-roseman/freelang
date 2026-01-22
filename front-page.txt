@@ -55,17 +55,16 @@ with the heading “More Languages”.
 
 
 Second Column:
-Create a block "Open Source for Everyone" which expanding on this: 
+Create a block "Open Source for Everyone" with this text: 
 --------------
-Explain how the Open Source movement was a revolution for programmers, allowing 
+The Open Source movement was a revolution for programmers, allowing 
 them to build on exiting libraries and systems. With the advent of vibecoding, 
-Open Source can be used by anyone, by customizing English language prompts.
+Open Source can be used by anyone.
 
 Every page on this site has a "Source" button in the top corner. You can download
-the source text for any game, change to for your needs, and produce a fully-functional 
-customized game. This works for Google Gemini 3 Pro and Anthropic Claude Opus 4.5.
+the source text for any game, change it to for your needs, and produce a fully-functional 
+customized game. Now workw with Google Gemini 3 Pro and Anthropic Claude Opus 4.5.
 --------------
-Show the block with logos from Google Gemini 3 and Anthropic Claude Opus.
 
 
 ------
