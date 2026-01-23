@@ -218,4 +218,6 @@ Do NOT clear the current round state to an empty array before starting
 the new round. This causes a blank screen. Instead, directly replace the 
 current round with the new set of words in a single state update.
 
-Create a favicon from the Chinese character wén.
+Create a favicon from the Chinese character wén on a white background.
+
+CRITICAL: Do not add any notes at the top of the HTML file.
