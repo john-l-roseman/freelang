@@ -4,6 +4,7 @@ Do not display any commentary or notes.
 -------
 Top Bar
 -------
+Make the top bar the same width as Main Content.
 Create an SVG image of the Chineses Wen character. Use it as a Logo.
 
 Left: The Logo, followed by “openlang.ai” in larger bold type.
@@ -35,11 +36,11 @@ Create a language selection block containing all of the language buttons in a
 grid. Maximum width of the grid on desktop: 4 buttons. Call this container
 “MAIN_LANGUAGES”.
 
-Create another dataset of languages containing:
-Azerbaijani Belarusian Bengali Bulgarian Burmese Czech Danish Dutch Estonian
+Create another dataset of additional languages containing:
+Azerbaijani Belarusian Bengali Bulgarian Burmese Catalan Czech Danish Dutch Estonian
 Georgian Greek Hausa Hungarian Indonesian Italian Lao Latin Latvian Lithuanian
-Madurese Malay Malayalam Nepali Norwegian Pashto Polish Punjabi Romanian Russian
-Serbo-Croatian Sindhi Somali Swedish Tagalog Tamil Telugu Thai Turkish Urdu
+Madurese Malay Malayalam Norwegian Pashto Polish Punjabi Romanian Russian
+Serbo-Croatian Sindhi Slovak Somali Swedish Tagalog Tamil Telugu Thai Turkish Urdu
 Vietnamese
 
 Create another block with language buttons using the same method as
