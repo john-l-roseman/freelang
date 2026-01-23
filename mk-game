@@ -1,4 +1,4 @@
-ENGINE="claude";
+ENGINE="gemini";
 if [ "$1" != "" ]
 then ENGINE=$1;
 fi
