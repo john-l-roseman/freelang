@@ -17,7 +17,7 @@ In the HTML <head>:
    The Data URI should contain a simple SVG with the character "文".
    - Color: Deep Red (#991b1b) to match the logo.
    - Font: Serif (to match the intellectual theme).
-   - Background: Transparent.
+   - Background: White.
 
 -------
 Top Bar
@@ -51,7 +51,7 @@ Logo Styling & Animation:
    - animation-iteration-count: 1;
 4. Stagger the animation delays so the strokes write in the correct order:
    - Path 1: delay 0s, duration 0.3s
-   - Path 2: delay 0.8s, duration 0.5s
+   - Path 2: delay 0.3s, duration 0.5s
    - Path 3: delay 0.8s, duration 0.5s
    - Path 4: delay 1.3s, duration 0.5s
 
