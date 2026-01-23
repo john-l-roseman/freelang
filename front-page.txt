@@ -11,15 +11,20 @@ Top Bar
 -------
 Make the top bar the same width as Main Content.
 
+-------
+Top Bar
+-------
+Make the top bar the same width as Main Content.
+
 Logo Construction:
 Create an inline SVG of the Chinese character "文" (Wen). 
-Use a viewBox="0 0 109 109".
-Inside the SVG, create a group <g> with stroke="currentColor", fill="none", stroke-width="6", and stroke-linecap="round".
-Use the following 4 specific <path> elements to form the character:
-1. Top Dot: d="M53.25,12.75c2.72,1.38,6.86,5.39,7.63,8.38"
-2. Horizontal: d="M25,40.5c3.5,0.75,6.5,0.5,9.5,0.25c13.5-1.5,35-4,49-5c3-0.2,5.5,0,8,0.5"
-3. Left Sweep: d="M54.5,41.25c0.75,1.5,0.75,2.5,0,4.5c-3.75,10-15,31.5-35,43.25"
-4. Right Sweep: d="M55.5,41c6.25,9,28,29.5,41.25,33.5c2.5,0.75,4.25,1.25,6.75,1.5"
+Use a viewBox="0 0 100 100".
+Inside the SVG, create a group <g> with stroke="currentColor", fill="none", stroke-width="8", stroke-linecap="round" and stroke-linejoin="round".
+Use the following 4 specific <path> elements to form a geometric, Sans-Serif style character:
+1. Top Dot: d="M50 15 L50 35"
+2. Horizontal Bar: d="M20 35 L80 35"
+3. Left Leg: d="M50 35 Q 35 65 20 90"
+4. Right Leg: d="M50 35 Q 65 65 80 90"
 
 Logo Styling & Animation:
 1. Set the SVG text color to a Deep Red (text-red-800).
@@ -28,14 +33,15 @@ Logo Styling & Animation:
    - 100%: stroke-dashoffset: 0;
 3. Apply this animation to the <path> elements with these properties:
    - stroke-dasharray: 100;
-   - animation-duration: 1s;
+   - animation-duration: 0.8s;
    - animation-fill-mode: forwards;
+   - animation-timing-function: ease-out;
    - animation-iteration-count: 1;
 4. Stagger the animation delays so the strokes appear one by one:
    - Path 1: delay 0s
-   - Path 2: delay 0.4s
-   - Path 3: delay 0.8s
-   - Path 4: delay 1.2s
+   - Path 2: delay 0.3s
+   - Path 3: delay 0.6s
+   - Path 4: delay 0.9s
 
 Layout:
 Left: The animated SVG Logo, followed by “openlang.ai” in larger bold type.
@@ -95,9 +101,8 @@ anyone can build with Open Source.
 
 Every page on this site has a "Source" button in the top corner. You can download
 the source text for any game, change it to for your needs, and produce a fully-functional 
-customized game (works with Google Gemini).
+customized game.
 --------------
-Link Google Gemini to its home page.
 
 ------
 Footer
