@@ -1,20 +1,28 @@
-Use the Tailwind 'Stone' color palette (bg-stone-50 for background, 
-text-stone-800 for text, border-stone-300 for elements). This gives 
-a warm, paper-like, intellectual feel."
+Use the Tailwind 'Stone' color palette as the foundation 
+(bg-stone-50 for page background, text-stone-800 for primary text, 
+border-stone-300 for dividers). 
+This gives a warm, paper-like, intellectual feel.
 
-Use Editorial/Magazine theme.
+To add a colorful but restrained touch, use a "Muted Mosaic" 
+palette for the language buttons. Cycle through soft, 
+low-saturation backgrounds (e.g., bg-orange-100, bg-emerald-100, 
+bg-sky-100, bg-rose-100, bg-violet-100) paired with dark text (text-stone-900).
+
+Use an Editorial/Magazine theme: Use serif fonts for Headings and sans-serif for UI elements.
 Do not display any commentary or notes.
 
 -------
 Top Bar
 -------
 Make the top bar the same width as Main Content.
-Create an SVG image of the Chineses Wen character. Use it as a Logo.
+Create an SVG image of the Chinese Wen character. Style the SVG in 
+deep red (text-red-800) to resemble a traditional ink seal. Use it as a Logo.
 
 Left: The Logo, followed by “openlang.ai” in larger bold type.
 Center: “Hundreds of open source language learning games”
-CTA: A button with the text “Source”, link to file /source.html (HTML file
-already exists at that location).
+CTA: A button with the text “Source”, link to file /source.html. 
+Style this button solid and dark (bg-stone-800 text-white rounded-full) 
+to contrast with the page.
 
 Navigation:
 Contact 
@@ -23,6 +31,7 @@ Contact
 Main Content
 ------------
 Two column layout. 
+
 First column:
 Display all character sets natively (Chinese, Arabic, Korean, etc).
 Create a dataset of languages containing one field called “LANGUAGE”:
@@ -32,9 +41,13 @@ Arabic Swahili
 Add a second field NATIVE_NAME to the dataset containing the name of the language
 in the language itself, using the language’s primary character set.
 
-Create buttons for each language  in this format:
-NATIVE_NAME (bold, large) above LANGUAGE (medium) compact styling
-Link the buttons to an internal URL in this format:  /LANGUAGE
+Create buttons for each language in this format:
+NATIVE_NAME (bold, large) above LANGUAGE (medium) compact styling.
+Link the buttons to an internal URL in this format: /LANGUAGE
+
+Style the buttons as a grid of cards. Assign one of the "Muted Mosaic" 
+pastel background colors to each card randomly or sequentially to create 
+a colorful, tile-like effect. 
 
 Create a language selection block containing all of the language buttons in a
 grid. Maximum width of the grid on desktop: 4 buttons. Call this container
@@ -47,9 +60,9 @@ Madurese Malay Malayalam Norwegian Pashto Polish Punjabi Romanian Russian
 Serbo-Croatian Sindhi Slovak Somali Swedish Tagalog Tamil Telugu Thai Turkish Urdu
 Vietnamese
 
-Create another block with language buttons using the same method as
+Create another block with language buttons using the same method and coloring style as
 “MAIN_LANGUAGE”.
-Call this container “ADDITIONAL LANGUAGES”.  Make it collapsible.
+Call this container “ADDITIONAL LANGUAGES”. Make it collapsible.
 
 Language Picker Block:
 Display the container “MAIN_LANGUAGES”, with the header "Choose a Language".
@@ -58,6 +71,8 @@ with the heading “More Languages”.
 
 Second Column:
 Create a block "Open Source for Everyone". 
+Style this block with a subtle border and a light background (bg-white) 
+to differentiate it from the main list.
 --------------
 The Open Source movement was a revolution for programmers, allowing 
 them to reuse exiting tools and systems. With the advent of vibecoding, 
@@ -79,4 +94,4 @@ Link for “Functional AI Inc”: https://functional.by
 Link for “MIT License”: https://opensource.org/licenses/MIT
 The text should appear exactly as below, with the above href link markup added as
 underlined link.
-Copyright (C) 2026 by Functional AI Inc.  Licensed under the MIT License.
+Copyright (C) 2026 by Functional AI Inc. Licensed under the MIT License.
