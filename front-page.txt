@@ -15,10 +15,9 @@ Do not display any commentary or notes.
 Top Bar
 -------
 Make the top bar the same width as Main Content.
-Create an SVG image of the Chinese Wen character. Style the SVG in 
-deep red (text-red-800) to resemble a traditional ink seal. Use it as a Logo.
+Create an SVG image using an exact representation of the Chinese Wen character. 
 
-Left: The Logo, followed by “openlang.ai” in larger bold type.
+Left: The Logo (in deep red), followed by “openlang.ai” in larger bold type.
 Center: “Hundreds of open source language learning games”
 CTA: A button with the text “Source”, link to file /source.html. 
 Style this button solid and dark (bg-stone-800 text-white rounded-full) 
@@ -45,9 +44,7 @@ Create buttons for each language in this format:
 NATIVE_NAME (bold, large) above LANGUAGE (medium) compact styling.
 Link the buttons to an internal URL in this format: /LANGUAGE
 
-Style the buttons as a grid of cards. Assign one of the "Muted Mosaic" 
-pastel background colors to each card randomly or sequentially to create 
-a colorful, tile-like effect. 
+Style the buttons as a grid of cards. 
 
 Create a language selection block containing all of the language buttons in a
 grid. Maximum width of the grid on desktop: 4 buttons. Call this container
@@ -80,9 +77,9 @@ anyone can build with Open Source.
 
 Every page on this site has a "Source" button in the top corner. You can download
 the source text for any game, change it to for your needs, and produce a fully-functional 
-customized game (works with Google Gemini and Anthropic Claude).
+customized game (works with Google Gemini).
 --------------
-Link Google Gemini and Anthropic Claude to their respective home pages.
+Link Google Gemini to its home page.
 
 ------
 Footer
