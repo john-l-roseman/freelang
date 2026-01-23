@@ -26,10 +26,11 @@ not in the render phase.
 - Verify that the English and LANGUAGE cards have the same height.
 - Align cards to the top of the column (flex-start) with a consistent 
 fixed gap (e.g., 0.5rem) between them. Do not distribute space between cards.
-- Put speaker icons on the English and LANGUAGE cards. Use the browser's
-Web Speech API for audio generation. When selecting a voice, write logic to
-specifically filter for voices where localService is true to ensure the audio
-works offline without an internet connection.
+- Put speaker icons on the English and LANGUAGE cards. Put the icon immediately
+after the text, not on a new line.  
+Use the browser's Web Speech API for audio generation. 
+When selecting a voice, write logic to specifically filter for voices where 
+localService is true to ensure the audio works offline without an internet connection.
 - On desktop, the layout should appear as it would on a large screen
 telephone.
 
@@ -44,15 +45,6 @@ card" that follows the finger coordinates.
 English card causes the corresponding LANGUAGE card to flash bright orange for 2 seconds. 
 The cards remain on the screen, and the user still has to drag and drop the card
 before it is removed.
-
-Mobile Drag Fix:
-1. CSS Requirement: Apply the CSS property touch-action: none; specifically to
-the English Draggable Cards. This is critical to prevent the browser from
-scrolling the page when the user tries to drag a card.
-2. Event Handling: Inside the onTouchMove event handler, you must call
-e.preventDefault() conditional on whether a drag is currently active (i.e.,
-if the 'ghost card' exists). This ensures that the custom drag logic
-overrides the native browser scrolling."
 
 Game Logic:
 - Match Success: Compare IDs. If correct: Play a soft chime (Web Audio
@@ -111,9 +103,18 @@ file already exists at that location).
 All buttons should be the same color.
 Pop-ups should close with the Escape key.
 
----------------------
-Fixes Suggested by AI
----------------------
+-------------------------
+Fixes Suggested by Gemini
+-------------------------
+
+Mobile Drag Fix:
+1. CSS Requirement: Apply the CSS property touch-action: none; specifically to
+the English Draggable Cards. This is critical to prevent the browser from
+scrolling the page when the user tries to drag a card.
+2. Event Handling: Inside the onTouchMove event handler, you must call
+e.preventDefault() conditional on whether a drag is currently active (i.e.,
+if the 'ghost card' exists). This ensures that the custom drag logic
+overrides the native browser scrolling."
 
 Robust Double-Click/Tap Hint Logic:
 Desktop: Use the standard React onDoubleClick event listener on the English cards
