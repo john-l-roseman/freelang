@@ -89,7 +89,7 @@ origin country of LANGUAGE in white text).
 Convert this SVG string to a Base64 Data URI using the btoa() function.
 Inject this Data URI into the embedded manifest.json blob as the src for icons of
 sizes "192x192" and "512x512".
-The text description under the icon should be Intermediate.
+In the generated manifest.json, set the short_name property to "LANGUAGE GAME".
 
 Add a Header with these elements (compressed to fit on a single line):
 - Score + percent of words that have been learned (eliminated from the deck).
