@@ -1,6 +1,6 @@
 =========================================================
 Add English translations to the dataset. 
-If there is an em-dash in the English translation, delete the em-dash and any
+If there is an em-dash in the original LANGUAGE text, delete the em-dash and any
 text that follows it. 
 
 Act as an expert Frontend Engineer. Build a single, standalone HTML file for a
@@ -17,7 +17,8 @@ Technical Stack:
 Game Requirements:
 
 Layout:
-- Two vertical columns side-by-side (50% width each). No Column Headers.
+- Two vertical columns side-by-side (50% width each). Left justified text.
+No Column Headers.
 - Left Column: 9 Draggable Cards (English). Be sure that the same card does
 not appear twice.
 - Right Column: 9 Drop Zone Cards (LANGUAGE), shuffled using the Fisher-Yates 
