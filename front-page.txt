@@ -1,3 +1,7 @@
+Use the Tailwind 'Stone' color palette (bg-stone-50 for background, 
+text-stone-800 for text, border-stone-300 for elements). This gives 
+a warm, paper-like, intellectual feel."
+
 Use Editorial/Magazine theme.
 Do not display any commentary or notes.
 
@@ -8,7 +12,7 @@ Make the top bar the same width as Main Content.
 Create an SVG image of the Chineses Wen character. Use it as a Logo.
 
 Left: The Logo, followed by “openlang.ai” in larger bold type.
-Center: “Free, open source language learning games”
+Center: “Hundreds of open source language learning games”
 CTA: A button with the text “Source”, link to file /source.html (HTML file
 already exists at that location).
 
