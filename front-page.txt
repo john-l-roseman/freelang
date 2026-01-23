@@ -46,7 +46,7 @@ Logo Styling & Animation:
 
 Layout:
 Left: The animated SVG Logo, followed by “openlang.ai” in larger bold type.
-Center: “Hundreds of open source language learning games” (large italic serif text).
+Center: “Hundreds of open-source language-learning games” (large italic serif text).
 CTA: A button with the text “Source”, link to file /source.html. 
 Style this button solid and dark (bg-stone-800 text-white rounded-full) 
 to contrast with the page.
@@ -77,7 +77,7 @@ grid. Maximum width of the grid on desktop: 4 buttons. Call this container
 
 Create another dataset of additional languages containing:
 Azerbaijani Belarusian Bengali Bulgarian Burmese Catalan Czech Danish Dutch Estonian
-Georgian Greek Hausa Hungarian Indonesian Italian Lao Latin Latvian Lithuanian
+Georgian Greek Hausa Hungarian Italian Lao Latin Latvian Lithuanian
 Madurese Malay Malayalam Norwegian Pashto Polish Punjabi Romanian Russian
 Serbo-Croatian Sindhi Slovak Somali Swedish Tagalog Tamil Telugu Thai Turkish Urdu
 Vietnamese
@@ -90,6 +90,13 @@ Language Picker Block:
 Display the container “MAIN_LANGUAGES”, with the header "Choose a Language".
 Below that, display “ADDITIONAL_LANGUAGES”, collapsed by default, 
 with the heading “More Languages”.
+
+Logo Explanation Block (left column):
+Title: About the Site Logo 
+------------------------------------------
+The Chinese wen character (文) signifies "literature," "culture," or "writing".
+It is part of the name of the Chinese language itself (中文).
+------------------------------------------
 
 Second Column:
 Create a block "Open Source for Everyone". 
@@ -104,6 +111,7 @@ Every page on this site has a "Source" button in the top corner. You can downloa
 the source text for any game, change it to for your needs, and produce a fully-functional 
 customized game.
 --------------
+
 
 ------
 Footer
