@@ -99,7 +99,9 @@ streak bonus is calculated.
 install on mobile (using PWA). You need to create the content for this pop-up.
 Instructions for iOS should describe the share icon as an arrow going up. After
 instructions for installation on iOS and Android, it should list the advantages
-of PWA.  This button should not appear when the game is being used as PWA.
+of PWA.  
+The "Install" button should not appear when the game is played inside the PWA 
+(after installation on mobile).
 - Button with the text “Source”, link to file /LANGUAGE/Intermediate/source.html (HTML
 file already exists at that location).
 
