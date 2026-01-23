@@ -1,7 +1,7 @@
 =========================================================
 Add English translations to the dataset. 
-If there is any text after a long dash in the English translation, 
-delete that text and the long dash itself.
+If there is an em-dash in the English translation, delete the em-dash and any
+text that follows it. 
 
 Act as an expert Frontend Engineer. Build a single, standalone HTML file for a
 language learning game.
