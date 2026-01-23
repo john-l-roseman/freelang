@@ -10,18 +10,22 @@ for UI elements.  Do not display any commentary or notes.
 Top Bar
 -------
 Make the top bar the same width as Main Content.
-Create an animated image of the Chinese Wen character using this Wikipedia image:
-https://en.wikipedia.org/wiki/Wen_%28surname_%E6%96%87%29#/media/File:%E6%96%87-order.gif
-The animation should only be played once, after that the image is static.
 
-Left: The animated Logo (in deep red), followed by “openlang.ai” in larger bold type.
-Center: “Hundreds of open source language learning games” (large italic text).
+Logo Construction:
+Create an inline SVG of the Chinese character "文" (Wen). 
+Do not use an external image file. Draw the 4 strokes using SVG <path> elements.
+Style the strokes with a "Deep Red" color (e.g., #991b1b).
+Add a CSS animation to the SVG paths (using stroke-dasharray and stroke-dashoffset) 
+so the character looks like it is being written by a brush.
+Set the animation-iteration-count to 1 (play once) and animation-fill-mode to 
+forwards (keep the character visible after animation).
+
+Layout:
+Left: The animated SVG Logo, followed by “openlang.ai” in larger bold type.
+Center: “Hundreds of open-source language-learning games” (large italic serif text).
 CTA: A button with the text “Source”, link to file /source.html. 
 Style this button solid and dark (bg-stone-800 text-white rounded-full) 
 to contrast with the page.
-
-Navigation:
-Contact 
 
 ------------
 Main Content
@@ -89,3 +93,6 @@ Link for “MIT License”: https://opensource.org/licenses/MIT
 The text should appear exactly as below, with the above href link markup added as
 underlined link.
 Copyright (C) 2026 by Functional AI Inc. Licensed under the MIT License.
+
+
+
