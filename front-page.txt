@@ -15,35 +15,34 @@ Make the top bar the same width as Main Content.
 
 Logo Construction:
 Create an inline SVG of the Chinese character "文" (Wen). 
-Use a viewBox="0 0 100 100".
-Inside the SVG, create a group <g> with stroke="currentColor", fill="none", stroke-width="8", stroke-linecap="round", stroke-linejoin="round".
+Use a viewBox="0 0 109 109".
+Inside the SVG, create a group <g> with stroke="currentColor", fill="none", stroke-width="6", stroke-linecap="round", stroke-linejoin="round".
 
-Use the following 4 specific <path> elements. These coordinates form a disciplined, connected structure where all strokes meet at a central junction (50,30) so there are no gaps:
-
-1. Top Dot: d="M50,10 L50,30" 
-   (A vertical line ending exactly where the next stroke begins).
-2. Horizontal Bar: d="M15,30 L85,30" 
-   (A straight flat line crossing perfectly through the bottom of the dot).
-3. Left Sweep: d="M50,30 Q30,60 20,90" 
-   (Starts exactly at the center junction 50,30 and sweeps left).
-4. Right Sweep: d="M50,30 Q70,60 80,90" 
-   (Starts exactly at the center junction 50,30 and sweeps right).
+Use the following 4 specific <path> elements (These are the official KanjiVG vectors for this character):
+1. Top Dot: 
+   d="M49.6,14.64c2.63,1.06,6.31,4.99,7.39,8.42"
+2. Horizontal Bar: 
+   d="M19.5,42c3.59,1.14,7.03,0.92,10.77,0.61c16.51-1.37,36.98-4.61,54.12-5.33c3.52-0.15,7.73,0.39,10.61,1.72"
+3. Left Sweep: 
+   d="M52,43c0.75,1.5,0.28,3.22-0.66,5.39C45.42,61.99,30.12,83.88,10.5,93"
+4. Right Sweep: 
+   d="M54,42.5c7.25,8.88,28.16,30.33,40.54,34.92c2.76,1.02,4.96,1.46,7.71,1.58"
 
 Logo Styling & Animation:
 1. Set the SVG text color to a Deep Red (text-red-800).
 2. Add a CSS keyframe animation called "drawStroke".
-   - 0%: stroke-dashoffset: 100;
+   - 0%: stroke-dashoffset: 250;
    - 100%: stroke-dashoffset: 0;
-3. Apply this animation to the <path> elements with these properties:
-   - stroke-dasharray: 100;
+3. Apply this animation to all <path> elements with these properties:
+   - stroke-dasharray: 250;
    - animation-fill-mode: forwards;
-   - animation-timing-function: ease-out;
+   - animation-timing-function: linear;
    - animation-iteration-count: 1;
-4. Stagger the animation delays to match the correct Chinese stroke order (Bi Shun):
-   - Path 1 (Dot): delay 0s, duration 0.3s
-   - Path 2 (Horizontal): delay 0.3s, duration 0.4s
-   - Path 3 (Left Sweep): delay 0.7s, duration 0.4s
-   - Path 4 (Right Sweep): delay 1.1s, duration 0.4s
+4. Stagger the animation delays so the strokes write in the correct order:
+   - Path 1: delay 0s, duration 0.3s
+   - Path 2: delay 0.3s, duration 0.5s
+   - Path 3: delay 0.8s, duration 0.5s
+   - Path 4: delay 1.3s, duration 0.5s
 
 Layout:
 Left: The animated SVG Logo, followed by “openlang.ai” in larger bold type.
