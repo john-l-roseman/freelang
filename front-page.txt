@@ -4,7 +4,9 @@ Do not display any commentary or notes.
 -------
 Top Bar
 -------
-Left: “openlang.ai” in larger bold type.
+Create an SVG image of the Chineses Wen character. Use it as a Logo.
+
+Left: The Logo, followed by “openlang.ai” in larger bold type.
 Center: “Free, open source language learning games”
 CTA: A button with the text “Source”, link to file /source.html (HTML file
 already exists at that location).
