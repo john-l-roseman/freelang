@@ -3,22 +3,19 @@ Use the Tailwind 'Stone' color palette as the foundation
 border-stone-300 for dividers). 
 This gives a warm, paper-like, intellectual feel.
 
-To add a colorful but restrained touch, use a "Muted Mosaic" 
-palette for the language buttons. Cycle through soft, 
-low-saturation backgrounds (e.g., bg-orange-100, bg-emerald-100, 
-bg-sky-100, bg-rose-100, bg-violet-100) paired with dark text (text-stone-900).
-
-Use an Editorial/Magazine theme: Use serif fonts for Headings and sans-serif for UI elements.
-Do not display any commentary or notes.
+Use an Editorial/Magazine theme: Use serif fonts for Headings and sans-serif 
+for UI elements.  Do not display any commentary or notes.
 
 -------
 Top Bar
 -------
 Make the top bar the same width as Main Content.
-Create an SVG image using an exact representation of the Chinese Wen character. 
+Create an animated image of the Chinese Wen character using this Wikipedia image:
+https://en.wikipedia.org/wiki/Wen_%28surname_%E6%96%87%29#/media/File:%E6%96%87-order.gif
+The animation should only be played once, after that the image is static.
 
-Left: The Logo (in deep red), followed by “openlang.ai” in larger bold type.
-Center: “Hundreds of open source language learning games”
+Left: The animated Logo (in deep red), followed by “openlang.ai” in larger bold type.
+Center: “Hundreds of open source language learning games” (large italic text).
 CTA: A button with the text “Source”, link to file /source.html. 
 Style this button solid and dark (bg-stone-800 text-white rounded-full) 
 to contrast with the page.
@@ -44,7 +41,7 @@ Create buttons for each language in this format:
 NATIVE_NAME (bold, large) above LANGUAGE (medium) compact styling.
 Link the buttons to an internal URL in this format: /LANGUAGE
 
-Style the buttons as a grid of cards. 
+Style the buttons as a grid of cards with the same color. 
 
 Create a language selection block containing all of the language buttons in a
 grid. Maximum width of the grid on desktop: 4 buttons. Call this container
@@ -57,7 +54,7 @@ Madurese Malay Malayalam Norwegian Pashto Polish Punjabi Romanian Russian
 Serbo-Croatian Sindhi Slovak Somali Swedish Tagalog Tamil Telugu Thai Turkish Urdu
 Vietnamese
 
-Create another block with language buttons using the same method and coloring style as
+Create another block with language buttons using the same method as
 “MAIN_LANGUAGE”.
 Call this container “ADDITIONAL LANGUAGES”. Make it collapsible.
 
