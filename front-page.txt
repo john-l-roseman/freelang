@@ -6,7 +6,18 @@ This gives a warm, paper-like, intellectual feel.
 Use an Editorial/Magazine theme: Use serif fonts for Headings and sans-serif 
 Use deep red for headings and titles.
 
-for UI elements.  Do not display any commentary or notes.
+Do not display any commentary or notes.
+
+-------
+Header & Favicon
+-------
+In the HTML <head>:
+1. Set the Title to "OpenLang.ai".
+2. Create a Favicon using a Data URI (data:image/svg+xml...).
+   The Data URI should contain a simple SVG with the character "文".
+   - Color: Deep Red (#991b1b) to match the logo.
+   - Font: Serif (to match the intellectual theme).
+   - Background: Transparent.
 
 -------
 Top Bar
@@ -40,7 +51,7 @@ Logo Styling & Animation:
    - animation-iteration-count: 1;
 4. Stagger the animation delays so the strokes write in the correct order:
    - Path 1: delay 0s, duration 0.3s
-   - Path 2: delay 0.3s, duration 0.5s
+   - Path 2: delay 0.8s, duration 0.5s
    - Path 3: delay 0.8s, duration 0.5s
    - Path 4: delay 1.3s, duration 0.5s
 
@@ -92,7 +103,7 @@ Display the container “MAIN_LANGUAGES”, with the header "Choose a Language".
 Below that, display “ADDITIONAL_LANGUAGES”, collapsed by default, 
 with the heading “More Languages”.
 
-Logo Explanation Block (left column):
+Logo Explanation Block (left column, roman text):
 Title: About the Site Logo 
 ------------------------------------------
 The Chinese wén character (文) signifies "literature," "culture," or "writing".
@@ -105,7 +116,7 @@ Style this block with a subtle border and a light background (bg-white)
 to differentiate it from the main list.
 --------------
 The Open Source movement was a revolution for programmers, allowing 
-them to reuse exiting tools and systems. With the advent of vibecoding, 
+them to reuse existing tools and systems. With the advent of vibe coding, 
 anyone can build with Open Source.
 
 Every page on this site has a "Source" button in the top corner. You can download
