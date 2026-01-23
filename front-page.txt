@@ -44,6 +44,7 @@ Logo Styling & Animation:
    - Path 3: delay 0.8s, duration 0.5s
    - Path 4: delay 1.3s, duration 0.5s
 
+
 Layout:
 Left: The animated SVG Logo, followed by “openlang.ai” in larger bold type.
 Center: “Hundreds of open-source language-learning games” (large italic serif text).
@@ -94,7 +95,7 @@ with the heading “More Languages”.
 Logo Explanation Block (left column):
 Title: About the Site Logo 
 ------------------------------------------
-The Chinese wen character (文) signifies "literature," "culture," or "writing".
+The Chinese wén character (文) signifies "literature," "culture," or "writing".
 It is part of the name of the Chinese language itself (中文).
 ------------------------------------------
 
