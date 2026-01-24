@@ -1,23 +1,27 @@
 PROMPT="../../Scripts/drag-and-drop"
 LANGUAGE=`pwd | awk -F/ '{print $(NF-1)}'`;
 GAME=`pwd | awk -F/ '{print $NF}'`;
-LANG_TEXT=`echo $LANGUAGE | sed 's/./\u&/'` # Capitalize the first letter
 COLOR=`cat ../color`;
 
+COUNT=9;
 FILE="/dev/null";
-if  echo $GAME | grep -i quote ; then  FILE="../../Scripts/Quote";  fi
+TRANSLATE="Text-Translate";
 
+if  echo $GAME | grep  Quote ; 
+then  
+COUNT=7; 
+TRANSLATE="Quote-Translate";
+fi
 
 (
-echo -n "Create a dataset of ";
 cat "../../Rules/$GAME";
 cat $FILE;
-cat "../../Rules/Translate";
+cat "../../Scripts/$TRANSLATE";
 cat $PROMPT ;
 cat ../addendum
 cat ../../Copyright
 )| sed "s/LANGUAGE/$LANG_TEXT/g" | sed "s/LANG/$LANGUAGE/g" | sed "s/COLOR/$COLOR/" | 
-	sed "s/GAME/$GAME/g" > build-instructions.txt
+	sed "s/COUNT/$COUNT/ | sed "s/GAME/$GAME/g" > build-instructions.txt
 
 (echo "<pre>"; 
 cat build-instructions.txt;
@@ -26,6 +30,6 @@ echo "</pre>") | \
 
 exit;
 date;
-python3.10 /usr/local/bin/run-"$ENGINE".py build-instructions.txt index.html 
+python3.10 /usr/local/bin/run-gemini.py build-instructions.txt index.html 
 date;
 
