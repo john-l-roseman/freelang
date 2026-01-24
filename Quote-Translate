@@ -1,0 +1,13 @@
+Create a dataset with these fields:
+QUOTE_TEXT | Translation of QUOTE_TEXT into LANGUAGE | AUTHOR
+
+Define two sets of cards:
+1. An English card contains the entire QUOTE_TEXT and, immediately 
+following it, and em-dash and the AUTHOR, in this format: 
+QUOTE_TEXT -- AUTHOR (in italics)
+
+2. The corresponding LANGUAGE card contains only the translated QUOTE_TEXT, 
+not the AUTHOR.  All text should be left-justified (or right justfiied for
+right-to-left scripts). 
+
+Eliminate excess white space at the top and bottom of all the cards.
