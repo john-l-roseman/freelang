@@ -21,7 +21,7 @@ cat $PROMPT ;
 cat ../addendum
 cat ../../Copyright
 )| sed "s/LANGUAGE/$LANG_TEXT/g" | sed "s/LANG/$LANGUAGE/g" | sed "s/COLOR/$COLOR/" | 
-	sed "s/COUNT/$COUNT/ | sed "s/GAME/$GAME/g" > build-instructions.txt
+	sed "s/COUNT/$COUNT/" | sed "s/GAME/$GAME/g" > build-instructions.txt
 
 
 exit;
