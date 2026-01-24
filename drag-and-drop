@@ -32,7 +32,7 @@ Use the browser's Web Speech API for audio generation.
 When selecting a voice, write logic to specifically filter for voices where 
 localService is true to ensure the audio works offline without an internet connection.
 - On desktop, the layout should appear as it would on a large screen
-telephone.
+telephone -- the entire page should fit in the are of such a device.
 
 Interaction:
 - Drag an English card to the corresponding LANGUAGE card.
