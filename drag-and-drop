@@ -198,6 +198,19 @@ This ensures only the middle section scrolls while the header and footer stay pi
 Footer: flex: none (Fixed height). Crucial: Place the copyright text here. Ensure 
 it has a distinct background color and z-index: 10 to sit above any other elements.
 
+CRITICAL DRAG & DROP RULES:
+Desktop Implementation: You MUST use the standard HTML5 draggable="true" 
+attribute on the English cards. Do NOT write custom onMouseDown/onMouseMove 
+logic for desktop dragging. Rely entirely on the browser's native onDragStart event.
+Button Isolation: To fix the issue where clicking the speaker icon 
+accidentally drags the card, the speaker icon must be wrapped in a 
+<button> or div. You must attach an onMouseDown handler to this specific 
+button that calls e.stopPropagation(). This forces the browser to treat it 
+as a click, not a drag.
+Cursor Styling: Apply the CSS class cursor-grab to the cards. The cursor 
+should only change to "grabbing" while the drag is active.
+
+
 Round Transition Logic:
 When the last match of a round is completed:
 1. Immediately filter the main word dataset (stored in the ref) to remove 
