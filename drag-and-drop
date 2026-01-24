@@ -99,8 +99,10 @@ instructions for installation on iOS and Android, it should list the advantages
 of PWA.  
 The "Install" button should not appear when the game is played inside the PWA 
 (after installation on mobile).
-- Button with the text “Source”, link to file /LANGUAGE/Intermediate/source.html (HTML
-file already exists at that location).
+- Button with the text “Source”, link that button to a text file
+for downloading with this format:
+<a href="/LANGUAGE/GAME/build-instructions.txt" download>
+(Text file already exists at that location).
 
 All buttons should be the same color.
 Pop-ups should close with the Escape key.
