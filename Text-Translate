@@ -1,0 +1,7 @@
+Add LANGUAGE translations to the dataset.
+
+Define two sets of cards, one for English and on for LANGUAGE.
+All text should be left-justified (or right justfiied for
+right-to-left scripts). 
+
+Eliminate excess white space at the top and bottom of all the cards.
