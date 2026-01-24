@@ -23,13 +23,10 @@ cat ../../Copyright
 )| sed "s/LANGUAGE/$LANG_TEXT/g" | sed "s/LANG/$LANGUAGE/g" | sed "s/COLOR/$COLOR/" | 
 	sed "s/COUNT/$COUNT/ | sed "s/GAME/$GAME/g" > build-instructions.txt
 
-(echo "<pre>"; 
-cat build-instructions.txt;
-echo "</pre>") | \
-	 iconv -c -f UTF-8 -t ASCII//TRANSLIT > source.html 
 
 exit;
 date;
 python3.10 /usr/local/bin/run-gemini.py build-instructions.txt index.html 
 date;
+
 
