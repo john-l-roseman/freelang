@@ -1,7 +1,5 @@
 =========================================================
 Add English translations to the dataset. 
-If there is an em-dash in the original LANGUAGE text, delete the em-dash and any
-text that follows it. 
 
 Act as an expert Frontend Engineer. Build a single, standalone HTML file for a
 language learning game.
@@ -19,9 +17,9 @@ Game Requirements:
 Layout:
 - Two vertical columns side-by-side (50% width each). Left justified text.
 No Column Headers.
-- Left Column: 9 Draggable Cards (English). Be sure that the same card does
+- Left Column: COUNT Draggable Cards (English). Be sure that the same card does
 not appear twice.
-- Right Column: 9 Drop Zone Cards (LANGUAGE), shuffled using the Fisher-Yates 
+- Right Column: COUNT Drop Zone Cards (LANGUAGE), shuffled using the Fisher-Yates 
 algorithm relative to the left column.
 - Store the shuffled Russian card order in state when the round starts, 
 not in the render phase.
@@ -62,7 +60,7 @@ card red for one second, reset Streak, decrement Score (-5).
 - Mastery System: When a word is guessed correctly (without double-click
 hint), remove it from the main dataset entirely.
 
--Rounds: When all 9 pairs are matched, automatically start a new round. 
+-Rounds: When all COUNT pairs are matched, automatically start a new round. 
 IMPORTANT: Detect round completion explicitly within the match logic 
 (not via useEffect). Pass the updated deck directly to the new round function 
 to ensure the next set of cards loads immediately without a blank screen.
@@ -83,7 +81,7 @@ background color matching the game theme and the two letter country code for the
 origin country of LANGUAGE in white text).
 Convert this SVG string to a Base64 Data URI using the btoa() function.
 Inject this Data URI into the embedded manifest.json blob as the src for icons of
-sizes "192x192" and "512x512".
+sizes "1COUNT2x1COUNT2" and "512x512".
 In the generated manifest.json, set the short_name property to "LANGUAGE GAME".
 
 Add a Header with these elements (compressed to fit on a single line):
@@ -168,7 +166,7 @@ Flow:
 Initialize deckRef.current with the full shuffled dataset on mount.
 When a word is mastered (guessed without hint), remove it from 
 deckRef.current using .splice() or .filter() immediately.
-To start a new round, simply slice the first 9 items from 
+To start a new round, simply slice the first COUNT items from 
 deckRef.current and pass them to the currentRound state.
 
 Rounds Logic:
@@ -182,7 +180,7 @@ Force the update immediately.
 
 Safety Check: Inside the function that starts a new round, 
 check if deckRef.current.length is greater than 0. If words remain 
-but are fewer than 9, take all of them. Only trigger the "Win" 
+but are fewer than COUNT, take all of them. Only trigger the "Win" 
 message if deckRef.current.length is exactly 0.
 
 By moving the deck to a useRef, the AI will generate code that 
@@ -211,7 +209,7 @@ When the last match of a round is completed:
 
 The new round function must:
 - First check if the dataset has any remaining words
-- If words remain, take up to 9 words from the dataset
+- If words remain, take up to COUNT words from the dataset
 - Immediately update the state with these new words (never set to empty array)
 - Create a shuffled version for the second column
 - Reset match tracking for the new round
