@@ -32,7 +32,8 @@ Use the browser's Web Speech API for audio generation.
 When selecting a voice, write logic to specifically filter for voices where 
 localService is true to ensure the audio works offline without an internet connection.
 - On desktop, the layout should appear as it would on a large screen
-telephone -- the entire page should fit in the are of such a device.
+telephone -- the entire page (including top bar and footer) should fit 
+on a six inch smartphone.
 
 Interaction:
 - Drag an English card to the corresponding LANGUAGE card.
@@ -45,6 +46,27 @@ card" that follows the finger coordinates.
 English card causes the corresponding LANGUAGE card to flash bright orange for 2 seconds. 
 The cards remain on the screen, and the user still has to drag and drop the card
 before it is removed.
+
+CRITICAL ARCHITECTURE CONSTRAINT:
+You must implement two completely separate event handling systems. 
+Do not attempt to unify Desktop and Mobile logic.
+
+Desktop Logic (Strict):
+You MUST use the native HTML5 draggable="true" attribute on the card div.
+You MUST use onDragStart and onDrop.
+You are FORBIDDEN from using onMouseDown or onMouseMove to handle dragging 
+on Desktop.
+Reasoning: Native HTML5 handles the "click threshold" automatically, 
+allowing the user to click the speaker icon without dragging the card.
+Mobile Logic (Strict):
+
+Use onTouchStart, onTouchMove, and onTouchEnd only.
+Ensure these do not interfere with the Desktop mouse events.
+Speaker Icon Fix:
+
+On the speaker button, add onMouseDown={(e) => e.stopPropagation()}. 
+This is required so the native HTML5 drag does not steal the click event.
+
 
 Game Logic:
 - Match Success: Compare IDs. If correct: Play a soft chime (Web Audio
@@ -67,8 +89,31 @@ to ensure the next set of cards loads immediately without a blank screen.
 After all words are correctly guessed, pop up a message saying “Congratulations!
 You've learned all words!”. When the player clicks OK, redirect to /LANGUAGE
 
+Hint Logic Implementation Details:
+Global State: You MUST store the hint status in the parent App component 
+state (e.g., const [hintTargetId, setHintTargetId] = useState(null)), 
+NOT inside the individual card components.
+Trigger: When the user double-clicks an English card, call setHintTargetId(card.id).
+Target: In the rendering loop for the Russian (Right) Column only, 
+check if item.id === hintTargetId. If true, apply the bg-orange-500 flashing style.
+Constraint: The English card that was clicked must NOT change color. 
+The visual feedback must appear ONLY on the destination Russian card.
+
+CRITICAL DATA STRUCTURE LOGIC:
+The Master Deck: You MUST use a useRef (e.g., deckRef) to store the 
+array of available words. Initialize it on mount with the full dataset.
+Permanent Removal: When a user matches a word correctly 
+(and hasUsedHint is false), you must immediately remove that word from 
+deckRef.current (using .filter() or .splice()).
+New Round Source: The function startNewRound() MUST pull words 
+ONLY from deckRef.current. It is FORBIDDEN to pull words from the 
+original RAW_DATA constant after the game has started.
+Win Condition: Before starting a new round, check deckRef.current.length. 
+If it is 0, trigger the "Congratulations" message.
+
+
 Visuals:
-- Muted Green color scheme.
+- Muted color scheme.
 - Sans-serif fonts.
 - Smooth CSS transitions for disappearing cards.
 
@@ -197,18 +242,6 @@ Game Area: flex: 1 and overflow-y: auto. Crucial: The game cards must reside her
 This ensures only the middle section scrolls while the header and footer stay pinned.
 Footer: flex: none (Fixed height). Crucial: Place the copyright text here. Ensure 
 it has a distinct background color and z-index: 10 to sit above any other elements.
-
-CRITICAL DRAG & DROP RULES:
-Desktop Implementation: You MUST use the standard HTML5 draggable="true" 
-attribute on the English cards. Do NOT write custom onMouseDown/onMouseMove 
-logic for desktop dragging. Rely entirely on the browser's native onDragStart event.
-Button Isolation: To fix the issue where clicking the speaker icon 
-accidentally drags the card, the speaker icon must be wrapped in a 
-<button> or div. You must attach an onMouseDown handler to this specific 
-button that calls e.stopPropagation(). This forces the browser to treat it 
-as a click, not a drag.
-Cursor Styling: Apply the CSS class cursor-grab to the cards. The cursor 
-should only change to "grabbing" while the drag is active.
 
 
 Round Transition Logic:
