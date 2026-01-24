@@ -24,7 +24,6 @@ cat ../../Copyright
 	sed "s/COUNT/$COUNT/" | sed "s/GAME/$GAME/g" > build-instructions.txt
 
 
-exit;
 date;
 python3.10 /usr/local/bin/run-gemini.py build-instructions.txt index.html 
 date;
