@@ -51,6 +51,19 @@ CRITICAL ARCHITECTURE CONSTRAINT:
 You must implement two completely separate event handling systems. 
 Do not attempt to unify Desktop and Mobile logic.
 
+Global Keyboard Navigation:
+To ensure the Escape key works regardless of where the user has clicked, 
+you must add a dedicated useEffect hook at the top level of the App component.
+
+Add a window.addEventListener('keydown', ...) listener.
+Inside the handler, check if e.key === "Escape".
+If pressed, set the state variables for ALL pop-ups (Rules, Install, etc.) 
+to false.
+Do not attach onKeyDown handlers to the modal divs themselves; 
+use the global window listener instead.
+
+Common mistake to avoid:
+
 Desktop Logic (Strict):
 You MUST use the native HTML5 draggable="true" attribute on the card div.
 You MUST use onDragStart and onDrop.
@@ -261,7 +274,6 @@ The new round function must:
 - Create a shuffled version for the second column
 - Reset match tracking for the new round
 
-Common mistake to avoid:
 Do NOT clear the current round state to an empty array before starting 
 the new round. This causes a blank screen. Instead, directly replace the 
 current round with the new set of words in a single state update.
