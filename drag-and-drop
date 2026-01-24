@@ -27,7 +27,7 @@ not in the render phase.
 - Align cards to the top of the column (flex-start) with a consistent 
 fixed gap (e.g., 0.5rem) between them. Do not distribute space between cards.
 - Put speaker icons on the English and LANGUAGE cards. Put the icon immediately
-after the text, not on a new line.  
+after the text, not on a new line. Make the icon 85% of the text size.
 Use the browser's Web Speech API for audio generation. 
 When selecting a voice, write logic to specifically filter for voices where 
 localService is true to ensure the audio works offline without an internet connection.
