@@ -61,8 +61,8 @@ Left: The animated SVG Logo, followed by “openlang.ai” in larger bold type.
 Center: “Hundreds of open-source language-learning games” (large italic serif text).
 CTA: Button with the text “Source”, link that button to a text file
 for downloading with this format:
-<a href="/build-instructions.txt" download>
-(Text file already exists at that location).
+<a href="/build-instructions.txt" download="build-instructions.txt">
+(The build-instructions.txt file already exists at that location).
 
 ------------
 Main Content
