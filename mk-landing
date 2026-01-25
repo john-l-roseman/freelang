@@ -1,1 +1,15 @@
-/usr/local/bin/mk-landing
+GAMES=` printf '%s,' [A-Z]*`
+
+LANGUAGE=`pwd | awk -F/ '{print $(NF)}'`;
+PROMPT="landing-page";
+
+(
+cat ../Scripts/$PROMPT;
+cat ../Copyright
+)| sed "s/LANGUAGE/$LANGUAGE/g" | sed "s/GAMES/$GAMES/g" > build-instructions.txt
+
+date;
+python3.10 /usr/local/bin/run-gemini.py build-instructions.txt index.html 
+date;
+
+
