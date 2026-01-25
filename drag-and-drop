@@ -1,282 +1,86 @@
-Eliminate excess white space at the top and bottom of all the cards.
+Act as an expert Frontend Engineer. Build a single, standalone HTML file for a language learning game.
+IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom of the HTML file. Output ONLY the raw HTML.
 
-Act as an expert Frontend Engineer. Build a single, standalone HTML file for a
-language learning game.
+2. TECHNICAL STACK & SETUP
+--------------------------
+- React, ReactDOM, Babel (via CDN).
+- TailwindCSS (via CDN).
+- Embed all CSS/JS within the file. No external assets.
+- PWA: Include an embedded `manifest.json` (Blob) and Service Worker.
+- PWA Icon: Generate a Base64 SVG (Green square, white text "RU") for the manifest. Short name: "GAME".
 
-IMPORTANT: Do not add any notes at the top of the HTML file.
+3. ARCHITECTURE & STATE MANAGEMENT (CRITICAL)
+---------------------------------------------
+- Master Deck: Use a `useRef` (e.g., `deckRef`) to store the full array of words. NEVER use useState for the full deck to prevent stale state issues.
+- Round State: Use `useState` only for the current 7 pairs being displayed.
+- Mastery Logic: When a match is made without a hint, remove the word from `deckRef.current` immediately.
+- Win Condition: Before starting a new round, check if `deckRef.current.length === 0`.
+- Round Transition: When the last pair is matched, immediately slice the next 7 words from `deckRef.current` and update the round state. Do not set the state to an empty array in between.
 
-Technical Stack:
-- Use React, ReactDOM, and Babel via CDN.
-- Use TailwindCSS via CDN for styling.
-- Embed all CSS and Javascript within the HTML file.
-- No external assets (images/sounds must be generated or base64).
+4. LAYOUT & VISUALS
+-------------------
+- Structure: A flex-column container (h-100dvh).
+  1. Header: Fixed height. Contains Score and ALL action buttons.
+  2. Game Area: Flex-1, overflow-y: auto. Contains the two card columns.
+  3. Footer: Fixed height. Contains Copyright.
+- Columns: Two columns (50% width). Left = English, Right = LANGUAGE.
+- Card Content (Strict):
+  - Left (English) Card: Display the English Quote, followed immediately by an em-dash and the Author Name in italics. 
+    Format: "Quote text... — Author"
+  - Right (LANGUAGE) Card: Display ONLY the LANGUAGE translation. Do NOT show the author.
+- Animations: Use a `.card-wrapper` class. On match, transition `max-height`, `opacity`, and `margin` to 0 to make cards slide up smoothly.
+- Mobile View: The entire UI must fit on a single screen without horizontal scrolling.
 
-Game Requirements:
+5. INTERACTION & EVENTS (STRICT CONSTRAINTS)
+--------------------------------------------
+You must implement two completely separate event handling systems. Do not unify them.
 
-Layout:
-- Two vertical columns side-by-side (50% width each). Left justified text.
-No Column Headers.
-- Left Column: COUNT Draggable Cards (English). Be sure that the same card does
-not appear twice.
-- Right Column: COUNT Drop Zone Cards (LANGUAGE), shuffled using the Fisher-Yates 
-algorithm relative to the left column.
-- Store the shuffled Russian card order in state when the round starts, 
-not in the render phase.
-- Elminate white space above and below words on the cards.
-- Verify that the English and LANGUAGE cards have the same height.
-- Align cards to the top of the column (flex-start) with a consistent 
-fixed gap (e.g., 0.5rem) between them. Do not distribute space between cards.
-- Put speaker icons on the English and LANGUAGE cards. Put the icon immediately
-after the text, not on a new line. Make the icon 85% of the text size.
-Use the browser's Web Speech API for audio generation. 
-When selecting a voice, write logic to specifically filter for voices where 
-localService is true to ensure the audio works offline without an internet connection.
-- On desktop, the layout should appear as it would on a large screen
-telephone -- the entire page (including top bar and footer) should fit 
-on a six inch smartphone.
+System A: Desktop (Mouse)
+- Draggable Attribute: You MUST use `draggable="true"` on English cards.
+- Events: Use `onDragStart` and `onDrop`.
+- PROHIBITED: Do NOT use `onMouseDown` or `onMouseMove` for dragging logic on Desktop. This ensures the browser handles the click threshold natively.
+- Speaker Icon: Wrap the icon in a button. Add `onMouseDown={(e) => e.stopPropagation()}` to prevent dragging when clicking the speaker.
 
-Interaction:
-- Drag an English card to the corresponding LANGUAGE card.
-- Desktop: Use HTML5 Drag and Drop API.
-- Mobile: Implement custom Touch events (touchstart, touchmove, touchend)
-because HTML5 DnD doesn't work on mobile.
-- Mobile Visuals: When dragging on mobile, render a fixed-position "ghost
-card" that follows the finger coordinates.
-- Hint Interaction: Double-click (Desktop) or Double-tap (Mobile) on an
-English card causes the corresponding LANGUAGE card to flash bright orange for 2 seconds. 
-The cards remain on the screen, and the user still has to drag and drop the card
-before it is removed.
+System B: Mobile (Touch)
+- Events: Use `onTouchStart`, `onTouchMove`, `onTouchEnd`.
+- Ghost Card: Render a fixed-position duplicate card following the finger. It must have `pointer-events: none`.
+- Scroll Fix: Apply `touch-action: none` via CSS to the draggable cards to prevent page scrolling while dragging.
+- Drop Detection: Use `document.elementFromPoint` in `onTouchEnd`. Always look for `.closest('.drop-zone')`.
 
-CRITICAL ARCHITECTURE CONSTRAINT:
-You must implement two completely separate event handling systems. 
-Do not attempt to unify Desktop and Mobile logic.
+6. GAME LOGIC
+-------------
+- Matching: Drag English to LANGUAGE.
+- Success: IDs match -> Play Chime -> Flash Green -> Cards Collapse/Slide Up -> Update Score.
+- Fail: IDs mismatch -> Play Buzzer -> Flash Red -> Reset Streak -> Deduct Score.
+- Hints: 
+  - Desktop: Double-click English card.
+  - Mobile: Custom double-tap logic (delta < 300ms) in `onTouchStart`.
+  - Effect: Set a global state `hintTargetId`. The *LANGUAGE* card with that ID flashes Orange. The English card does NOT change color.
+  - Penalty: No points awarded for this word if hint is used.
 
-Global Keyboard Navigation:
-To ensure the Escape key works regardless of where the user has clicked, 
-you must add a dedicated useEffect hook at the top level of the App component.
+7. AUDIO
+--------
+- Generation: Web Speech API. Filter voices for `localService: true` (offline support).
+- Icons: Place speaker icon immediately after text (inline). 
+- Icon Styling: Explicitly set a fixed width/height (e.g., `w-[1em] h-[1em]`) relative to the font. You MUST add the class `flex-shrink-0` (or `shrink-0`) to the icon/button. This prevents the icon from being crushed or resized when text wraps to multiple lines.
 
-Add a window.addEventListener('keydown', ...) listener.
-Inside the handler, check if e.key === "Escape".
-If pressed, set the state variables for ALL pop-ups (Rules, Install, etc.) 
-to false.
-Do not attach onKeyDown handlers to the modal divs themselves; 
-use the global window listener instead.
+8. HEADER & POPUPS
+------------------
+- Header Layout: Single line, compressed.
+- Header Elements (Must include ALL of the following):
+  1. Score Display: "Score X (Y% Learned)".
+  2. Mute Button: Toggles `isMuted` state. Text: "Mute" / "Unmute". Mutes SFX (chime/buzzer) but NOT Text-to-Speech.
+  3. Rules Button: Opens Rules modal.
+  4. Install Button: Opens Install modal. (Hidden if app is running in standalone PWA mode).
+  5. Source Button: Link `<a href="/LANGUAGE/GAME/build-instructions.txt" download>Source</a>`.
+- Modals: Rules (explain streak bonus), Install (iOS share icon instructions).
+- Closing: Add a global `window.addEventListener('keydown')` to close all modals when "Escape" is pressed.
+- Buttons: Uniform color (Muted Green).
 
-Common mistake to avoid:
+9. COPYRIGHT (Footer)
+---------------------
+Place the copyright text verbatim in the Footer (small print, centered):
+- Link "Functional AI Inc" to: https://functional.by
+- Link "MIT License" to: https://opensource.org/licenses/MIT
 
-Desktop Logic (Strict):
-You MUST use the native HTML5 draggable="true" attribute on the card div.
-You MUST use onDragStart and onDrop.
-You are FORBIDDEN from using onMouseDown or onMouseMove to handle dragging 
-on Desktop.
-Reasoning: Native HTML5 handles the "click threshold" automatically, 
-allowing the user to click the speaker icon without dragging the card.
-Mobile Logic (Strict):
-
-Use onTouchStart, onTouchMove, and onTouchEnd only.
-Ensure these do not interfere with the Desktop mouse events.
-Speaker Icon Fix:
-
-On the speaker button, add onMouseDown={(e) => e.stopPropagation()}. 
-This is required so the native HTML5 drag does not steal the click event.
-
-
-Game Logic:
-- Match Success: Compare IDs. If correct: Play a soft chime (Web Audio
-API), flash both cards green, remove them from the screen, remaining cards on
-both sides slide up to fill the empty space. If no double-click hint was given
-for this word, then increment Score (+10 + streak bonus), increment Streak. If
-there was a hint, then don’t increment Score.
-- Streak Bonus: Equal to the length of the streak.
-- Match Fail: If wrong: Play a buzzer (Web Audio API), flash the English
-card red for one second, reset Streak, decrement Score (-5).
-
-- Mastery System: When a word is guessed correctly (without double-click
-hint), remove it from the main dataset entirely.
-
--Rounds: When all COUNT pairs are matched, automatically start a new round. 
-IMPORTANT: Detect round completion explicitly within the match logic 
-(not via useEffect). Pass the updated deck directly to the new round function 
-to ensure the next set of cards loads immediately without a blank screen.
-
-After all words are correctly guessed, pop up a message saying “Congratulations!
-You've learned all words!”. When the player clicks OK, redirect to /LANGUAGE
-
-Hint Logic Implementation Details:
-Global State: You MUST store the hint status in the parent App component 
-state (e.g., const [hintTargetId, setHintTargetId] = useState(null)), 
-NOT inside the individual card components.
-Trigger: When the user double-clicks an English card, call setHintTargetId(card.id).
-Target: In the rendering loop for the Russian (Right) Column only, 
-check if item.id === hintTargetId. If true, apply the bg-orange-500 flashing style.
-Constraint: The English card that was clicked must NOT change color. 
-The visual feedback must appear ONLY on the destination Russian card.
-
-CRITICAL DATA STRUCTURE LOGIC:
-The Master Deck: You MUST use a useRef (e.g., deckRef) to store the 
-array of available words. Initialize it on mount with the full dataset.
-Permanent Removal: When a user matches a word correctly 
-(and hasUsedHint is false), you must immediately remove that word from 
-deckRef.current (using .filter() or .splice()).
-New Round Source: The function startNewRound() MUST pull words 
-ONLY from deckRef.current. It is FORBIDDEN to pull words from the 
-original RAW_DATA constant after the game has started.
-Win Condition: Before starting a new round, check deckRef.current.length. 
-If it is 0, trigger the "Congratulations" message.
-
-
-Visuals:
-- Muted color scheme.
-- Sans-serif fonts.
-- Smooth CSS transitions for disappearing cards.
-
-PWA Features:
-- Include a `manifest.json` (embedded as a Blob).
-- Include a Service Worker (embedded) to cache the CDNs for offline use.
-- Create a minimalist SVG string in the JavaScript (a square with a Green
-background color matching the game theme and the two letter country code for the
-origin country of LANGUAGE in white text).
-Convert this SVG string to a Base64 Data URI using the btoa() function.
-Inject this Data URI into the embedded manifest.json blob as the src for icons of
-sizes "1COUNT2x1COUNT2" and "512x512".
-In the generated manifest.json, set the short_name property to "LANGUAGE GAME".
-
-Add a Header with these elements (compressed to fit on a single line):
-- Score + percent of words that have been learned (eliminated from the deck).
-For example: “Score 65 10.3% Learned”. Update the % learned after every correct
-guess. Score should start at 0.0 when the game begins.
-- Button with the text “Mute”. The Mute button should only suppress the buzzer
-and chime sounds, not the Text-to-Speech.
-- Button with the text “Rules”, pop-up with rules and scoring summary. You need
-to create the content of that pop-up. Rules should include explanation of how the
-streak bonus is calculated.
-- Button with the text “Install”, that pops up a window with instructions for
-install on mobile (using PWA). You need to create the content for this pop-up.
-Instructions for iOS should describe the share icon as an arrow going up. After
-instructions for installation on iOS and Android, it should list the advantages
-of PWA.  
-The "Install" button should not appear when the game is played inside the PWA 
-(after installation on mobile).
-- Button with the text “Source”, link that button to a text file
-for downloading with this format:
-<a href="/LANGUAGE/GAME/build-instructions.txt" download>
-(Text file already exists at that location).
-
-All buttons should be the same color.
-Pop-ups should close with the Escape key.
-
--------------------------
-Fixes Suggested by Gemini
--------------------------
-
-Mobile Drag Fix:
-1. CSS Requirement: Apply the CSS property touch-action: none; specifically to
-the English Draggable Cards. This is critical to prevent the browser from
-scrolling the page when the user tries to drag a card.
-2. Event Handling: Inside the onTouchMove event handler, you must call
-e.preventDefault() conditional on whether a drag is currently active (i.e.,
-if the 'ghost card' exists). This ensures that the custom drag logic
-overrides the native browser scrolling."
-
-Robust Double-Click/Tap Hint Logic:
-Desktop: Use the standard React onDoubleClick event listener on the English cards
-to trigger the hint.
-Mobile (Custom Double-Tap):
-Standard dblclick events are unreliable on touch devices and often conflict with
-zooming. Implement custom logic within the touchstart handler:
-Use a useRef to store the timestamp of the lastTap.
-On touchstart, compare the current time to lastTap.
-If the difference is less than 300ms, treat it as a Double Tap.
-Crucial: If a Double Tap is detected, trigger the hint logic and return
-immediately to abort the drag-and-drop ghost generation.
-If the difference is greater than 300ms, update lastTap to the current time and
-proceed with the standard Drag/Touch logic.
-
-1.  **Two-Stage Animation Logic:* Use `successIds` state to handle the "Green
-Flash" phase and a `matchedIds` state to handle the "Slide Up/Collapse" phase.
-2.  **CSS Transitions:** Add a `.card-wrapper` class. When a match is confirmed,
-the wrapper transitions its `max-height`, `opacity`, and `margin` to 0. This
-causes the remaining cards to smoothly slide up to fill the empty space.
-3.  **DOM Management:** Instead of replacing matched cards with fixed-height
-placeholders (which prevented sliding), the matched cards remain in the DOM but
-collapse to zero size.
-
-To ensure Mobile Drag and Drop works correctly in React/HTML5 without external
-libraries:
-1. Ghost Element CSS: The fixed-position "ghost" card following the finger MUST
-have the CSS property `pointer-events: none`.
-2. Drop Detection Logic: In the `touchend` event, use
-`document.elementFromPoint(e.changedTouches[0].clientX,
-e.changedTouches[0].clientY)` to find the target.
-3. DOM Traversal: The element found by `elementFromPoint` might be a child (like
-a text <span> or icon).
-
-Always use `element.closest('.drop-zone')` (or specific selector) to resolve
-the actual drop container.
-4. Scroll Prevention: Apply `touch-action: none` to the draggable element via
-CSS. This prevents the browser from interpreting the drag as a page scroll.
-
-Crucial Data Structure Requirement:
-Use a useRef hook (e.g., deckRef) to store the main dataset of 250 words. 
-Do not use useState for the main deck.
-Why: This prevents "stale state" bugs where the game thinks the deck is 
-empty after the first round.
-Flow:
-Initialize deckRef.current with the full shuffled dataset on mount.
-When a word is mastered (guessed without hint), remove it from 
-deckRef.current using .splice() or .filter() immediately.
-To start a new round, simply slice the first COUNT items from 
-deckRef.current and pass them to the currentRound state.
-
-Rounds Logic:
-Track the number of matches in the current round using a local 
-variable or ref (not state).
-When the last match occurs:
-Immediately select the next batch of words from deckRef.current.
-Call setCurrentRound(...) with these new words.
-Do not wait for animations or useEffects to trigger the next round. 
-Force the update immediately.
-
-Safety Check: Inside the function that starts a new round, 
-check if deckRef.current.length is greater than 0. If words remain 
-but are fewer than COUNT, take all of them. Only trigger the "Win" 
-message if deckRef.current.length is exactly 0.
-
-By moving the deck to a useRef, the AI will generate code that 
-accesses the data directly in memory, ensuring that when Round 1 
-finishes, Round 2 definitely receives the remaining words.
-
-Mobile Viewport & Footer Layout:
-Main Container: Set the top-level app container to height: 100dvh, display: flex, 
-and flex-direction: column.
-Three Explicit Sections: The Main Container must have exactly three direct children:
-Header: flex: none (Fixed height).
-Game Area: flex: 1 and overflow-y: auto. Crucial: The game cards must reside here. 
-This ensures only the middle section scrolls while the header and footer stay pinned.
-Footer: flex: none (Fixed height). Crucial: Place the copyright text here. Ensure 
-it has a distinct background color and z-index: 10 to sit above any other elements.
-
-
-Round Transition Logic:
-When the last match of a round is completed:
-1. Immediately filter the main word dataset (stored in the ref) to remove 
-   only the words that were correctly guessed WITHOUT using hints
-2. Add defensive logging to verify the dataset still contains words:
-   - Log the length of the remaining dataset
-   - Log a sample of the next words to be used
-3. Use a setTimeout with 500ms delay before starting the next round
-4. Inside the setTimeout, call the function that starts a new round
-
-The new round function must:
-- First check if the dataset has any remaining words
-- If words remain, take up to COUNT words from the dataset
-- Immediately update the state with these new words (never set to empty array)
-- Create a shuffled version for the second column
-- Reset match tracking for the new round
-
-Do NOT clear the current round state to an empty array before starting 
-the new round. This causes a blank screen. Instead, directly replace the 
-current round with the new set of words in a single state update.
-
-
-CRITICAL: Do not add any notes or comments at the top of the HTML file.
+"Copyright (c) 2026 by Functional AI Inc. Licensed under the MIT License."
