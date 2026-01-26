@@ -1,127 +1,57 @@
-Use the Tailwind 'Stone' color palette as the foundation 
-(bg-stone-50 for page background, text-stone-800 for primary text, 
-border-stone-300 for dividers). 
-This gives a warm, paper-like, intellectual feel.
+-------------
+Theme & Style
+------------- 
+Use the Tailwind 'Stone' palette. Headings should be deep red and serif; body text sans-serif. Do not display any comments. Links must open in the current window.
 
-Use an Editorial/Magazine theme: Use serif fonts for Headings and sans-serif 
-Use deep red for headings and titles.
+-----------------
+Header Components
+-----------------
+Title: "OpenLang.ai".
+Favicon: A data URI containing the character "文" (serif, deep red on white).
 
-Do not display any commentary or notes.
-
--------
-Header & Favicon
--------
-In the HTML <head>:
-1. Set the Title to "OpenLang.ai".
-2. Create a Favicon using a Data URI (data:image/svg+xml...).
-   The Data URI should contain a simple SVG with the character "文".
-   - Color: Deep Red (#991b1b) to match the logo.
-   - Font: Serif (to match the intellectual theme).
-   - Background: White.
-
--------
 Top Bar
--------
-Make the top bar the same width as Main Content.
-
-Logo Construction:
-Create an inline SVG of the Chinese character "文" at 24 pt.
-
-
-Layout:
-Construct the Logo SVG using a <text> element containing the character '文' with a serif font-family, centered in the viewbox. 
-Left side: Logo, followed by “openlang.ai” in larger bold type.
--->
-Center: “Open-source language-learning games, produced by AI” (large italic serif text).
-CTA: Button with the text “Source”, link that button for downloading with this format:
-<a href="/front-page.txt" download="front-page.txt">
-(The front-page.txt file already exists at that location).
+Left: An SVG logo of "文" (24pt serif) followed by "openlang.ai" in large bold text.
+Center: "Open-source language-learning games, produced by AI" (large italic serif).
+Right: A "Source" button that downloads the front-page.txt file.
 
 ------------
-Main Content
-------------
-Two column layout. 
+Main Content (Two Column Layout) 
+------------	
+Column 1: Languages & Tech
 
-First column:
-Display all character sets natively (Chinese, Arabic, Korean, etc).
-Create a dataset of languages containing one field called “LANGUAGE”:
-Chinese Spanish French German Portuguese Ukrainian Korean Japanese Persian Hindi
-Arabic Swahili
+Language Grid: Display buttons as cards (same color) in a 4-column grid. Each card links to /LANGUAGE and shows the Native Name (large, bold) above the English Name.
 
-Add a second field NATIVE_NAME to the dataset containing the name of the language
-in the language itself, using the language’s primary character set.
+"Choose a Language" (Visible): Chinese, Spanish, French, German, Portuguese, Ukrainian, Korean, Japanese, Persian, Hindi, Arabic, Swahili.
 
-Create buttons for each language in this format:
-NATIVE_NAME (bold, large) above LANGUAGE (medium) compact styling.
-Link the buttons to an internal URL in this format: /LANGUAGE
-
-Style the buttons as a grid of cards with the same color. 
-
-Create a language selection block containing all of the language buttons in a
-grid. Maximum width of the grid on desktop: 4 buttons. Call this container
-“MAIN_LANGUAGES”.
-
-Create another dataset of additional languages containing:
-Azerbaijani Belarusian Bengali Bulgarian Burmese Catalan Czech Danish Dutch Estonian
-Georgian Greek Hausa Hungarian Italian Lao Latin Latvian Lithuanian
-Madurese Malay Malayalam Norwegian Pashto Polish Punjabi Romanian Russian
-Serbo-Croatian Sindhi Slovak Somali Swedish Tagalog Tamil Telugu Thai Turkish Urdu
-Vietnamese
-
-Create another block with language buttons using the same method as
-“MAIN_LANGUAGE”.
-Call this container “ADDITIONAL LANGUAGES”. Make it collapsible.
-
-Language Picker Block:
-Display the container “MAIN_LANGUAGES”, with the header "Choose a Language".
-Below that, display “ADDITIONAL_LANGUAGES”, collapsed by default, 
-with the heading “More Languages”.
+"More Languages" (Collapsible, Default Hidden): Azerbaijani, Belarusian, Bengali, Bulgarian, Burmese, Catalan, Czech, Danish, Dutch, Estonian, Georgian, Greek, Hausa, Hungarian, Italian, Lao, Latin, Latvian, Lithuanian, Madurese, Malay, Malayalam, Norwegian, Pashto, Polish, Punjabi, Romanian, Russian, Serbo-Croatian, Sindhi, Slovak, Somali, Swedish, Tagalog, Tamil, Telugu, Thai, Turkish, Urdu, Vietnamese.
 
 Technology Stack:
-Create a table with two columns: 
+Create a table with three columns: 
 Product|How It's Used|Owner/Standards Body
-Populate the table with these technologies (using the exact names as written):
+
+Products (use exact names as written):
 Gemini 3 Pro,JavaScript,React,TailwindCSS,PWA,Web Speech
-Link the Technology field to its homepage or to a site the describes the technology.
-Add the second and third columns yourself.
+
+Populate the second and third columns yourself.
+Link the Technology field to its homepage or to a site that describes the technology.
 For Gemini, use this text for the "How It's Used" field: "Top level design and code generation".
 
-Second Column:
-Create a block "Open Source for Everyone". 
-Style this block with a subtle border and a light background (bg-white) 
-to differentiate it from the main list.
-Link "vibe coding" to https://en.wikipedia.org/wiki/Vibe_coding
---------------
-The Open Source movement was a revolution for programmers, allowing 
-them to reuse existing tools and systems. With the advent of vibe coding, 
-anyone can build with Open Source.
+--------
+Column 2: 
+--------
+Information Block Create a "Open Source for Everyone" block with a light background (bg-white) and border. Include the following text:
 
-Every page on this site has a "Source" button in the top corner. You can download
-the source text for any game, change it to for your needs, and produce a fully-functional 
-customized game.
---------------
-
-Constraint: Do not use target="_blank" on any links. All links must open in 
-the current window unless the user chooses otherwise.
+The Open Source movement was a revolution for programmers, allowing them to reuse existing tools and systems. With the advent of vibe coding, anyone can build with Open Source. Every page on this site has a "Source" button in the top corner. You can download the source text for any game, change it to for your needs, and produce a fully-functional customized game.
 
 ------
 Footer
 ------
-Left Footer:
-Title: About the Site Logo 
-------------------------------------------
-The Chinese wén character (文) signifies "literature," "culture," or "writing".
-It is part of the name of the Chinese language itself (中文).
-------------------------------------------
+Left: Title "About the Site Logo". Text: "The Chinese wén character (文) signifies 'literature,' 'culture,' or 'writing'. It is part of the name of the Chinese language itself (中文).".
 
-Right Footer:
-Add copyright text as footer on a single line in small print. The copyright text
-should be in a container independent of the container containing the game. On
-desktop, the copyright text should be inside the mobile window.
+Right:
+Copyright text as footer on a single line in small print. 
 Link for “Functional AI Inc”: https://functional.by
 Link for “MIT License”: https://opensource.org/licenses/MIT
-The text should appear exactly as below, with the above href link markup added as
-underlined link.
+The text should appear exactly as below, with the above href link markup added as underlined link.
 
 Copyright (C) 2026 by Functional AI Inc. Licensed under the MIT License.
-
