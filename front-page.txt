@@ -43,17 +43,19 @@ Create "Open Source for Everyone" block with a light background (bg-white) and b
 
 The Open Source movement was a revolution for programmers, allowing them to reuse existing tools and systems. With the advent of vibe coding, anyone can build with Open Source. Every page on this site has a "Source" button in the top corner. You can download the source text for any game, change it to for your needs, and produce a fully-functional customized game.
 
-Create Use_Cases dataset with three fields:
-Title|Prompt|Game Link
-American venture capitalist in Ukraine|"100 Ukrainian words and phrases up to 3 words, related to capital markets and investment. Include formal legal terms and informal expressions used by professionals.
-Philosophy Student Studying French|
-German native visiting Ukraine|
-Virusoligist attending a conference in China|
+Create Use_Cases table with three columns:
+_|Game Link|Prompt
+American venture capitalist in Ukraine|/Ukrainian/venture.html|
+Polish tourist visiting Germany|/Polish/tourist.html/|
+Philosophy Student Studying French|/French/philsophy.html|
+Virusoligist attending Chinese conference|/Chinese/virusology.html|
+
+Populate the "Prompt" field with a prompt to generate words and short phrases that are appropriate for the use case.
 
 ------
 Footer
 ------
-Left: Title "About the Site Logo". Text: "The Chinese wén character (文) signifies 'literature,' 'culture,' or 'writing'. It is part of the name of the Chinese language itself (中文).".
+Left: Title "About the Site Logo". Text: "The Chinese wén character (文) signifies literature, culture, or writing. It is part of the name of the Chinese language itself (中文).".
 
 Right:
 Copyright text as footer on a single line in small print. 
