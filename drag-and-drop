@@ -25,9 +25,8 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
   3. Footer: Fixed height. Contains Copyright.
 - Columns: Two columns (50% width). Left = English, Right = LANGUAGE.
 - Card Content (Strict):
-  - Left (English) Card: Display the English Quote.
-    Format: "Quote text... — Author"
-  - Right (LANGUAGE) Card: Display ONLY the LANGUAGE translation. 
+  - Left (English) Card: Display the English text.
+  - Right (LANGUAGE) Card: Display the LANGUAGE translation. 
 - Animations: Use a `.card-wrapper` class. On match, transition `max-height`, `opacity`, and `margin` to 0 to make cards slide up smoothly.
 - Mobile View: The entire UI must fit on a single screen without horizontal scrolling.
 
