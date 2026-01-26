@@ -103,6 +103,15 @@ Display the container “MAIN_LANGUAGES”, with the header "Choose a Language".
 Below that, display “ADDITIONAL_LANGUAGES”, collapsed by default, 
 with the heading “More Languages”.
 
+Technology Stack:
+Create a table with two columns: 
+Technology|How It's Used
+Populate the table with these technologies (add the second column yourself):
+Gemini 3 Pro,React, ReactDOM, Babel, TailwindCSS, PWA, Text-to-Speech
+
+Display the column with the header "Technology Stack".
+
+
 Second Column:
 Create a block "Open Source for Everyone". 
 Style this block with a subtle border and a light background (bg-white) 
