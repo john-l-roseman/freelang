@@ -44,13 +44,14 @@ Create "Open Source for Everyone" block with a light background (bg-white) and b
 The Open Source movement was a revolution for programmers, allowing them to reuse existing tools and systems. With the advent of vibe coding, anyone can build with Open Source. Every page on this site has a "Source" button in the top corner. You can download the source text for any game, change it to for your needs, and produce a fully-functional customized game.
 
 Create Use_Cases table with three columns:
-_|Game Link|Prompt
-American venture capitalist in Ukraine|/Ukrainian/venture.html|
-Polish tourist visiting Germany|/Polish/tourist.html/|
-Philosophy Student Studying French|/French/philsophy.html|
-Virusoligist attending Chinese conference|/Chinese/virusology.html|
+Use Case|Prompt|Game Link
+American venture capitalist in Ukraine||/Ukrainian/venture.html|
+Polish tourist visiting Germany||/Polish/tourist.html/|
+Philosophy Student Studying French||/French/philsophy.html|
+Virusoligist attending Chinese conference||/Chinese/virusology.html|
 
 Populate the "Prompt" field with a prompt to generate words and short phrases that are appropriate for the use case.
+The "Game Link" field should have a button that says "Play" linked to the URL in the field.
 
 ------
 Footer
