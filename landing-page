@@ -1,9 +1,7 @@
-Create a variable called INSTRUCTIONS with the text “Pick a game where 
-you drag the English cards to the right column. Double-tap card for hint.”.
-Add this text to the INSTRUCTIONS variable (separated by a horizontal rule): 
-the translation into LANGUAGE of the original INSTRUCTIONS text.
+Create a dataset of Categories: "Quote Match","Word Match","Phrase Match"
+Add a field with an SVG graphic clip art representation of the Category.
 
-Display INSTRUCTIONS in a block.
+Create three blocks, one for each category
 
 Create a dataset with a single field called NAME, containing these elements: GAMES.
 
