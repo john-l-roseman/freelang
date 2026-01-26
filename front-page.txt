@@ -29,11 +29,13 @@ Create an inline SVG of the Chinese character "文" at 24 pt.
 
 
 Layout:
-Left: The SVG Logo, animated to show the standard stroke paths, followed by “openlang.ai” in larger bold type.
-Center: “Hundreds of open-source language-learning games, produced by AI” (large italic serif text).
+Construct the Logo SVG using a <text> element containing the character '文' with a serif font-family, centered in the viewbox. 
+Left side: Logo, followed by “openlang.ai” in larger bold type.
+-->
+Center: “Open-source language-learning games, produced by AI” (large italic serif text).
 CTA: Button with the text “Source”, link that button for downloading with this format:
 <a href="/front-page.txt" download="front-page.txt">
-(The build-instructions.txt file already exists at that location).
+(The front-page.txt file already exists at that location).
 
 ------------
 Main Content
@@ -77,11 +79,12 @@ with the heading “More Languages”.
 
 Technology Stack:
 Create a table with two columns: 
-Technology|How It's Used|Owner/Standards Body
+Product|How It's Used|Owner/Standards Body
 Populate the table with these technologies:
 Gemini,JavaScript,React,Babel,TailwindCSS,PWA,Web Speech
-Add the second and third columns yourself.
 Link the Technology field to its homepage or to a site the describes the technology.
+Add the second and third columns yourself.
+For Gemini, use this text for the "How It's Used" field: "Top level design and code generation".
 
 Second Column:
 Create a block "Open Source for Everyone". 
