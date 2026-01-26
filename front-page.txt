@@ -107,9 +107,9 @@ Technology Stack:
 Create a table with two columns: 
 Technology|How It's Used
 Populate the table with these technologies (add the second column yourself):
-Gemini 3 Pro,React, ReactDOM, Babel, TailwindCSS, PWA, Text-to-Speech
+Gemini,JavaScript,React,Babel,TailwindCSS,PWA,Web Speech
 
-Display the column with the header "Technology Stack".
+Link the Technology field to its homepage or to a site the describes the technology.
 
 
 Second Column:
