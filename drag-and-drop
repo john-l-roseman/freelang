@@ -1,4 +1,5 @@
-Act as an expert Frontend Engineer. Build a single, standalone HTML file for a language learning game.
+Act as an expert Frontend Engineer. 
+Build a single, standalone HTML file (index.html) for a language learning game.
 IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom of the HTML file. Output ONLY the raw HTML.
 
 2. TECHNICAL STACK & SETUP
@@ -12,7 +13,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 3. ARCHITECTURE & STATE MANAGEMENT (CRITICAL)
 ---------------------------------------------
 - Master Deck: Use a `useRef` (e.g., `deckRef`) to store the full array of words. NEVER use useState for the full deck to prevent stale state issues.
-- Round State: Use `useState` only for the current 7 pairs being displayed.
+- Round State: Use `useState` only for the current 8 pairs being displayed.
 - Mastery Logic: When a match is made without a hint, remove the word from `deckRef.current` immediately.
 - Win Condition: Before starting a new round, check if `deckRef.current.length === 0`.
 - Round Transition: When the last pair is matched, immediately slice the next 7 words from `deckRef.current` and update the round state. Do not set the state to an empty array in between.
