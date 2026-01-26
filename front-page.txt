@@ -2,6 +2,7 @@
 Theme & Style
 ------------- 
 Use the Tailwind 'Stone' palette. Headings should be deep red and serif; body text sans-serif. Do not display any comments. Links must open in the current window.
+Screen width limited to 1366 pixels.
 
 -----------------
 Header Components
