@@ -39,9 +39,16 @@ For Gemini, use this text for the "How It's Used" field: "Top level design and c
 --------
 Column 2: 
 --------
-Information Block Create a "Open Source for Everyone" block with a light background (bg-white) and border. Include the following text:
+Create "Open Source for Everyone" block with a light background (bg-white) and border. Include the following text:
 
 The Open Source movement was a revolution for programmers, allowing them to reuse existing tools and systems. With the advent of vibe coding, anyone can build with Open Source. Every page on this site has a "Source" button in the top corner. You can download the source text for any game, change it to for your needs, and produce a fully-functional customized game.
+
+Create Use_Cases dataset with three fields:
+Title|Prompt|Game Link
+American venture capitalist in Ukraine|"100 Ukrainian words and phrases up to 3 words, related to capital markets and investment. Include formal legal terms and informal expressions used by professionals.
+Philosophy Student Studying French|
+German native visiting Ukraine|
+Virusoligist attending a conference in China|
 
 ------
 Footer
