@@ -81,7 +81,7 @@ Technology Stack:
 Create a table with two columns: 
 Product|How It's Used|Owner/Standards Body
 Populate the table with these technologies (using the exact names as written):
-Gemini 3 Pro,JavaScript,React,Babel,TailwindCSS,PWA,Web Speech
+Gemini 3 Pro,JavaScript,React,TailwindCSS,PWA,Web Speech
 Link the Technology field to its homepage or to a site the describes the technology.
 Add the second and third columns yourself.
 For Gemini, use this text for the "How It's Used" field: "Top level design and code generation".
