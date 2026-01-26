@@ -25,40 +25,12 @@ Top Bar
 Make the top bar the same width as Main Content.
 
 Logo Construction:
-Create an inline SVG of the Chinese character "文" (Wen). 
-Use a viewBox="0 0 109 109".
-Inside the SVG, create a group <g> with stroke="currentColor", fill="none", stroke-width="6", stroke-linecap="round", stroke-linejoin="round".
-
-Use the following 4 specific <path> elements (These are the official KanjiVG vectors for this character):
-1. Top Dot: 
-   d="M49.6,14.64c2.63,1.06,6.31,4.99,7.39,8.42"
-2. Horizontal Bar: 
-   d="M19.5,42c3.59,1.14,7.03,0.92,10.77,0.61c16.51-1.37,36.98-4.61,54.12-5.33c3.52-0.15,7.73,0.39,10.61,1.72"
-3. Left Sweep: 
-   d="M52,43c0.75,1.5,0.28,3.22-0.66,5.39C45.42,61.99,30.12,83.88,10.5,93"
-4. Right Sweep: 
-   d="M54,42.5c7.25,8.88,28.16,30.33,40.54,34.92c2.76,1.02,4.96,1.46,7.71,1.58"
-
-Logo Styling & Animation:
-1. Set the SVG text color to a Deep Red (text-red-800).
-2. Add a CSS keyframe animation called "drawStroke".
-   - 0%: stroke-dashoffset: 250;
-   - 100%: stroke-dashoffset: 0;
-3. Apply this animation to all <path> elements with these properties:
-   - stroke-dasharray: 250;
-   - animation-fill-mode: forwards;
-   - animation-timing-function: linear;
-   - animation-iteration-count: 1;
-4. Stagger the animation delays so the strokes write in the correct order:
-   - Path 1: delay 0s, duration 0.3s
-   - Path 2: delay 0.3s, duration 0.5s
-   - Path 3: delay 0.8s, duration 0.5s
-   - Path 4: delay 1.3s, duration 0.5s
+Create an inline SVG of the Chinese character "文" at 24 pt.
 
 
 Layout:
-Left: The animated SVG Logo, followed by “openlang.ai” in larger bold type.
-Center: “Hundreds of open-source language-learning games” (large italic serif text).
+Left: The SVG Logo, animated to show the standard stroke paths, followed by “openlang.ai” in larger bold type.
+Center: “Hundreds of open-source language-learning games, produced by AI” (large italic serif text).
 CTA: Button with the text “Source”, link that button for downloading with this format:
 <a href="/front-page.txt" download="front-page.txt">
 (The build-instructions.txt file already exists at that location).
@@ -105,12 +77,11 @@ with the heading “More Languages”.
 
 Technology Stack:
 Create a table with two columns: 
-Technology|How It's Used
-Populate the table with these technologies (add the second column yourself):
+Technology|How It's Used|Owner/Standards Body
+Populate the table with these technologies:
 Gemini,JavaScript,React,Babel,TailwindCSS,PWA,Web Speech
-
+Add the second and third columns yourself.
 Link the Technology field to its homepage or to a site the describes the technology.
-
 
 Second Column:
 Create a block "Open Source for Everyone". 
