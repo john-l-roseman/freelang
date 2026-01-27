@@ -1,10 +1,5 @@
-mkdir -p $1
-(
-cd $1;
-if [ ! -f addendum ]
-then 
-> addendum
-fi
-bash /usr/local/bin/mk-lang
-bash /usr/local/bin/mk-landing
-)
+(cd ../Rules;ls) |
+while read GAME
+do
+(mkdir -p "$GAME"; cd "$GAME"; bash /usr/local/bin/mk-game)
+done
