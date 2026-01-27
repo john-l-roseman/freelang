@@ -2,7 +2,7 @@ PROMPT="../../Scripts/drag-and-drop"
 LANGUAGE=`pwd | awk -F/ '{print $(NF-1)}'`;
 GAME=`pwd | awk -F/ '{print $NF}'`;
 COLOR=`cat ../color`;
-CARDS_PER_ROUND=`cat ../../Rules/$Game/count`
+COUNT=`cat ../../Rules/$Game/count`
 
 FILE="/dev/null";
 TRANSLATE="Text-Translate";
@@ -15,7 +15,7 @@ cat $PROMPT ;
 cat ../addendum
 cat ../../Copyright
 )| sed "s/LANGUAGE/$LANGUAGE/g" | sed "s/COLOR/$COLOR/" | 
-	sed "s/CARDS_PER_ROUND/$CARDS_PER_ROUND/" | 
+	sed "s/COUNT/$COUNT/" | 
 	sed "s/GAME/$GAME/g" > build-instructions.txt
 
 
