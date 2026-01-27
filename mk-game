@@ -4,10 +4,15 @@ GAME=`pwd | awk -F/ '{print $NF}'`;
 COLOR=`cat ../color`;
 CARD_COUNT=`cat "../../Rules/$GAME/count"`
 
-FILE="/dev/null";
 TRANSLATE="Text-Translate";
+if  echo $GAME | grep  Quote ; 
+then  
+TRANSLATE="Quote-Translate";
+fi
 
 (
+echo "0. CONTENT GENERATION"
+echo "---------------------";
 cat "../../Rules/$GAME/dataset";
 cat $FILE;
 cat "../../Scripts/$TRANSLATE";
