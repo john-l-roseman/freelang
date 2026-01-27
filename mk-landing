@@ -5,6 +5,7 @@ PHRASE_GAMES=` ls | grep -i Phrase | awk '{printf("%s,", $0)}'  | sed 's/,$//'`
 WORD_GAMES=` ls | egrep -i -v "Phrase|Quote" | awk '{printf("%s,", $0)}'  | sed 's/,$//'`
 )
 
+ALL_GAMES=$QUOTE_GAME","$PHRASE_GAMES","$WORD_GAMES;
 LANGUAGE=`pwd | awk -F/ '{print $(NF)}'`;
 PROMPT="landing-page";
 
@@ -12,8 +13,8 @@ PROMPT="landing-page";
 cat ../Scripts/$PROMPT;
 cat ../Copyright
 )| sed 's/QUOTE_GAMES/$QUOTE_GAMES/' | sed 's/PHRASE_GAMES/$PHRASE_GAMES/' |
- 	sed 's/WORD_GAMES/$WORD_GAMES/' |
-	sed "s/LANGUAGE/$LANGUAGE/g" | sed "s/GAMES/$GAMES/g" > build-instructions.txt
+ 	sed 's/WORD_GAMES/$WORD_GAMES/' | sed 's/ALL_GAMES/$ALL_GAMES/' |
+	sed "s/LANGUAGE/$LANGUAGE/g"  > build-instructions.txt
 
 exit;
 date;
