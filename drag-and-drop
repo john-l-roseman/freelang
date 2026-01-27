@@ -28,10 +28,8 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 4. LAYOUT & VISUALS
 -------------------
 - Structure: A flex-column container (h-100dvh).
-  1. Header: Fixed height. Contains Score and ALL action buttons.
-     On the left side: "openlang.ai _LANGUAGE _GAME"
+  1. Header: Fixed height. Contains Score and ALL action buttons (defined below).
   2. Game Area: Flex-1, overflow-y: auto. Contains the two card columns.
-  3. Footer: Fixed height. Contains Copyright.
 - Columns: Two columns (50% width). Left = English, Right = _LANGUAGE.
 - Card Content (Strict):
   - Left (English) Card: Display the English text.
@@ -39,6 +37,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - Animations: Use a `.card-wrapper` class. On match, transition `max-height`, `opacity`, and `margin` to 0 to make cards slide up smoothly.
 - Mobile View: The entire UI must fit on a single screen without horizontal scrolling.
 - Desktop: Set CSS width (viewport) to 400px.
+  3. Footer: Fixed height. Contains Copyright (defined below).
 
 5. INTERACTION & EVENTS (STRICT CONSTRAINTS)
 --------------------------------------------
@@ -83,12 +82,13 @@ System B: Mobile (Touch)
 8. HEADER & POPUPS
 ------------------
 - Header Layout: Single line, compressed.
+- On the left side: "openlang.ai" (bold linked to "/")  "_LANGUAGE" (linked to /_LANGUAGE)
 - Header Elements (Must include ALL of the following):
   1. Score Display: "Score X (Y% Learned)".
   2. Mute Icon: Toggles `isMuted` state. Mutes SFX (chime/buzzer) but NOT Text-to-Speech.
   3. Info Icon: Opens Rules modal.
   4. Install Button: Opens Install modal. (Hidden if app is running in standalone PWA mode).
-  5. Source Button: Button in the upper left corner (strict), strict Link `<a href="/_LANGUAGE/_GAME/build-instructions.txt" download>Source</a>`.
+  5. Source Button: Button in the upper right corner (strict), strict Link `<a href="/_LANGUAGE/_GAME/build-instructions.txt" download>Source</a>`.
 - Modals: Rules (explain streak bonus), Install iOS+Android (with iOS share icon instructions).
 - Closing: Add a global `window.addEventListener('keydown')` to close all modals when "Escape" is pressed.
 - Buttons: Uniform color (Blue).
