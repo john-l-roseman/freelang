@@ -54,6 +54,7 @@ System B: Mobile (Touch)
 - Events: Use `onTouchStart`, `onTouchMove`, `onTouchEnd`.
 - Ghost Card: Render a fixed-position duplicate card following the finger. It must have `pointer-events: none`.
 - Scroll Fix: Apply `touch-action: none` via CSS to the draggable cards to prevent page scrolling while dragging.
+- Drop Detection: Use `document.elementFromPoint` in `onTouchEnd`. Always look for `.closest('.drop-zone')`.
 
 6. GAME LOGIC
 -------------
