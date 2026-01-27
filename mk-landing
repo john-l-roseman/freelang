@@ -1,7 +1,7 @@
 GAMES=` printf '%s,' [A-Z]*`
-QUOTE_GAMES=` printf '%s,' [A-Z]* | grep -i quote`
-PHRASE_GAMES=` printf '%s,' [A-Z]* | grep -i phrase`
-WORD_GAMES=` printf '%s,' [A-Z]* | egrep -i -v "phrase|quote"`
+QUOTE_GAMES=` ls | grep -i Quote | awk '{printf("%s,", $0)}'  | sed 's/,$//'`
+PHRASE_GAMES=` ls | grep -i Phrase | awk '{printf("%s,", $0)}'  | sed 's/,$//'`
+WORD_GAMES=` ls | grep -i -v "Phrase|Word" | awk '{printf("%s,", $0)}'  | sed 's/,$//'`
 
 LANGUAGE=`pwd | awk -F/ '{print $(NF)}'`;
 PROMPT="landing-page";
