@@ -19,7 +19,6 @@ cat ../../Copyright
 	sed "s/GAME/$GAME/g" > build-instructions.txt
 
 
-exit;
 date;
 python3.10 /usr/local/bin/run-gemini-streaming.py build-instructions.txt index.html 
 date;
