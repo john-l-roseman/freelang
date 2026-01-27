@@ -2,7 +2,7 @@ PROMPT="../../Scripts/drag-and-drop"
 LANGUAGE=`pwd | awk -F/ '{print $(NF-1)}'`;
 GAME=`pwd | awk -F/ '{print $NF}'`;
 COLOR=`cat ../color`;
-COUNT=`cat ../../Rules/$Game/count`
+COUNT=`cat ../../Rules/$GAME/count`
 
 FILE="/dev/null";
 TRANSLATE="Text-Translate";
