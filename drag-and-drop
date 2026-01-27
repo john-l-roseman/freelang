@@ -82,8 +82,8 @@ System B: Mobile (Touch)
 8. HEADER & POPUPS
 ------------------
 - Header Layout: Single line, compressed.
-- On the left side: "openlang.ai" (bold linked to "/")  "_LANGUAGE" (linked to /_LANGUAGE)
 - Header Elements (Must include ALL of the following):
+  0. "openlang.ai" (bold linked to "/")  
   1. Score Display: "Score X (Y% Learned)".
   2. Mute Icon: Toggles `isMuted` state. Mutes SFX (chime/buzzer) but NOT Text-to-Speech.
   3. Info Icon: Opens Rules modal.
