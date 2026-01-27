@@ -1,11 +1,27 @@
 Create a single HTML file called index.html with the following specs.
 
-Page Layout:
-Left side header: openlang.ai  (large bold, link to "/")
-Middle header: LANGUAGE Language Matching Games
-Put a button with the text “Source” in the upper right corner, with the URL 
-(TXT file already exists at that location).
+STRICT: Do not add any notes at the top of the index.html file.
 
+-------------
+Theme & Style
+------------- 
+Use the Tailwind 'Stone' palette. Headings should be deep red and serif; body text sans-serif. Do not display any comments. Links must open in the current window.
+Screen width limited to 1366 pixels.
+
+-----------------
+Header Components
+-----------------
+Title: "OpenLang.ai".
+Favicon: A data URI containing the character "文" (serif, deep red on white).
+
+Top Bar
+Left: An SVG logo of "文" (28pt serif) followed by "openlang.ai" in large bold text. Link both of those elements to "/".
+Center: LANGUAGE Language Matching Games
+Right: A "Source" button that downloads the file "/LANGUAGE/build-instructions.txt".
+
+------------
+Main Content
+------------
 Create a dataset of Categories: "Quote Match","Word Match","Phrase Match"
 Add a field to the dataset with an SVG graphic clip art representation of the Category.
 
@@ -22,6 +38,15 @@ Word Match: WORD_GAMES
 Phrase Match: PHRASE_GAMES
 
 
-STRICT: Do not add any notes at the top of the index.html file.
+------
+Footer
+------
+Left: Title "About the Site Logo". Text: "The Chinese wén character (文) signifies literature, culture, or writing. It is part of the name of the Chinese language itself (中文).".
 
+Right:
+Copyright text as footer on a single line in small print. 
+Link for “Functional AI Inc”: https://functional.by
+Link for “MIT License”: https://opensource.org/licenses/MIT
+The text should appear exactly as below, with the above href link markup added as underlined link.
 
+Copyright (C) 2026 by Functional AI Inc. Licensed under the MIT License.
