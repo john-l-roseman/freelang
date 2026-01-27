@@ -10,8 +10,8 @@ Create a dataset of Categories: "Quote Match","Word Match","Phrase Match"
 Add a field to the dataset with an SVG graphic clip art representation of the Category.
 
 Create a dataset of Games, with two fields: NAME|GAME_IMAGE
-Populate the name field with these games: ALL_GAMES.
-Populate the field GAME_IMAGE with an SVG representation of a thumbnail-size clip-art image that represents the NAME field in the context of language learning.
+Populate the NAME field with these games: ALL_GAMES.
+Populate the GAME_IMAGE field with an SVG representation of a thumbnail-size clip-art image that represents the NAME field in the context of language learning.
 
 Create three blocks, one for each category.
 Each block contains a header, with the Category name and SVG image.
