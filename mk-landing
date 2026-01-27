@@ -2,7 +2,7 @@ GAMES=` printf '%s,' [A-Z]*`
 (cd ../Rules;
 QUOTE_GAMES=` ls | grep -i Quote | awk '{printf("%s,", $0)}'  | sed 's/,$//'`
 PHRASE_GAMES=` ls | grep -i Phrase | awk '{printf("%s,", $0)}'  | sed 's/,$//'`
-WORD_GAMES=` ls | grep -i -v "Phrase|Word" | awk '{printf("%s,", $0)}'  | sed 's/,$//'`
+WORD_GAMES=` ls | egrep -i -v "Phrase|Word" | awk '{printf("%s,", $0)}'  | sed 's/,$//'`
 )
 
 LANGUAGE=`pwd | awk -F/ '{print $(NF)}'`;
