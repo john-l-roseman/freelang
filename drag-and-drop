@@ -5,7 +5,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 1. GLOBAL CONFIGURATION
 -----------------------
 - CARDS_PER_ROUND: CARD_COUNT
-- LANGUAGE_CODE: Two letter standard code for LANGUAGE.
+- {LANGUAGE}_CODE: Two letter standard code for {LANGUAGE}.
 
 2. TECHNICAL STACK & SETUP
 --------------------------
@@ -13,7 +13,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - TailwindCSS (via CDN).
 - Embed all CSS/JS within the file. No external assets.
 - PWA: Include an embedded `manifest.json` (Blob) and Service Worker.
-- PWA Icon: Generate a Base64 SVG (Green square, white text LANGUAGE_CODE) for the manifest. Short name: "GAME".
+- PWA Icon: Generate a Base64 SVG (Green square, white text {LANGUAGE}_CODE) for the manifest. Short name: "{GAME}".
 
 3. ARCHITECTURE & STATE MANAGEMENT (CRITICAL)
 ---------------------------------------------
@@ -22,19 +22,20 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - Mastery Logic: When a match is made without a hint, remove the word from `deckRef.current` immediately.
 - Win Condition: Before starting a new round, check if `deckRef.current.length === 0`.
 - Round Transition: When the last pair is matched, immediately slice the next CARDS_PER_ROUND words from `deckRef.current` and update the round state. Do not set the state to an empty array in between.
-- Shuffle Logic (Derangement): The LANGUAGE column must be a VALID DERANGEMENT relative to the English column. 
+- Shuffle Logic (Derangement): The {LANGUAGE} column must be a VALID DERANGEMENT relative to the English column. 
 
 
 4. LAYOUT & VISUALS
 -------------------
 - Structure: A flex-column container (h-100dvh).
   1. Header: Fixed height. Contains Score and ALL action buttons.
+     On the left side: "openlang.ai {LANGUAGE} [{GAME}]"
   2. Game Area: Flex-1, overflow-y: auto. Contains the two card columns.
   3. Footer: Fixed height. Contains Copyright.
-- Columns: Two columns (50% width). Left = English, Right = LANGUAGE.
+- Columns: Two columns (50% width). Left = English, Right = {LANGUAGE}.
 - Card Content (Strict):
   - Left (English) Card: Display the English text.
-  - Right (LANGUAGE) Card: Display the LANGUAGE translation. 
+  - Right ({LANGUAGE}) Card: Display the {LANGUAGE} translation. 
 - Animations: Use a `.card-wrapper` class. On match, transition `max-height`, `opacity`, and `margin` to 0 to make cards slide up smoothly.
 - Mobile View: The entire UI must fit on a single screen without horizontal scrolling.
 - Desktop: Set CSS width (viewport) to 400px.
@@ -55,15 +56,15 @@ System B: Mobile (Touch)
 - Scroll Fix: Apply `touch-action: none` via CSS to the draggable cards to prevent page scrolling while dragging.
 - Drop Detection: Use `document.elementFromPoint` in `onTouchEnd`. Always look for `.closest('.drop-zone')`.
 
-6. GAME LOGIC
+6. {GAME} LOGIC
 -------------
-- Matching: Drag English to LANGUAGE.
+- Matching: Drag English to {LANGUAGE}.
 - Success: IDs match -> Play Chime -> Flash Green -> Cards Collapse/Slide Up -> Update Score.
 - Fail: IDs mismatch -> Play Buzzer -> Flash Red -> Reset Streak -> Deduct Score.
 - Hints: 
   - Desktop: Double-click English card.
   - Mobile: Custom double-tap logic (delta < 300ms) in `onTouchStart`.
-  - Effect: Set a global state `hintTargetId`. The *LANGUAGE* card with that ID flashes Orange. The English card does NOT change color.
+  - Effect: Set a global state `hintTargetId`. The *{LANGUAGE}* card with that ID flashes Orange. The English card does NOT change color.
   - Penalty: No points awarded for this word if hint is used.
 
 7. AUDIO
@@ -80,93 +81,7 @@ System B: Mobile (Touch)
   2. Mute Button: Toggles `isMuted` state. Text: "Mute" / "Unmute". Mutes SFX (chime/buzzer) but NOT Text-to-Speech.
   3. Rules Button: Opens Rules modal.
   4. Install Button: Opens Install modal. (Hidden if app is running in standalone PWA mode).
-  5. Source Button: Strict Link `<a href="/LANGUAGE/GAME/build-instructions.txt" download>Source</a>`.
-- Modals: Rules (explain streak bonus), Install (iOS share icon instructions).
-- Closing: Add a global `window.addEventListener('keydown')` to close all modals when "Escape" is pressed.
-- Buttons: Uniform color (Muted Green).
-
-9. COPYRIGHT (Footer)
----------------------
-Place the copyright text verbatim in the Footer (small print, centered):
-- Link "Functional AI Inc" to: https://functional.by
-- Link "MIT License" to: https://opensource.org/licenses/MIT
-
-"Copyright (c) 2026 by Functional AI Inc. Licensed under the MIT License."
-Act as an expert Frontend Engineer. 
-Build a single, standalone HTML file (index.html) for a language learning game.
-IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom of the HTML file. Output ONLY the raw HTML.
-
-2. TECHNICAL STACK & SETUP
---------------------------
-- React, ReactDOM, Babel (via CDN).
-- TailwindCSS (via CDN).
-- Embed all CSS/JS within the file. No external assets.
-- PWA: Include an embedded `manifest.json` (Blob) and Service Worker.
-- PWA Icon: Generate a Base64 SVG (Green square, white text "RU") for the manifest. Short name: "GAME".
-
-3. ARCHITECTURE & STATE MANAGEMENT (CRITICAL)
----------------------------------------------
-- Master Deck: Use a `useRef` (e.g., `deckRef`) to store the full array of words. NEVER use useState for the full deck to prevent stale state issues.
-- Round State: Use `useState` only for the current CARDS_PER_ROUND pairs being displayed.
-- Mastery Logic: When a match is made without a hint, remove the word from `deckRef.current` immediately.
-- Win Condition: Before starting a new round, check if `deckRef.current.length === 0`.
-- Round Transition: When the last pair is matched, immediately slice the next CARDS_PER_ROUND words from `deckRef.current` and update the round state. Do not set the state to an empty array in between.
-
-4. LAYOUT & VISUALS
--------------------
-- Structure: A flex-column container (h-100dvh).
-  1. Header: Fixed height. Contains Score and ALL action buttons.
-  2. Game Area: Flex-1, overflow-y: auto. Contains the two card columns.
-  3. Footer: Fixed height. Contains Copyright.
-- Columns: Two columns (50% width). Left = English, Right = LANGUAGE.
-- Card Content (Strict):
-  - Left (English) Card: Display the English text.
-  - Right (LANGUAGE) Card: Display the LANGUAGE translation. 
-- Animations: Use a `.card-wrapper` class. On match, transition `max-height`, `opacity`, and `margin` to 0 to make cards slide up smoothly.
-- Mobile View: The entire UI must fit on a single screen without horizontal scrolling.
-
-5. INTERACTION & EVENTS (STRICT CONSTRAINTS)
---------------------------------------------
-You must implement two completely separate event handling systems. Do not unify them.
-
-System A: Desktop (Mouse)
-- Draggable Attribute: You MUST use `draggable="true"` on English cards.
-- Events: Use `onDragStart` and `onDrop`.
-- PROHIBITED: Do NOT use `onMouseDown` or `onMouseMove` for dragging logic on Desktop. This ensures the browser handles the click threshold natively.
-- Speaker Icon: Wrap the icon in a button. Add `onMouseDown={(e) => e.stopPropagation()}` to prevent dragging when clicking the speaker.
-
-System B: Mobile (Touch)
-- Events: Use `onTouchStart`, `onTouchMove`, `onTouchEnd`.
-- Ghost Card: Render a fixed-position duplicate card following the finger. It must have `pointer-events: none`.
-- Scroll Fix: Apply `touch-action: none` via CSS to the draggable cards to prevent page scrolling while dragging.
-- Drop Detection: Use `document.elementFromPoint` in `onTouchEnd`. Always look for `.closest('.drop-zone')`.
-
-6. GAME LOGIC
--------------
-- Matching: Drag English to LANGUAGE.
-- Success: IDs match -> Play Chime -> Flash Green -> Cards Collapse/Slide Up -> Update Score.
-- Fail: IDs mismatch -> Play Buzzer -> Flash Red -> Reset Streak -> Deduct Score.
-- Hints: 
-  - Desktop: Double-click English card.
-  - Mobile: Custom double-tap logic (delta < 300ms) in `onTouchStart`.
-  - Effect: Set a global state `hintTargetId`. The *LANGUAGE* card with that ID flashes Orange. The English card does NOT change color.
-  - Penalty: No points awarded for this word if hint is used.
-
-7. AUDIO
---------
-- Generation: Web Speech API. Filter voices for `localService: true` (offline support).
-- Icons: Place speaker icon immediately after text (inline). 
-- Icon Styling: Explicitly set a fixed width/height (e.g., `w-[1em] h-[1em]`) relative to the font. You MUST add the class `flex-shrink-0` (or `shrink-0`) to the icon/button. This prevents the icon from being crushed or resized when text wraps to multiple lines.
-
-8. HEADER & POPUPS
-------------------
-- Header Layout: Single line, compressed.
-- Header Elements (Must include ALL of the following):
-  1. Score Display: "Score X (Y% Learned)".
-  2. Mute Button: Toggles `isMuted` state. Text: "Mute" / "Unmute". Mutes SFX (chime/buzzer) but NOT Text-to-Speech.
-  3. Rules Button: Opens Rules modal.
-  4. Install Button: Opens Install modal. (Hidden if app is running in standalone PWA mode).
-  5. Source Button: Strict Link `<a href="/LANGUAGE/GAME/build-instructions.txt" download>Source</a>`.
+  5. Source Button: Strict Link `<a href="/{LANGUAGE}/{GAME}/build-instructions.txt" download>Source</a>`.
 - Modals: Rules (explain streak bonus), Install (iOS share icon instructions).
 - Closing: Add a global `window.addEventListener('keydown')` to close all modals when "Escape" is pressed.
 - Buttons: Uniform color (Muted Green).
