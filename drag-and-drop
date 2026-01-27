@@ -42,27 +42,35 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 
 5. INTERACTION & EVENTS (STRICT CONSTRAINTS)
 --------------------------------------------
-You must implement two completely separate event handling systems. Do not unify them.
+You must implement manual "Double Interaction" detection that takes priority over Dragging.
+Do NOT use `onDoubleClick`.
 
 System A: Desktop (Mouse)
-- Draggable Attribute: You MUST use `draggable="true"` on English cards.
-- Events: Use `onDragStart` and `onDrop`.
-- PROHIBITED: Do NOT use `onMouseDown` or `onMouseMove` for dragging logic on Desktop. This ensures the browser handles the click threshold natively.
-- Speaker Icon: Wrap the icon in a button. Add `onMouseDown={(e) => e.stopPropagation()}` to prevent dragging when clicking the speaker.
+- Attributes: `draggable="true"` on English cards.
+- Events: `onDragStart`, `onDrop`, and CRITICALLY `onMouseDown`.
+- Logic (onMouseDown): 
+  1. Check time elapsed since last click (`Date.now() - lastClickRef.current`).
+  2. If delta < 300ms: This is a Double Click. CALL `e.preventDefault()` immediately (this stops the HTML5 drag from starting). Trigger Hint. Update `lastClickRef`.
+  3. If delta > 300ms: This is a Single Click (potential drag). Do NOT call preventDefault. Update `lastClickRef`. Allow native `onDragStart` to fire.
 
 System B: Mobile (Touch)
-- Events: Use `onTouchStart`, `onTouchMove`, `onTouchEnd`.
-- Scroll Fix: Apply `touch-action: none` via CSS to the draggable cards to prevent page scrolling while dragging.
-- Drop Detection: Use `document.elementFromPoint` in `onTouchEnd`. Always look for `.closest('.drop-zone')`.
+- Events: `onTouchStart`, `onTouchMove`, `onTouchEnd`.
+- Scroll Fix: `touch-action: none` on cards.
+- Logic (onTouchStart):
+  1. Check time elapsed since last tap.
+  2. If delta < 300ms: This is a Double Tap. Trigger Hint. RETURN IMMEDIATELY. Do not apply any drag styles or set drag refs.
+  3. If delta > 300ms: Initialize drag logic (set refs, apply opacity/scale styles).
+- Drop Detection: `document.elementFromPoint` in `onTouchEnd`.
 
 6. GAME LOGIC
 -------------
 - Matching: Drag English to _LANGUAGE.
 - Success: IDs match -> Play Chime -> Flash Green -> Cards Collapse/Slide Up -> Update Score.
 - Fail: IDs mismatch -> Play Buzzer -> Flash Red -> Reset Streak -> Deduct Score.
-- Hints: 
-  - Desktop: Double-click English card.
-  - Mobile: Custom double-tap logic (delta < 300ms) in `onTouchStart`.
+- Hints:
+  - Input: Triggered via the manual Double-Click/Tap logic defined in Section 5.
+  - Visuals: The *French* card with that ID flashes Orange. The English card does NOT change color.
+  - Penalty: No points awarded for this word if hint is used.
   - Effect: Set a global state `hintTargetId`. The *_LANGUAGE* card with that ID flashes Orange. The English card does NOT change color.
   - Penalty: No points awarded for this word if hint is used.
 
