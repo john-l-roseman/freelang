@@ -4,7 +4,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 
 1. GLOBAL CONFIGURATION
 -----------------------
-- CARDS_PER_ROUND: 10
+- CARDS_PER_ROUND: COUNT
 - COUNTRY_CODE: Two letter standard code for the country where LANGUAGE originated.
 
 2. TECHNICAL STACK & SETUP
