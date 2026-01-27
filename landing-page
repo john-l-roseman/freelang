@@ -9,14 +9,13 @@ Put a button with the text “Source” in the upper right corner, with the URL
 Create a dataset of Categories: "Quote Match","Word Match","Phrase Match"
 Add a field to the dataset with an SVG graphic clip art representation of the Category.
 
-Create a dataset of Games, with two fields: NAME|GAME_IMAGE
+Create a dataset of Games with a field NAME.
 Populate the NAME field with these games: ALL_GAMES.
-Populate the GAME_IMAGE field with an SVG representation of a thumbnail-size clip-art image that represents the NAME field in the context of language learning.
 
 Create three blocks, one for each category.
 Each block contains a header, with the Category name and SVG image.
 
-Under the header, display a grid of Game buttons that contain NAME and IMAGE. Link each button to this URL: “/LANGUAGE/NAME” 
+Under the header, display a grid of Game buttons that contain NAME. Link each button to this URL: “/LANGUAGE/NAME” 
 The Game Buttons are distributed in the categories in this way: 
 Quote Match: QUOTE_GAMES
 Word Match: WORD_GAMES
@@ -24,6 +23,4 @@ Phrase Match: PHRASE_GAMES
 
 
 STRICT: Do not add any notes at the top of the index.html file.
-
-
 
