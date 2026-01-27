@@ -1,30 +1,28 @@
 Create a single HTML file called index.html with the following specs.
 
+Page Layout:
+Left side header: openlang.ai  (large bold)
+Middle header: LANGUAGE Language Learning
+Put a button with the text “Source” in the upper right corner, with the URL 
+(TXT file already exists at that location).
+
 Create a dataset of Categories: "Quote Match","Word Match","Phrase Match"
-Add a field with an SVG graphic clip art representation of the Category.
+Add a field to the dataset with an SVG graphic clip art representation of the Category.
 
-Create a dataset with a single field called NAME, containing these elements: GAMES.
-
-Add another field IMAGE to the dataset containing an SVG representation of a 
-thumbnail-size clip-art image that represents the NAME field in the context of 
-language learning.
+Create a dataset of Games, containing these games: GAMES.
+Add a field IMAGE to the Games dataset containing an SVG representation of a thumbnail-size clip-art image that represents the first field in the context of language learning.
 
 Create three blocks, one for each category.
 Each block contains a header, with the Category name and SVG image.
-After that, a grid of buttons grouped by Category:
+
+Under the header, display a grid of Game buttons that contain NAME and IMAGE. Link each button to this URL: “/LANGUAGE/NAME” 
+The Game Buttons are distributed in the categories in this way: 
 Quote Match: QUOTE_GAMES
 Word Match: WORD_GAMES
 Phrase Match: PHRASE_GAMES
 
 
-Display a grid of buttons that contain NAME and IMAGE. Link each button to this 
-URL: “/LANGUAGE/NAME” (where NAME is the text of the first field).
+STRICT: Do not add any notes at the top of the index.html file.
 
-Left side header: openlang.ai  (large bold)
-Middle header: LANGUAGE Language Learning
-Put a button with the text “Source” in the upper right corner, 
-link to /LANGUAGE/bul.html (HTML file already exists at that location).
-
-Do not add any notes at the top of the index.html file.
 
 
