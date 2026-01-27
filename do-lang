@@ -3,3 +3,5 @@ while read GAME
 do
 (mkdir -p "$GAME"; cd "$GAME"; bash /usr/local/bin/mk-game)
 done
+
+bash /usr/local/bin/mk-landing
