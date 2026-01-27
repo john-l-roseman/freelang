@@ -11,7 +11,9 @@ PROMPT="landing-page";
 (
 cat ../Scripts/$PROMPT;
 cat ../Copyright
-)| sed "s/LANGUAGE/$LANGUAGE/g" | sed "s/GAMES/$GAMES/g" > build-instructions.txt
+)| sed 's/QUOTE_GAMES/$QUOTE_GAMES/' | sed 's/PHRASE_GAMES/$PHRASE_GAMES/' |
+ 	sed 's/WORD_GAMES/$WORD_GAMES/' |
+	sed "s/LANGUAGE/$LANGUAGE/g" | sed "s/GAMES/$GAMES/g" > build-instructions.txt
 
 exit;
 date;
