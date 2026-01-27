@@ -11,7 +11,8 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 --------------------------
 - React, ReactDOM, Babel (via CDN).
 - TailwindCSS (via CDN).
-- Embed all CSS/JS within the file. No external assets.
+- Polyfill: `https://unpkg.com/mobile-drag-drop/index.min.js` (Include this script in head).
+- Embed all CSS/JS within the file.
 - PWA: Include an embedded `manifest.json` (Blob) and Service Worker.
 - PWA Icon: Generate a Base64 SVG (Green square, white text LANGUAGE_CODE) for the manifest. Short name: "_GAME".
 
@@ -39,27 +40,29 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - Desktop: Set CSS width (viewport) to 400px.
   3. Footer: Fixed height. Contains Copyright (defined below).
 
-5. INTERACTION & EVENTS (STRICT CONSTRAINTS)
---------------------------------------------
-You must implement manual "Double Interaction" detection that takes priority over Dragging.
-Do NOT use `onDoubleClick`.
+5. INTERACTION & EVENTS (UNIFIED)
+---------------------------------
+Use Standard HTML5 Drag & Drop for BOTH Desktop and Mobile.
 
-System A: Desktop (Mouse)
-- Attributes: `draggable="true"` on English cards.
-- Events: `onDragStart`, `onDrop`, and CRITICALLY `onMouseDown`.
-- Logic (onMouseDown): 
-  1. Check time elapsed since last click (`Date.now() - lastClickRef.current`).
-  2. If delta < 300ms: This is a Double Click. CALL `e.preventDefault()` immediately (this stops the HTML5 drag from starting). Trigger Hint. Update `lastClickRef`.
-  3. If delta > 300ms: This is a Single Click (potential drag). Do NOT call preventDefault. Update `lastClickRef`. Allow native `onDragStart` to fire.
+1. Initialization (Crucial):
+   - Inside a `useEffect` on mount, run: `MobileDragDrop.polyfill({ dragImageTranslateOverride: MobileDragDrop.scrollBehaviourDragImageTranslateOverride });`
+   - This enables touch support automatically.
 
-System B: Mobile (Touch)
-- Events: `onTouchStart`, `onTouchMove`, `onTouchEnd`.
-- Scroll Fix: `touch-action: none` on cards.
-- Logic (onTouchStart):
-  1. Check time elapsed since last tap.
-  2. If delta < 300ms: This is a Double Tap. Trigger Hint. RETURN IMMEDIATELY. Do not apply any drag styles or set drag refs.
-  3. If delta > 300ms: Initialize drag logic (set refs, apply opacity/scale styles).
-- Drop Detection: `document.elementFromPoint` in `onTouchEnd`.
+2. Draggable Cards (English):
+   - Attribute: `draggable="true"`.
+   - CSS: Add `touch-action: none` to preventing browser zooming interference.
+   - Event `onDragStart`: Set dataTransfer data (ID).
+
+3. Drop Zones (French):
+   - Event `onDragOver`: Call `e.preventDefault()` to allow dropping.
+   - Event `onDrop`: Handle the match logic.
+
+4. Double-Tap Hint Logic (Manual Detection):
+   - Do NOT use `onDoubleClick` (unreliable with drag).
+   - Implementation: Use `onTouchStart` (Mobile) and `onMouseDown` (Desktop).
+   - Logic: Check `Date.now() - lastInteractionTime < 300`.
+   - If Double-Tap: Trigger Hint and call `e.preventDefault()` to block the drag/click.
+   - If Single-Tap: Do nothing (allow the Polyfill/Browser to handle the drag or scroll).
 
 6. GAME LOGIC
 -------------
