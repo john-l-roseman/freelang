@@ -39,6 +39,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - Desktop: Set CSS width (viewport) to 400px.
   3. Footer: Fixed height. Contains Copyright (defined below).
 
+
 5. INTERACTION & EVENTS (STRICT CONSTRAINTS)
 --------------------------------------------
 You must implement two completely separate event handling systems. Do not unify them.
@@ -53,7 +54,6 @@ System B: Mobile (Touch)
 - Events: Use `onTouchStart`, `onTouchMove`, `onTouchEnd`.
 - Ghost Card: Render a fixed-position duplicate card following the finger. It must have `pointer-events: none`.
 - Scroll Fix: Apply `touch-action: none` via CSS to the draggable cards to prevent page scrolling while dragging.
-
 
 6. GAME LOGIC
 -------------
@@ -80,9 +80,9 @@ System B: Mobile (Touch)
   0. "openlang.ai" (bold linked to "/")  
   1. Score Display: "Score X (Y% Learned)".
   2. Mute Icon: Toggles `isMuted` state. Mutes SFX (chime/buzzer) but NOT Text-to-Speech.
-  3. Info Icon: Opens Rules modal.
-  4. Install Button: Opens Install modal. (Hidden if app is running in standalone PWA mode).
-  5. Source Button: Button in the upper right corner (strict), strict Link `<a href="/_LANGUAGE/_GAME/build-instructions.txt" download>Source</a>`.
+  3. Large letter "i" (information): Opens Rules modal.
+  4. Downward pointing arrow: Opens Install modal. (Hidden if app is running in standalone PWA mode).
+  5. Source Button: Button inthe upper right corner (strict), strict Link `<a href="/_LANGUAGE/_GAME/build-instructions.txt" download>Source</a>`.
 - Modals: Rules (explain streak bonus), Install iOS+Android (with iOS share icon instructions).
 - Closing: Add a global `window.addEventListener('keydown')` to close all modals when "Escape" is pressed.
 - Buttons: Uniform color (Blue).
