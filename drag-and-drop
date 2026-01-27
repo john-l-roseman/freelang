@@ -30,6 +30,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
   - Right (LANGUAGE) Card: Display the LANGUAGE translation. 
 - Animations: Use a `.card-wrapper` class. On match, transition `max-height`, `opacity`, and `margin` to 0 to make cards slide up smoothly.
 - Mobile View: The entire UI must fit on a single screen without horizontal scrolling.
+- Desktop: Set CSS width (viewport) to 400px.
 
 5. INTERACTION & EVENTS (STRICT CONSTRAINTS)
 --------------------------------------------
