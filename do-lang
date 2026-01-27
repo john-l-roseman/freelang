@@ -1,0 +1,10 @@
+mkdir -p $1
+(
+cd $1;
+if [ ! -f addendum ]
+then 
+> addendum
+fi
+bash /usr/local/bin/mk-lang
+bash /usr/local/bin/mk-landing
+)
