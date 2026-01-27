@@ -85,10 +85,10 @@ System B: Mobile (Touch)
 - Header Layout: Single line, compressed.
 - Header Elements (Must include ALL of the following):
   1. Score Display: "Score X (Y% Learned)".
-  2. Mute Button: Toggles `isMuted` state. Text: "Mute" / "Unmute". Mutes SFX (chime/buzzer) but NOT Text-to-Speech.
-  3. Rules Button: Opens Rules modal.
+  2. Mute Icon: Toggles `isMuted` state. Mutes SFX (chime/buzzer) but NOT Text-to-Speech.
+  3. Info Icon: Opens Rules modal.
   4. Install Button: Opens Install modal. (Hidden if app is running in standalone PWA mode).
-  5. Source Button: Strict Button, strict Link `<a href="/_LANGUAGE/_GAME/build-instructions.txt" download>Source</a>`.
+  5. Source Button: Button in the upper left corner (strict), strict Link `<a href="/_LANGUAGE/_GAME/build-instructions.txt" download>Source</a>`.
 - Modals: Rules (explain streak bonus), Install iOS+Android (with iOS share icon instructions).
 - Closing: Add a global `window.addEventListener('keydown')` to close all modals when "Escape" is pressed.
 - Buttons: Uniform color (Blue).
