@@ -8,7 +8,7 @@ FILE="/dev/null";
 TRANSLATE="Text-Translate";
 
 (
-cat "../../Rules/$GAME";
+cat "../../Rules/$GAME/dataset";
 cat $FILE;
 cat "../../Scripts/$TRANSLATE";
 cat $PROMPT ;
