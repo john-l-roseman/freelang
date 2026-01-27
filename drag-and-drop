@@ -11,7 +11,6 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 --------------------------
 - React, ReactDOM, Babel (via CDN).
 - TailwindCSS (via CDN).
-- Polyfill: `https://unpkg.com/mobile-drag-drop/index.min.js` (Include this script in head).
 - Embed all CSS/JS within the file.
 - PWA: Include an embedded `manifest.json` (Blob) and Service Worker.
 - PWA Icon: Generate a Base64 SVG (Green square, white text LANGUAGE_CODE) for the manifest. Short name: "_GAME".
@@ -40,29 +39,21 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - Desktop: Set CSS width (viewport) to 400px.
   3. Footer: Fixed height. Contains Copyright (defined below).
 
-5. INTERACTION & EVENTS (UNIFIED)
----------------------------------
-Use Standard HTML5 Drag & Drop for BOTH Desktop and Mobile.
+5. INTERACTION & EVENTS (STRICT CONSTRAINTS)
+--------------------------------------------
+You must implement two completely separate event handling systems. Do not unify them.
 
-1. Initialization (Crucial):
-   - Inside a `useEffect` on mount, run: `MobileDragDrop.polyfill({ dragImageTranslateOverride: MobileDragDrop.scrollBehaviourDragImageTranslateOverride });`
-   - This enables touch support automatically.
+System A: Desktop (Mouse)
+- Draggable Attribute: You MUST use `draggable="true"` on English cards.
+- Events: Use `onDragStart` and `onDrop`.
+- PROHIBITED: Do NOT use `onMouseDown` or `onMouseMove` for dragging logic on Desktop. This ensures the browser handles the click threshold natively.
+- Speaker Icon: Wrap the icon in a button. Add `onMouseDown={(e) => e.stopPropagation()}` to prevent dragging when clicking the speaker.
 
-2. Draggable Cards (English):
-   - Attribute: `draggable="true"`.
-   - CSS: Add `touch-action: none` to preventing browser zooming interference.
-   - Event `onDragStart`: Set dataTransfer data (ID).
+System B: Mobile (Touch)
+- Events: Use `onTouchStart`, `onTouchMove`, `onTouchEnd`.
+- Ghost Card: Render a fixed-position duplicate card following the finger. It must have `pointer-events: none`.
+- Scroll Fix: Apply `touch-action: none` via CSS to the draggable cards to prevent page scrolling while dragging.
 
-3. Drop Zones (French):
-   - Event `onDragOver`: Call `e.preventDefault()` to allow dropping.
-   - Event `onDrop`: Handle the match logic.
-
-4. Double-Tap Hint Logic (Manual Detection):
-   - Do NOT use `onDoubleClick` (unreliable with drag).
-   - Implementation: Use `onTouchStart` (Mobile) and `onMouseDown` (Desktop).
-   - Logic: Check `Date.now() - lastInteractionTime < 300`.
-   - If Double-Tap: Trigger Hint and call `e.preventDefault()` to block the drag/click.
-   - If Single-Tap: Do nothing (allow the Polyfill/Browser to handle the drag or scroll).
 
 6. GAME LOGIC
 -------------
