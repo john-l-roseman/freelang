@@ -5,6 +5,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 1. GLOBAL CONFIGURATION
 -----------------------
 - CARDS_PER_ROUND: 9
+- COUNTRY_CODE: Two letter standard code for the country where LANGUAGE originated.
 
 2. TECHNICAL STACK & SETUP
 --------------------------
@@ -12,7 +13,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - TailwindCSS (via CDN).
 - Embed all CSS/JS within the file. No external assets.
 - PWA: Include an embedded `manifest.json` (Blob) and Service Worker.
-- PWA Icon: Generate a Base64 SVG (Green square, white text "RU") for the manifest. Short name: "GAME".
+- PWA Icon: Generate a Base64 SVG (Green square, white text COUNTRY_CODE) for the manifest. Short name: "GAME".
 
 3. ARCHITECTURE & STATE MANAGEMENT (CRITICAL)
 ---------------------------------------------
