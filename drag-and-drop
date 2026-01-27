@@ -69,7 +69,7 @@ System B: Mobile (Touch)
 - Fail: IDs mismatch -> Play Buzzer -> Flash Red -> Reset Streak -> Deduct Score.
 - Hints:
   - Input: Triggered via the manual Double-Click/Tap logic defined in Section 5.
-  - Visuals: The *French* card with that ID flashes Orange. The English card does NOT change color.
+  - Visuals: The *French* card with that ID flashes bright Orange. The English card does NOT change color.
   - Penalty: No points awarded for this word if hint is used.
   - Effect: Set a global state `hintTargetId`. The *_LANGUAGE* card with that ID flashes Orange. The English card does NOT change color.
   - Penalty: No points awarded for this word if hint is used.
