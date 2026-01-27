@@ -5,7 +5,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 1. GLOBAL CONFIGURATION
 -----------------------
 - CARDS_PER_ROUND: CARD_COUNT
-- {LANGUAGE}_CODE: Two letter standard code for {LANGUAGE}.
+- LANGUAGE_CODE: Two letter standard code for _LANGUAGE.
 
 2. TECHNICAL STACK & SETUP
 --------------------------
@@ -13,7 +13,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - TailwindCSS (via CDN).
 - Embed all CSS/JS within the file. No external assets.
 - PWA: Include an embedded `manifest.json` (Blob) and Service Worker.
-- PWA Icon: Generate a Base64 SVG (Green square, white text {LANGUAGE}_CODE) for the manifest. Short name: "{GAME}".
+- PWA Icon: Generate a Base64 SVG (Green square, white text LANGUAGE_CODE) for the manifest. Short name: "_GAME".
 
 3. ARCHITECTURE & STATE MANAGEMENT (CRITICAL)
 ---------------------------------------------
@@ -22,20 +22,20 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - Mastery Logic: When a match is made without a hint, remove the word from `deckRef.current` immediately.
 - Win Condition: Before starting a new round, check if `deckRef.current.length === 0`.
 - Round Transition: When the last pair is matched, immediately slice the next CARDS_PER_ROUND words from `deckRef.current` and update the round state. Do not set the state to an empty array in between.
-- Shuffle Logic (Derangement): The {LANGUAGE} column must be a VALID DERANGEMENT relative to the English column. 
+- Shuffle Logic (Derangement): The _LANGUAGE column must be a VALID DERANGEMENT relative to the English column. 
 
 
 4. LAYOUT & VISUALS
 -------------------
 - Structure: A flex-column container (h-100dvh).
   1. Header: Fixed height. Contains Score and ALL action buttons.
-     On the left side: "openlang.ai {LANGUAGE} [{GAME}]"
+     On the left side: "openlang.ai _LANGUAGE _GAME"
   2. Game Area: Flex-1, overflow-y: auto. Contains the two card columns.
   3. Footer: Fixed height. Contains Copyright.
-- Columns: Two columns (50% width). Left = English, Right = {LANGUAGE}.
+- Columns: Two columns (50% width). Left = English, Right = _LANGUAGE.
 - Card Content (Strict):
   - Left (English) Card: Display the English text.
-  - Right ({LANGUAGE}) Card: Display the {LANGUAGE} translation. 
+  - Right (_LANGUAGE) Card: Display the _LANGUAGE translation. 
 - Animations: Use a `.card-wrapper` class. On match, transition `max-height`, `opacity`, and `margin` to 0 to make cards slide up smoothly.
 - Mobile View: The entire UI must fit on a single screen without horizontal scrolling.
 - Desktop: Set CSS width (viewport) to 400px.
@@ -56,15 +56,15 @@ System B: Mobile (Touch)
 - Scroll Fix: Apply `touch-action: none` via CSS to the draggable cards to prevent page scrolling while dragging.
 - Drop Detection: Use `document.elementFromPoint` in `onTouchEnd`. Always look for `.closest('.drop-zone')`.
 
-6. {GAME} LOGIC
+6. GAME LOGIC
 -------------
-- Matching: Drag English to {LANGUAGE}.
+- Matching: Drag English to _LANGUAGE.
 - Success: IDs match -> Play Chime -> Flash Green -> Cards Collapse/Slide Up -> Update Score.
 - Fail: IDs mismatch -> Play Buzzer -> Flash Red -> Reset Streak -> Deduct Score.
 - Hints: 
   - Desktop: Double-click English card.
   - Mobile: Custom double-tap logic (delta < 300ms) in `onTouchStart`.
-  - Effect: Set a global state `hintTargetId`. The *{LANGUAGE}* card with that ID flashes Orange. The English card does NOT change color.
+  - Effect: Set a global state `hintTargetId`. The *_LANGUAGE* card with that ID flashes Orange. The English card does NOT change color.
   - Penalty: No points awarded for this word if hint is used.
 
 7. AUDIO
@@ -81,7 +81,7 @@ System B: Mobile (Touch)
   2. Mute Button: Toggles `isMuted` state. Text: "Mute" / "Unmute". Mutes SFX (chime/buzzer) but NOT Text-to-Speech.
   3. Rules Button: Opens Rules modal.
   4. Install Button: Opens Install modal. (Hidden if app is running in standalone PWA mode).
-  5. Source Button: Strict Link `<a href="/{LANGUAGE}/{GAME}/build-instructions.txt" download>Source</a>`.
+  5. Source Button: Strict Link `<a href="/_LANGUAGE/_GAME/build-instructions.txt" download>Source</a>`.
 - Modals: Rules (explain streak bonus), Install (iOS share icon instructions).
 - Closing: Add a global `window.addEventListener('keydown')` to close all modals when "Escape" is pressed.
 - Buttons: Uniform color (Muted Green).
