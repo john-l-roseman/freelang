@@ -48,7 +48,7 @@ System A: Desktop (Mouse)
 - Draggable Attribute: You MUST use `draggable="true"` on English cards.
 - Events: Use `onDragStart` and `onDrop`.
 - PROHIBITED: Do NOT use `onMouseDown` or `onMouseMove` for dragging logic on Desktop. This ensures the browser handles the click threshold natively.
-- Speaker Icon: Wrap the icon in a button. Add `onMouseDown={(e) => e.stopPropagation()}` to prevent dragging when clicking the speaker.
+- Speaker Icon: Wrap the icon in a button. Add `onMouseDown={(e) => e.stopPropagation()}` to prevent dragging when clicking the speaker. Put the icon on the same line as the text, no extra blank space.
 
 System B: Mobile (Touch)
 - Events: Use `onTouchStart`, `onTouchMove`, `onTouchEnd`.
@@ -82,7 +82,7 @@ System B: Mobile (Touch)
   2. Mute Icon: Toggles `isMuted` state. Mutes SFX (chime/buzzer) but NOT Text-to-Speech.
   3. Info icon (white lower case serif "i", inside black circle) : Opens Rules modal.
   4. Downward pointing arrow: Opens Install modal. (Hidden if app is running in standalone PWA mode).
-  5. Source Button: Button inthe upper right corner (strict), strict Link `<a href="/_LANGUAGE/_GAME/build-instructions.txt" download>Source</a>`.
+  5. Source Button: Button in the upper right corner (strict), strict Link `<a href="/_LANGUAGE/_GAME/build-instructions.txt" download>SOURCE</a>`.
 - Modals: Rules (explain streak bonus), Install iOS+Android (with iOS share icon instructions).
 - Closing: Add a global `window.addEventListener('keydown')` to close all modals when "Escape" is pressed.
 - Buttons: Uniform color (Blue).
