@@ -52,7 +52,6 @@ System A: Desktop (Mouse)
 
 System B: Mobile (Touch)
 - Events: Use `onTouchStart`, `onTouchMove`, `onTouchEnd`.
-- Ghost Card: Render a fixed-position duplicate card following the finger. It must have `pointer-events: none`.
 - Scroll Fix: Apply `touch-action: none` via CSS to the draggable cards to prevent page scrolling while dragging.
 - Drop Detection: Use `document.elementFromPoint` in `onTouchEnd`. Always look for `.closest('.drop-zone')`.
 
@@ -81,10 +80,10 @@ System B: Mobile (Touch)
   2. Mute Button: Toggles `isMuted` state. Text: "Mute" / "Unmute". Mutes SFX (chime/buzzer) but NOT Text-to-Speech.
   3. Rules Button: Opens Rules modal.
   4. Install Button: Opens Install modal. (Hidden if app is running in standalone PWA mode).
-  5. Source Button: Strict Link `<a href="/_LANGUAGE/_GAME/build-instructions.txt" download>Source</a>`.
-- Modals: Rules (explain streak bonus), Install (iOS share icon instructions).
+  5. Source Button: Strict Button, strict Link `<a href="/_LANGUAGE/_GAME/build-instructions.txt" download>Source</a>`.
+- Modals: Rules (explain streak bonus), Install iOS+Android (with iOS share icon instructions).
 - Closing: Add a global `window.addEventListener('keydown')` to close all modals when "Escape" is pressed.
-- Buttons: Uniform color (Muted Green).
+- Buttons: Uniform color (Blue).
 
 9. COPYRIGHT (Footer)
 ---------------------
