@@ -62,15 +62,20 @@ System B: Mobile (Touch)
 - Drop Detection: Use `document.elementFromPoint` in `onTouchEnd`. Always look for `.closest('.drop-zone')`.
 
 Double-Tap Implementation (CRITICAL):
-Do NOT use a custom hook (e.g., useDoubleTap) inside the .map loop. This violates React Rules of Hooks and causes a crash.
+Do NOT use a custom hook (e.g., useDoubleTap) inside the .map loop.
 Implementation: Use a single useRef at the component level to store { id: null, time: 0 }.
 Logic:
-Desktop: Place logic in onClick.
-Mobile (iPhone Fix): Place logic at the very top of onTouchStart.
-Check if currentId === ref.current.id and now - ref.current.time < 300.
-If Yes (Double-Tap): Trigger hint, reset the ref, and return immediately (stop execution so the Ghost Card/Drag logic does not start).
-If No: Update the ref with { id, time } and proceed to execute the standard Ghost Card/Drag logic.
-
+1. Desktop: Handle logic inside the standard `onClick` event.
+2. Mobile: Handle logic at the very top of `onTouchStart` as a Guard Clause.
+   - Check if `id === ref.current.id` and `Date.now() - ref.current.time < 300`.
+   - IF YES (Double Tap): 
+     a) Trigger the hint.
+     b) Reset the ref to { id: null, time: 0 }.
+     c) Call `e.preventDefault()`.
+     d) RETURN IMMEDIATELY. (Do not execute the Ghost Card creation or drag logic).
+   - IF NO: 
+     a) Update the ref with { id, time: Date.now() }.
+     b) Proceed to execute the standard Ghost Card/Drag logic.
 
 6. GAME LOGIC
 -------------
