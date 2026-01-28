@@ -11,11 +11,11 @@ Screen width limited to 1366 pixels.
 -----------------
 Header Components
 -----------------
-Title: "OpenLang.ai".
+Title: "Openlang.ai".
 Favicon: A data URI containing the character "文" (serif, deep red on white).
 
 Top Bar (single line)
-Left: An SVG logo of "文" (28pt serif) followed by "openlang.ai" in bold text. Link both of those elements to "/".
+Left: An SVG logo of "文" (28pt serif) followed by "openlang.ai" in large bold text. Link both of those elements to "/".
 Center: "LANGUAGE"
 Right: A "SOURCE" button that downloads the file "/LANGUAGE/build-instructions.txt".
 
