@@ -15,14 +15,15 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - PWA: Include an embedded `manifest.json` (Blob) and Service Worker.
 - PWA Icon: Generate a Base64 SVG (Green square, white text LANGUAGE_CODE) for the manifest. Short name: "_GAME".
 
+
 3. ARCHITECTURE & STATE MANAGEMENT (CRITICAL)
 ---------------------------------------------
-- Master Deck: Use a `useRef` (e.g., `deckRef`) to store the full array of words. NEVER use useState for the full deck to prevent stale state issues.
-- Round State: Use `useState` only for the current CARDS_PER_ROUND pairs being displayed.
-- Mastery Logic: When a match is made without a hint, remove the word from `deckRef.current` immediately.
-- Win Condition: Before starting a new round, check if `deckRef.current.length === 0`.
-- Round Transition: When the last pair is matched, immediately slice the next CARDS_PER_ROUND words from `deckRef.current` and update the round state. Do not set the state to an empty array in between.
-- Shuffle Logic (Derangement): The _LANGUAGE column must be a VALID DERANGEMENT relative to the English column. 
+- Master Deck Initialization: Initialize `deckRef` using a Fisher-Yates shuffle of the full `RAW_DATA` array. Do NOT use the sorted data.
+- Round State: Use `useState` only for the current CARDS_PER_ROUND pairs.
+- Mastery Logic: When a match is made (no hint), remove the word from `deckRef.current` immediately.
+- Win Condition: Check if `deckRef.current.length === 0` before starting a round.
+- Round Transition: When last pair matches, slice next batch from `deckRef`.
+- _LANGUAGE Column Logic: Must be a VALID DERANGEMENT (shuffled so no _LANGUAGE card lines up horizontally with its English counterpart).
 
 
 4. LAYOUT & VISUALS
@@ -63,7 +64,7 @@ System B: Mobile (Touch)
 - Fail: IDs mismatch -> Play Buzzer -> Flash Red -> Reset Streak -> Deduct Score.
 - Hints:
   - Input: Triggered via the manual Double-Click/Tap logic defined in Section 5.
-  - Visuals: The *French* card with that ID flashes bright Orange. The English card does NOT change color.
+  - Visuals: The *_LANGUAGE* card with that ID flashes bright Orange. The English card does NOT change color.
   - Penalty: No points awarded for this word if hint is used.
   - Effect: Set a global state `hintTargetId`. The *_LANGUAGE* card with that ID flashes Orange. The English card does NOT change color.
   - Penalty: No points awarded for this word if hint is used.
