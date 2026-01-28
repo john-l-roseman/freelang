@@ -26,7 +26,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - Mastery Logic: When a match is made (no hint), remove the word from `deckRef.current` immediately.
 - Win Condition: Check if `deckRef.current.length === 0` before starting a round.
 - Round Transition: When last pair matches, slice next batch from `deckRef`.
-- _LANGUAGE Column Logic: Must be a VALID DERANGEMENT (shuffled so no _LANGUAGE card lines up horizontally with its English counterpart).
+- _LANGUAGE Column Logic: Must be a VALID DERANGEMENT (shuffled so no French card lines up horizontally with its English counterpart). CRITICAL: If the batch size is less than 2 (e.g., the final card), return the batch as-is without attempting to derange. This prevents an infinite loop.
 
 
 4. LAYOUT & VISUALS
@@ -38,6 +38,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - Card Content (Strict):
    - Left (English) Card: Display the English text AND a speaker icon button.
    - Right (French) Card: Display the French translation AND a speaker icon button.
+   - Icons: Place the speaker icon immediately after the text on the same line (inline).
 - Animations: Use a `.card-wrapper` class. On match, transition `max-height`, `opacity`, and `margin` to 0 to make cards slide up smoothly.
 - Mobile View: The entire UI must fit on a single screen without horizontal scrolling.
 - Desktop: Set CSS width (viewport) to 400px.
@@ -59,6 +60,11 @@ System B: Mobile (Touch)
 - Ghost Card: Render a fixed-position duplicate card following the finger. It must have `pointer-events: none`.
 - Scroll Fix: Apply `touch-action: none` via CSS to the draggable cards.
 - Drop Detection: Use `document.elementFromPoint` in `onTouchEnd`. Always look for `.closest('.drop-zone')`.
+
+Double-Tap Implementation (CRITICAL):
+Do NOT use a custom hook (e.g., useDoubleTap) inside the .map loop. This violates React Rules of Hooks and causes a crash.
+Implementation: Use a single useRef at the component level to store { id: null, time: 0 }.
+Logic: On click/touch, check if currentId === ref.current.id and now - ref.current.time < 300. If yes, trigger hint. If no, update the ref.
 
 
 6. GAME LOGIC
