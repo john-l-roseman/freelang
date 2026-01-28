@@ -23,7 +23,10 @@ Right: A "SOURCE" button that downloads the file "/LANGUAGE/build-instructions.t
 Main Content
 ------------
 Create a dataset of Categories: "Quote Match","Word Match","Phrase Match"
-Add a field to the dataset with a simple clip art representation of the Category: Quote, Word, Phrase. For the Quote clip art, use ASCII character (U+0022) at 24pt.
+Add an SVG clip art graphic field to the dataset, based on these hints:
+Quote: Large centered double quote, ASCII character (U+0022)
+Word: "ABC"
+Phrase: Speach bubble with three lines inside.
 
 Create a dataset of Games with a field NAME.
 Populate the NAME field with these games: ALL_GAMES.
