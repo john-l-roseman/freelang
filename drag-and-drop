@@ -104,9 +104,9 @@ Logic:
   0. "openlang.ai" (bold linked to "/")  
   1. Score Display: "Score X (Y% Learned)".
   2. Mute Icon: Toggles `isMuted` state. Mutes SFX (chime/buzzer) but NOT Text-to-Speech.
-  3. Info icon (white lower case serif "i", inside black circle) : Opens Info modal.
+  3. Info icon (large question mark, inside black circle): Opens Info modal.
   5. Source Button: Button in the upper right corner (strict), strict Link `<a href="/_LANGUAGE/_GAME/build-instructions.txt" download>SOURCE</a>`.
-- Info Modal: Explain rules + streak bonus; Describe how to install on mobile: iOS: share icon -> Add to Home Screen, Android: Hamburger Icon -> Add to Home Screen.
+- Info Modal: Explain rules (point scoring, streak bonus, hint) + Describe how to install on mobile: iOS: share icon -> Add to Home Screen, Android: Hamburger Icon -> Add to Home Screen.
 - Closing: Add a global `window.addEventListener('keydown')` to close all modals when "Escape" is pressed.
 - Buttons: Uniform color (Blue).
 
