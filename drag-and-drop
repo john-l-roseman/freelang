@@ -48,7 +48,7 @@ System A: Desktop (Mouse)
 - Draggable Attribute: You MUST conditionally set `draggable={!isTouch}`. Detect touch capability on mount. If the device is touch-enabled, `draggable` MUST be false. This is critical to prevent the native "Long Press to Drag" behavior on mobile.
 - Events: Use `onDragStart` and `onDrop`.
 - PROHIBITED: Do NOT use `onMouseDown` or `onMouseMove` for dragging logic on Desktop.
-- Speaker Icon: Wrap the icon in a button. Add `onMouseDown={(e) => e.stopPropagation()}`.
+- Speaker Icon: Wrap the icon in a button. Add `onMouseDown={(e) => e.stopPropagation()}`. Minimize white space, do not put the speaker icon on a separate line.
 
 System B: Mobile (Touch)
 - Events: Use `onTouchStart`, `onTouchMove`, `onTouchEnd`.
