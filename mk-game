@@ -5,7 +5,7 @@ COLOR=`cat ../color`;
 CARD_COUNT=`cat "../../Rules/$GAME/count"`
 
 TRANSLATE="Text-Translate";
-if  echo $GAME | grep  Quote ; 
+if  echo $GAME | egrep "Capitalist|Leftist|Philosophy|Religious" ; 
 then  
 TRANSLATE="Quote-Translate";
 fi
@@ -26,5 +26,7 @@ cat ../../Copyright
 date;
 python3.10 /usr/local/bin/run-gemini-streaming.py build-instructions.txt index.html 
 date;
+
+
 
 
