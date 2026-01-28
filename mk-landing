@@ -15,7 +15,8 @@ cat ../Scripts/$PROMPT;
 cat ../Copyright
 )| sed "s/QUOTE_GAMES/$QUOTE_GAMES/" | sed "s/PHRASE_GAMES/$PHRASE_GAMES/" |
  	sed "s/WORD_GAMES/$WORD_GAMES/" | sed "s/ALL_GAMES/$ALL_GAMES/" |
-	sed "s/LANGUAGE/$LANGUAGE/g"  > build-instructions.txt
+	sed "s/LANGUAGE/$LANGUAGE/g" |
+	sed "/^Quote Match/s/ Quotes//g" > build-instructions.txt
 
 date;
 python3.10 /usr/local/bin/run-gemini.py build-instructions.txt index.html 
