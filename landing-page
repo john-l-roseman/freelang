@@ -23,7 +23,7 @@ Right: A "Source" button that downloads the file "/LANGUAGE/build-instructions.t
 Main Content
 ------------
 Create a dataset of Categories: "Quote Match","Word Match","Phrase Match"
-Add a field to the dataset with an SVG graphic clip art representation of the Category.
+Add a field to the dataset with a simple clip art representation of the Category: Quote, Word, Phrase.
 
 Create a dataset of Games with a field NAME.
 Populate the NAME field with these games: ALL_GAMES.
