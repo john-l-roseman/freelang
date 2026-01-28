@@ -46,16 +46,19 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 You must implement two completely separate event handling systems. Do not unify them.
 
 System A: Desktop (Mouse)
-- Draggable Attribute: You MUST use `draggable="true"` on English cards.
+- Draggable Attribute: You MUST conditionally apply `draggable={!isTouch}`. Detect touch capability on mount. If touch is present, `draggable` must be false. This prevents native drag conflicts on mobile.
 - Events: Use `onDragStart` and `onDrop`.
-- PROHIBITED: Do NOT use `onMouseDown` or `onMouseMove` for dragging logic on Desktop. This ensures the browser handles the click threshold natively.
-- Speaker Icon: Wrap the icon in a button. Add `onMouseDown={(e) => e.stopPropagation()}` to prevent dragging when clicking the speaker. Put the icon on the same line as the text, no extra blank space.
+- PROHIBITED: Do NOT use `onMouseDown` or `onMouseMove` for dragging logic on Desktop.
+- Speaker Icon: Wrap the icon in a button. Add `onMouseDown={(e) => e.stopPropagation()}`.
 
 System B: Mobile (Touch)
-- Events: Use `onTouchStart`, `onTouchMove`, `onTouchEnd`.
+- Events: Use `onTouchStart`, `onTouchMove`, `onTouchEnd`, and `onTouchCancel`.
+- Safety: `onTouchCancel` must reset the drag state immediately (remove ghost card).
+- Context Menu: You MUST add `onContextMenu={(e) => { e.preventDefault(); e.stopPropagation(); }}` to the draggable cards to prevent the long-press menu.
 - Ghost Card: Render a fixed-position duplicate card following the finger. It must have `pointer-events: none`.
-- Scroll Fix: Apply `touch-action: none` via CSS to the draggable cards to prevent page scrolling while dragging.
+- Scroll Fix: Apply `touch-action: none`, `user-select: none`, and `-webkit-touch-callout: none` via CSS to the draggable cards.
 - Drop Detection: Use `document.elementFromPoint` in `onTouchEnd`. Always look for `.closest('.drop-zone')`.
+
 
 6. GAME LOGIC
 -------------
