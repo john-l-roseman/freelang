@@ -6,12 +6,15 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 -----------------------
 - CARDS_PER_ROUND: CARD_COUNT
 - LANGUAGE_CODE: Two letter standard code for _LANGUAGE.
+- GA_MEASUREMENT_ID: "G-XXXXXXXXXX"  
+
 
 2. TECHNICAL STACK & SETUP
 --------------------------
 - React, ReactDOM, Babel (via CDN).
 - TailwindCSS (via CDN).
 - Embed all CSS/JS within the file.
+- Analytics: Include the standard Google Analytics 4 (gtag.js) script in the <head>. Initialize `window.dataLayer` and config using the `GA_MEASUREMENT_ID`. 
 - PWA: Include an embedded `manifest.json` (Blob) and Service Worker.
 - PWA Icon: Generate a Base64 SVG (Green square, white text LANGUAGE_CODE) for the manifest. Short name: "_GAME".
 
@@ -48,7 +51,7 @@ System A: Desktop (Mouse)
 - Draggable Attribute: You MUST conditionally set `draggable={!isTouch}`. Detect touch capability on mount. If the device is touch-enabled, `draggable` MUST be false. This is critical to prevent the native "Long Press to Drag" behavior on mobile.
 - Events: Use `onDragStart` and `onDrop`.
 - PROHIBITED: Do NOT use `onMouseDown` or `onMouseMove` for dragging logic on Desktop.
-- Speaker Icon: Wrap the icon in a button. Add `onMouseDown={(e) => e.stopPropagation()}`. Minimize white space, do not put the speaker icon on a separate line.
+- Speaker Icon: Wrap the icon in a button. Add `onMouseDown={(e) => e.stopPropagation()}`. Put the speaker icon immediately after the end of the text, not on a separate line. Use a "High Volume" style SVG icon, a solid-filled speaker body and three curved sound waves to the right.
 
 System B: Mobile (Touch)
 - Events: Use `onTouchStart`, `onTouchMove`, `onTouchEnd`.
