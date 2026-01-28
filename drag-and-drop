@@ -99,10 +99,9 @@ If No: Update the ref with { id, time } and proceed to execute the standard Ghos
   0. "openlang.ai" (bold linked to "/")  
   1. Score Display: "Score X (Y% Learned)".
   2. Mute Icon: Toggles `isMuted` state. Mutes SFX (chime/buzzer) but NOT Text-to-Speech.
-  3. Info icon (white lower case serif "i", inside black circle) : Opens Rules modal.
-  4. Downward pointing arrow: Opens Install modal. (Hidden if app is running in standalone PWA mode).
+  3. Info icon (white lower case serif "i", inside black circle) : Opens Info modal.
   5. Source Button: Button in the upper right corner (strict), strict Link `<a href="/_LANGUAGE/_GAME/build-instructions.txt" download>SOURCE</a>`.
-- Modals: Rules (rules + explain streak bonus); Install: (iOS: share icon -> Add to Home Screen, Android: Hamburger Icon -> Add to Home Screen).
+- Info Modal: Explain rules + streak bonus; Describe how to install on mobile: iOS: share icon -> Add to Home Screen, Android: Hamburger Icon -> Add to Home Screen.
 - Closing: Add a global `window.addEventListener('keydown')` to close all modals when "Escape" is pressed.
 - Buttons: Uniform color (Blue).
 
