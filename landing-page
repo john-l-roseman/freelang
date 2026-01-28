@@ -32,7 +32,7 @@ Create a dataset of Games with a field NAME.
 Populate the NAME field with these games: ALL_GAMES.
 
 Create three blocks, one for each category.
-Each block contains a header, with the Category name and SVG image.
+Each block contains a header on a single line, with SVG Graphic and Category name.
 
 Under the header, display a grid of Game buttons that contain NAME. Link each button to this URL: “/LANGUAGE/NAME”. The grid should use at least 2 columns on mobile devices. 
 The Game Buttons are distributed in the categories in this way: 
