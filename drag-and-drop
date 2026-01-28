@@ -64,7 +64,12 @@ System B: Mobile (Touch)
 Double-Tap Implementation (CRITICAL):
 Do NOT use a custom hook (e.g., useDoubleTap) inside the .map loop. This violates React Rules of Hooks and causes a crash.
 Implementation: Use a single useRef at the component level to store { id: null, time: 0 }.
-Logic: On click/touch, check if currentId === ref.current.id and now - ref.current.time < 300. If yes, trigger hint. If no, update the ref.
+Logic:
+Desktop: Place logic in onClick.
+Mobile (iPhone Fix): Place logic at the very top of onTouchStart.
+Check if currentId === ref.current.id and now - ref.current.time < 300.
+If Yes (Double-Tap): Trigger hint, reset the ref, and return immediately (stop execution so the Ghost Card/Drag logic does not start).
+If No: Update the ref with { id, time } and proceed to execute the standard Ghost Card/Drag logic.
 
 
 6. GAME LOGIC
