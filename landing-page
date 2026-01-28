@@ -31,7 +31,7 @@ Populate the NAME field with these games: ALL_GAMES.
 Create three blocks, one for each category.
 Each block contains a header, with the Category name and SVG image.
 
-Under the header, display a grid of Game buttons that contain NAME. Link each button to this URL: “/LANGUAGE/NAME” 
+Under the header, display a grid of Game buttons that contain NAME. Link each button to this URL: “/LANGUAGE/NAME”. The grid should use at least 2 columns on mobile devices. 
 The Game Buttons are distributed in the categories in this way: 
 Quote Match: QUOTE_GAMES
 Word Match: WORD_GAMES
