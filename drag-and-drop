@@ -13,7 +13,8 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 --------------------------
 - React, ReactDOM, Babel (via CDN).
 - TailwindCSS (via CDN).
-- Embed all CSS/JS within the file.
+- Critical: Place the main <script type="text/babel"> block at the very end of the <body> tag, immediately before </body>, to ensure the <div id="root"> exists before mounting.
+Add data-presets="react,env" to the script tag to ensure correct parsing of modern JavaScript.
 - Analytics: Include the standard Google Analytics 4 (gtag.js) script in the <head>. Initialize `window.dataLayer` and config using the `GA_MEASUREMENT_ID`. 
 - PWA: Include an embedded `manifest.json` (Blob) and Service Worker.
 - PWA Icon: Generate a Base64 SVG (Green square, white text LANGUAGE_CODE) for the manifest. Short name: "_GAME".
