@@ -106,7 +106,7 @@ Logic:
   2. Mute Icon: Toggles `isMuted` state. Mutes SFX (chime/buzzer) but NOT Text-to-Speech.
   3. Info icon (large question mark, inside black circle): Opens Info modal.
   5. Source Button: Button in the upper right corner (strict), strict Link `<a href="/_LANGUAGE/_GAME/build-instructions.txt" download>SOURCE</a>`.
-- Info Modal: Explain rules (point scoring, streak bonus, hint) + Describe how to install on mobile: iOS: share icon -> Add to Home Screen, Android: Hamburger Icon -> Add to Home Screen.
+- Info Modal: Explain rules (point scoring for right and penalty for wrong answer, streak bonus, hint rules) + Describe how to install on mobile: iOS: share icon -> Add to Home Screen, Android: Hamburger Icon -> Add to Home Screen.
 - Closing: Add a global `window.addEventListener('keydown')` to close all modals when "Escape" is pressed.
 - Buttons: Uniform color (Blue).
 
