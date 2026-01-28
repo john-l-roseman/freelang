@@ -36,8 +36,8 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
   2. Game Area: Flex-1, overflow-y: auto. Contains the two card columns.
 - Columns: Two columns (50% width). Left = English, Right = _LANGUAGE.
 - Card Content (Strict):
-  - Left (English) Card: Display the English text.
-  - Right (_LANGUAGE) Card: Display the _LANGUAGE translation. 
+   - Left (English) Card: Display the English text AND a speaker icon button.
+   - Right (French) Card: Display the French translation AND a speaker icon button.
 - Animations: Use a `.card-wrapper` class. On match, transition `max-height`, `opacity`, and `margin` to 0 to make cards slide up smoothly.
 - Mobile View: The entire UI must fit on a single screen without horizontal scrolling.
 - Desktop: Set CSS width (viewport) to 400px.
@@ -51,7 +51,6 @@ System A: Desktop (Mouse)
 - Draggable Attribute: You MUST conditionally set `draggable={!isTouch}`. Detect touch capability on mount. If the device is touch-enabled, `draggable` MUST be false. This is critical to prevent the native "Long Press to Drag" behavior on mobile.
 - Events: Use `onDragStart` and `onDrop`.
 - PROHIBITED: Do NOT use `onMouseDown` or `onMouseMove` for dragging logic on Desktop.
-- Speaker Icon: Wrap the icon in a button. Add `onMouseDown={(e) => e.stopPropagation()}`. Put the speaker icon immediately after the end of the text, not on a separate line. Use a "High Volume" style SVG icon, a solid-filled speaker body and three curved sound waves to the right.
 
 System B: Mobile (Touch)
 - Events: Use `onTouchStart`, `onTouchMove`, `onTouchEnd`.
@@ -77,8 +76,10 @@ System B: Mobile (Touch)
 7. AUDIO
 --------
 - Generation: Web Speech API. Filter voices for `localService: true` (offline support).
-- Icons: Place speaker icon immediately after text (inline). 
+- Icons: Place a speaker icon immediately after the text (inline) on BOTH the English cards and the French cards.  Behavior: Clicking the English card speaker plays the English text; clicking the French card speaker plays the French text.
 - Icon Styling: Explicitly set a fixed width/height (e.g., `w-[1em] h-[1em]`) relative to the font. You MUST add the class `flex-shrink-0` (or `shrink-0`) to the icon/button. This prevents the icon from being crushed or resized when text wraps to multiple lines.
+- Speaker Icon: Wrap the icon in a button. Add `onMouseDown={(e) => e.stopPropagation()}`. Put the speaker icon immediately after the end of the text, not on a separate line. Use a "High Volume" style SVG icon, a solid-filled speaker body and three curved sound waves to the right.
+
 
 8. HEADER & POPUPS
 ------------------
