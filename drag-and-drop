@@ -23,12 +23,18 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 
 3. ARCHITECTURE & STATE MANAGEMENT (CRITICAL)
 ---------------------------------------------
-- Master Deck Initialization: Initialize `deckRef` using a Fisher-Yates shuffle of the full `RAW_DATA` array. Do NOT use the sorted data.
+- Storage Key: Use const `STORAGE_KEY = 'openlang_ru_progress'`.
+- Persistence Schema: `{ score: number, streak: number, learnedIds: [] }`.
+- Initialization Logic (Order of Operations):
+  1. On mount, read `localStorage`.
+  2. If data exists, hydrate `score` and `streak` state from it.
+  3. Filter `RAW_DATA` to exclude any IDs found in `learnedIds`.
+  4. Initialize `deckRef` using a Fisher-Yates shuffle of the *remaining* (unlearned) items.
+  5. If no items remain (all learned), trigger the Win Condition immediately.
 - Round State: Use `useState` only for the current CARDS_PER_ROUND pairs.
 - Mastery Logic: When a match is made (no hint), remove the word from `deckRef.current` immediately.
-- Win Condition: Check if `deckRef.current.length === 0` before starting a round.
 - Round Transition: When last pair matches, slice next batch from `deckRef`.
-- _TARGET_LANGUAGE Column Logic: Must be a VALID DERANGEMENT (shuffled so no French card lines up horizontally with its English counterpart). CRITICAL: If the batch size is less than 2 (e.g., the final card), return the batch as-is without attempting to derange. This prevents an infinite loop.
+- Russian Column Logic: Must be a VALID DERANGEMENT (shuffled so no French card lines up horizontally with its English counterpart). If batch size < 2, return as-is.
 
 
 4. LAYOUT & VISUALS
@@ -94,6 +100,12 @@ Logic:
   - Penalty: No points awarded for this word if hint is used.
   - Effect: Set a global state `hintTargetId`. The *_TARGET_LANGUAGE* card with that ID flashes Orange for 2 seconds. The English card does NOT change color. The _TARGET_LANGUAGE card is spoken.
   - Penalty: No points awarded for this word if hint is used.
+  - Persistence: On every successful match (handleMatch), immediately update `localStorage`. 
+  1. Add the matched ID to the list of `learnedIds` (merge with existing).
+  2. Save the new `score` and `streak`.
+  3. This ensures that if the user closes the app mid-game, their progress is not lost.
+- Reset Option: Add a hidden mechanism or check (e.g., if `RAW_DATA` version changes) to clear storage, but for now, assume permanent storage until the user clears browser cache.
+
 
 7. AUDIO
 --------
@@ -111,9 +123,8 @@ Logic:
   5. Source Button: Button in the upper right corner (strict), strict Link `<a href="/_TARGET_LANGUAGE/_GAME/build-instructions.txt" download>SOURCE</a>`.
 - Info Modal: 
 1. Explain rules (point scoring for correct and penalty for wrong answer, streak bonus, hint rules, no points for hint).
-2. Describe how to install on mobile: iOS: share icon (show the icon) -> Add to Home Screen, Android: Three dot menu -> Add to Home Screen.
+2. Describe how to install on mobile: iOS: share icon (show the icon) -> Add to Home Screen, Android: Press "INSTALL" button below OR Three dot menu -> Add to Home Screen.
 3. Add a button "INSTALL" that is hidden by default. You only show that button if the browser says the app is installable. The INSTALL button launches the install process on Android phones where automatic PWA install is supported.
-
 - Closing: Add a global `window.addEventListener('keydown')` to close all modals when "Escape" is pressed.
 - Buttons: Uniform color (Blue).
 
