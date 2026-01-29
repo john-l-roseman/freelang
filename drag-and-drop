@@ -80,14 +80,14 @@ Logic:
 6. GAME LOGIC
 -------------
 - Matching: Drag English to _TARGET_LANGUAGE.
-- Success: IDs match -> Play Chime -> Flash Green -> _TARGET_LANGUAGE text is spoken -> Cards Collapse/Slide Up -> Update Score.
+- Success: IDs match -> Play Chime -> Flash Green -> _TARGET_LANGUAGE text is spoken (if no hint was given for this card) -> Cards Collapse/Slide Up -> Update Score.
 - Fail: IDs mismatch -> Play Buzzer -> Flash Red -> Reset Streak -> Deduct Score.
 - Hints:
   - Input: Triggered via the manual Double-Click/Tap logic defined in Section 5.
   - Visuals: The *_TARGET_LANGUAGE* card with that ID flashes bright Orange. The English card does NOT change color.
   - Audio: _TARGET_LANGUAGE text is spoken.
   - Penalty: No points awarded for this word if hint is used.
-  - Effect: Set a global state `hintTargetId`. The *_TARGET_LANGUAGE* card with that ID flashes Orange for 2 seconds. The English card does NOT change color.
+  - Effect: Set a global state `hintTargetId`. The *_TARGET_LANGUAGE* card with that ID flashes Orange for 2 seconds. The English card does NOT change color. The _TARGET_LANGUAGE card is spoken.
   - Penalty: No points awarded for this word if hint is used.
 
 7. AUDIO
