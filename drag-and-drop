@@ -96,10 +96,8 @@ Logic:
 - Hints:
   - Input: Triggered via the manual Double-Click/Tap logic defined in Section 5.
   - Visuals: The *_TARGET_LANGUAGE* card with that ID flashes bright Orange. The English card does NOT change color.
-  - Audio: _TARGET_LANGUAGE text is spoken.
   - Penalty: No points awarded for this word if hint is used.
   - Effect: Set a global state `hintTargetId`. The *_TARGET_LANGUAGE* card with that ID flashes Orange for 2 seconds. The English card does NOT change color. The _TARGET_LANGUAGE card is spoken.
-  - Penalty: No points awarded for this word if hint is used.
   - Persistence: On every successful match (handleMatch), immediately update `localStorage`. 
   1. Add the matched ID to the list of `learnedIds` (merge with existing).
   2. Save the new `score` and `streak`.
