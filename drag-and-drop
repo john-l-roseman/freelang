@@ -91,7 +91,7 @@ Logic:
 6. GAME LOGIC
 -------------
 - Matching: Drag English to _TARGET_LANGUAGE.
-- Success: IDs match -> Play Chime -> Flash Green -> _TARGET_LANGUAGE text is spoken (if no hint was given for this card) -> Cards Collapse/Slide Up -> Update Score.
+- Success: IDs match -> Flash Green 1 second -> _TARGET_LANGUAGE text is spoken (if no hint was given for this card) -> Cards Collapse/Slide Up -> Update Score.
 - Fail: IDs mismatch -> Play Buzzer -> Flash Red -> Reset Streak -> Deduct Score.
 - Hints:
   - Input: Triggered via the manual Double-Click/Tap logic defined in Section 5.
