@@ -56,7 +56,6 @@ System B: Mobile (Touch)
 - Events: Use `onTouchStart`, `onTouchMove`, `onTouchEnd`.
 - Conflict Prevention: Add `onContextMenu={(e) => { e.preventDefault(); e.stopPropagation(); }}` to the cards to block the system menu on long press.
 - CSS Safety: Apply `user-select: none` and `-webkit-touch-callout: none` to the cards to prevent text selection or iOS magnifying glass.
-- Ghost Card: Render a fixed-position duplicate card following the finger. It must have `pointer-events: none`.
 - Scroll Fix: Apply `touch-action: none` via CSS to the draggable cards.
 - Drop Detection: Use `document.elementFromPoint` in `onTouchEnd`. Always look for `.closest('.drop-zone')`.
 
@@ -71,10 +70,10 @@ Logic:
      a) Trigger the hint.
      b) Reset the ref to { id: null, time: 0 }.
      c) Call `e.preventDefault()`.
-     d) RETURN IMMEDIATELY. (Do not execute the Ghost Card creation or drag logic).
+     d) RETURN IMMEDIATELY. (Do not execute the card creation or drag logic).
    - IF NO: 
      a) Update the ref with { id, time: Date.now() }.
-     b) Proceed to execute the standard Ghost Card/Drag logic.
+     b) Proceed to execute the standard Card/Drag logic.
 
 6. GAME LOGIC
 -------------
@@ -100,7 +99,7 @@ Logic:
 - Header Elements (Must include ALL of the following):
   0. "openlang.ai" (bold linked to "/")  
   1. Score Display: "Score X (Y%)".
-  2. Mute Button: The exact text "MUTE". Toggles `isMuted` state, text toggles to "UNMUTE". 
+  2. Mute Button: The exact text "MUTE". Toggles `isMuted` state, mutes all sound, text toggles to "UNMUTE". 
   3. Info icon (large question mark, inside black circle): Opens Info modal.
   5. Source Button: Button in the upper right corner (strict), strict Link `<a href="/_LANGUAGE/_GAME/build-instructions.txt" download>SOURCE</a>`.
 - Info Modal: 
