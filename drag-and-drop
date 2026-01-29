@@ -36,9 +36,8 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
   2. Game Area: Flex-1, overflow-y: auto. Contains the two card columns.
 - Columns: Two columns (50% width). Left = English, Right = _LANGUAGE.
 - Card Content (Strict):
-   - Left (English) Card: Display the English text AND a speaker icon button.
-   - Right (French) Card: Display the French translation AND a speaker icon button.
-   - Icons: Place the speaker icon immediately after the text on the same line (inline).
+   - Left (English) Card: Display the English text.
+   - Right (French) Card: Display the French translation.
 - Animations: Use a `.card-wrapper` class. On match, transition `max-height`, `opacity`, and `margin` to 0 to make cards slide up smoothly.
 - Mobile View: The entire UI must fit on a single screen without horizontal scrolling.
 - Desktop: Set CSS width (viewport) to 400px.
@@ -80,11 +79,12 @@ Logic:
 6. GAME LOGIC
 -------------
 - Matching: Drag English to _LANGUAGE.
-- Success: IDs match -> Play Chime -> Flash Green -> Cards Collapse/Slide Up -> Update Score.
+- Success: IDs match -> Play Chime -> Flash Green -> _LANGUAGE text is spoken -> Cards Collapse/Slide Up -> Update Score.
 - Fail: IDs mismatch -> Play Buzzer -> Flash Red -> Reset Streak -> Deduct Score.
 - Hints:
   - Input: Triggered via the manual Double-Click/Tap logic defined in Section 5.
   - Visuals: The *_LANGUAGE* card with that ID flashes bright Orange. The English card does NOT change color.
+  - Audio: _LANGUAGE text is spoken.
   - Penalty: No points awarded for this word if hint is used.
   - Effect: Set a global state `hintTargetId`. The *_LANGUAGE* card with that ID flashes Orange. The English card does NOT change color.
   - Penalty: No points awarded for this word if hint is used.
@@ -92,9 +92,6 @@ Logic:
 7. AUDIO
 --------
 - Generation: Web Speech API. Filter voices for `localService: true` (offline support).
-- Icons: Place a speaker icon immediately after the text (inline) on BOTH the English cards and the French cards.  Behavior: Clicking the English card speaker plays the English text; clicking the French card speaker plays the French text.
-- Icon Styling: Explicitly set a fixed width/height (e.g., `w-[1em] h-[1em]`) relative to the font. You MUST add the class `flex-shrink-0` (or `shrink-0`) to the icon/button. This prevents the icon from being crushed or resized when text wraps to multiple lines.
-- Speaker Icon: Wrap the icon in a button. Add `onMouseDown={(e) => e.stopPropagation()}`. Put the speaker icon immediately after the end of the text, not on a separate line. Use a "High Volume" style SVG icon, a solid-filled speaker body and three curved sound waves to the right.
 
 
 8. HEADER & POPUPS
@@ -103,7 +100,7 @@ Logic:
 - Header Elements (Must include ALL of the following):
   0. "openlang.ai" (bold linked to "/")  
   1. Score Display: "Score X (Y% Learned)".
-  2. Mute Icon: Toggles `isMuted` state. Mutes SFX (chime/buzzer) but NOT Text-to-Speech.
+  2. Mute Button: The exact text "MUTE". Toggles `isMuted` state, text toggles to "UNMUTE". 
   3. Info icon (large question mark, inside black circle): Opens Info modal.
   5. Source Button: Button in the upper right corner (strict), strict Link `<a href="/_LANGUAGE/_GAME/build-instructions.txt" download>SOURCE</a>`.
 - Info Modal: Explain rules (point scoring for right and penalty for wrong answer, streak bonus, hint rules) + Describe how to install on mobile: iOS: share icon -> Add to Home Screen, Android: Hamburger Icon -> Add to Home Screen.
