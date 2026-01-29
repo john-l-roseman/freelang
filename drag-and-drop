@@ -132,10 +132,11 @@ Logic:
   5. Source Button: Button in the upper right corner (strict), strict Link `<a href="/_TARGET_LANGUAGE/_GAME/build-instructions.txt" download>SOURCE</a>`.
 - Info Modal: 
 1. Explain rules (point scoring for correct and penalty for wrong answer, streak bonus, hint rules, no points for hint).
-2. Describe how to install on mobile: iOS: share icon (show the icon) -> Add to Home Screen, Android: Press "INSTALL" button below OR Three dot menu -> Add to Home Screen.
-3. Add a button "INSTALL" that is hidden by default. You only show that button if the browser says the app is installable. The INSTALL button launches the install process on Android phones where automatic PWA install is supported.
+2. Describe how to install on mobile: iOS: share icon (show the iOS share icon) -> Add to Home Screen; Android: "Three dot menu -> Add to Home Screen [or click INSTALL if available below]".
+3. Add a button "INSTALL" at the bottom that is hidden by default. You only show that button if the browser says the app is installable. The INSTALL button launches the install process on Android phones where automatic PWA install is supported.
 - Closing: Add a global `window.addEventListener('keydown')` to close all modals when "Escape" is pressed.
 - Buttons: Uniform color (Blue).
+
 
 9. COPYRIGHT (Footer)
 ---------------------
