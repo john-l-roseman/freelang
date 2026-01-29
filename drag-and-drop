@@ -23,7 +23,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 
 3. ARCHITECTURE & STATE MANAGEMENT (CRITICAL)
 ---------------------------------------------
-- Storage Key: Use const `STORAGE_KEY = 'openlang_ru_progress'`.
+- Storage Key: Use const `STORAGE_KEY = 'openlang__TARGET_LANGUAGE__GAME_STRING_progress'`.
 - Persistence Schema: `{ score: number, streak: number, learnedIds: [] }`.
 - Initialization Logic (Order of Operations):
   1. On mount, read `localStorage`.
