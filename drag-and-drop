@@ -5,7 +5,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 1. GLOBAL CONFIGURATION
 -----------------------
 - CARDS_PER_ROUND: CARD_COUNT
-- LANGUAGE_CODE: Two letter standard code for _LANGUAGE.
+- LANGUAGE_CODE: Two letter standard code for _LANGUAGE (All Caps).
 - GA_MEASUREMENT_ID: "G-XXXXXXXXXX"  
 
 
@@ -99,11 +99,15 @@ Logic:
 - Header Layout: Single line, compressed.
 - Header Elements (Must include ALL of the following):
   0. "openlang.ai" (bold linked to "/")  
-  1. Score Display: "Score X (Y% Learned)".
+  1. Score Display: "Score X (Y%)".
   2. Mute Button: The exact text "MUTE". Toggles `isMuted` state, text toggles to "UNMUTE". 
   3. Info icon (large question mark, inside black circle): Opens Info modal.
   5. Source Button: Button in the upper right corner (strict), strict Link `<a href="/_LANGUAGE/_GAME/build-instructions.txt" download>SOURCE</a>`.
-- Info Modal: Explain rules (point scoring for right and penalty for wrong answer, streak bonus, hint rules) + Describe how to install on mobile: iOS: share icon -> Add to Home Screen, Android: Hamburger Icon -> Add to Home Screen.
+- Info Modal: 
+1. Explain rules (point scoring for correct and penalty for wrong answer, streak bonus, hint rules, no points for hint).
+2. Describe how to install on mobile: iOS: share icon (show the icon) -> Add to Home Screen, Android: Three dot menu -> Add to Home Screen.
+3. Add a button "INSTALL" that is hidden by default. You only show that button if the browser says the app is installable. The INSTALL button launches the install process on Android phones where automatic PWA install is supported.
+
 - Closing: Add a global `window.addEventListener('keydown')` to close all modals when "Escape" is pressed.
 - Buttons: Uniform color (Blue).
 
