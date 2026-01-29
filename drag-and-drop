@@ -34,7 +34,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - Round State: Use `useState` only for the current CARDS_PER_ROUND pairs.
 - Mastery Logic: When a match is made (no hint), remove the word from `deckRef.current` immediately.
 - Round Transition: When last pair matches, slice next batch from `deckRef`.
-- Russian Column Logic: Must be a VALID DERANGEMENT (shuffled so no French card lines up horizontally with its English counterpart). If batch size < 2, return as-is.
+- _LANGUAGE Column Logic: Must be a VALID DERANGEMENT (shuffled so no _LANGUAGE card lines up horizontally with its English counterpart). If batch size < 2, return as-is.
 
 
 4. LAYOUT & VISUALS
@@ -45,7 +45,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - Columns: Two columns (50% width). Left = English, Right = _TARGET_LANGUAGE.
 - Card Content (Strict):
    - Left (English) Card: Display the English text.
-   - Right (French) Card: Display the French translation.
+   - Right (_LANGUAGE) Card: Display the _LANGUAGE translation.
 - Animations: Use a `.card-wrapper` class. On match, transition `max-height`, `opacity`, and `margin` to 0 to make cards slide up smoothly.
 - Mobile View: The entire UI must fit on a single screen without horizontal scrolling.
 - Desktop: Set CSS width (viewport) to 400px.
