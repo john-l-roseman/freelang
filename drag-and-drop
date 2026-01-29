@@ -56,10 +56,15 @@ System A: Desktop (Mouse)
 
 System B: Mobile (Touch)
 - Events: Use `onTouchStart`, `onTouchMove`, `onTouchEnd`.
-- Conflict Prevention: Add `onContextMenu={(e) => { e.preventDefault(); e.stopPropagation(); }}` to the cards to block the system menu on long press.
-- CSS Safety: Apply `user-select: none` and `-webkit-touch-callout: none` to the cards to prevent text selection or iOS magnifying glass.
-- Scroll Fix: Apply `touch-action: none` via CSS to the draggable cards.
-- Drop Detection: Use `document.elementFromPoint` in `onTouchEnd`. Always look for `.closest('.drop-zone')`.
+- Drag Logic (CLONE METHOD): 
+  1. On `onTouchStart`, create a visual CLONE of the card. 
+  2. Append this clone to the document `<body>`.
+  3. Style the clone with `position: fixed`, `z-index: 9999`, `pointer-events: none`, and `opacity: 0.8`.
+  4. The Original Card MUST remain in the column (do not hide it, do not move it).
+- Movement: Update the `top/left` CSS properties of the CLONE during `onTouchMove` to follow the finger.
+- Event Propagation: Inside `onTouchStart`, you MUST call `e.stopPropagation()` immediately to prevent the column from scrolling/dragging.
+- CSS Safety: Apply `touch-action: none` to the `.game-card` class to disable native browser scrolling on the card.
+- Cleanup: Remove the clone from the DOM on `onTouchEnd`.
 
 Double-Tap Implementation (CRITICAL):
 Do NOT use a custom hook (e.g., useDoubleTap) inside the .map loop.
