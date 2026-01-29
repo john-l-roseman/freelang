@@ -2,7 +2,7 @@ PROMPT="../../Scripts/drag-and-drop"
 LANGUAGE=`pwd | awk -F/ '{print $(NF-1)}'`;
 GAME=`pwd | awk -F/ '{print $NF}'`;
 CARD_COUNT=`cat "../../Rules/$GAME/count"`
-GAME_STRING=`echo $GAME | sed "/s/ /_/g"`
+GAME_STRING=`echo $GAME | sed "s/ /_/g"`
 
 TRANSLATE="Text-Translate";
 if  echo $GAME | egrep "Capitalist|Leftist|Philosophy|Religious" ; 
