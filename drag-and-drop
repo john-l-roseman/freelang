@@ -4,9 +4,11 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 
 1. GLOBAL CONFIGURATION
 -----------------------
-- CARDS_PER_ROUND: CARD_COUNT
-- LANGUAGE_CODE: Two letter standard code for _LANGUAGE (All Caps).
-- GA_MEASUREMENT_ID: "G-XXXXXXXXXX"  
+- CARDS_PER_ROUND: _CARD_COUNT
+- BASE_LANGUAGE: _BASE_LANGUAGE
+- TARGET_LANGUAGE: _TARGET_LANGUAGE
+- LANGUAGE_CODE: Two letter standard code for _TARGET_LANGUAGE (All Caps).
+- GA_MEASUREMENT_ID: "G-WFWF326Q9H"  
 
 
 2. TECHNICAL STACK & SETUP
@@ -16,7 +18,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - Embed all CSS/JS within the file.
 - Analytics: Include the standard Google Analytics 4 (gtag.js) script in the <head>. Initialize `window.dataLayer` and config using the `GA_MEASUREMENT_ID`. 
 - PWA: Include an embedded `manifest.json` (Blob) and Service Worker.
-- PWA Icon: Generate a Base64 SVG (Green square, white text LANGUAGE_CODE) for the manifest. Short name: "_GAME".
+- PWA Icon: Generate a Base64 SVG (Green square, white text "LANGUAGE_CODE") for the manifest. Short name: "_GAME".
 
 
 3. ARCHITECTURE & STATE MANAGEMENT (CRITICAL)
@@ -26,7 +28,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - Mastery Logic: When a match is made (no hint), remove the word from `deckRef.current` immediately.
 - Win Condition: Check if `deckRef.current.length === 0` before starting a round.
 - Round Transition: When last pair matches, slice next batch from `deckRef`.
-- _LANGUAGE Column Logic: Must be a VALID DERANGEMENT (shuffled so no French card lines up horizontally with its English counterpart). CRITICAL: If the batch size is less than 2 (e.g., the final card), return the batch as-is without attempting to derange. This prevents an infinite loop.
+- _TARGET_LANGUAGE Column Logic: Must be a VALID DERANGEMENT (shuffled so no French card lines up horizontally with its English counterpart). CRITICAL: If the batch size is less than 2 (e.g., the final card), return the batch as-is without attempting to derange. This prevents an infinite loop.
 
 
 4. LAYOUT & VISUALS
@@ -34,7 +36,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - Structure: A flex-column container (h-100dvh).
   1. Header: Fixed height. Contains Score and ALL action buttons (defined below).
   2. Game Area: Flex-1, overflow-y: auto. Contains the two card columns.
-- Columns: Two columns (50% width). Left = English, Right = _LANGUAGE.
+- Columns: Two columns (50% width). Left = English, Right = _TARGET_LANGUAGE.
 - Card Content (Strict):
    - Left (English) Card: Display the English text.
    - Right (French) Card: Display the French translation.
@@ -77,15 +79,15 @@ Logic:
 
 6. GAME LOGIC
 -------------
-- Matching: Drag English to _LANGUAGE.
-- Success: IDs match -> Play Chime -> Flash Green -> _LANGUAGE text is spoken -> Cards Collapse/Slide Up -> Update Score.
+- Matching: Drag English to _TARGET_LANGUAGE.
+- Success: IDs match -> Play Chime -> Flash Green -> _TARGET_LANGUAGE text is spoken -> Cards Collapse/Slide Up -> Update Score.
 - Fail: IDs mismatch -> Play Buzzer -> Flash Red -> Reset Streak -> Deduct Score.
 - Hints:
   - Input: Triggered via the manual Double-Click/Tap logic defined in Section 5.
-  - Visuals: The *_LANGUAGE* card with that ID flashes bright Orange. The English card does NOT change color.
-  - Audio: _LANGUAGE text is spoken.
+  - Visuals: The *_TARGET_LANGUAGE* card with that ID flashes bright Orange. The English card does NOT change color.
+  - Audio: _TARGET_LANGUAGE text is spoken.
   - Penalty: No points awarded for this word if hint is used.
-  - Effect: Set a global state `hintTargetId`. The *_LANGUAGE* card with that ID flashes Orange. The English card does NOT change color.
+  - Effect: Set a global state `hintTargetId`. The *_TARGET_LANGUAGE* card with that ID flashes Orange for 2 seconds. The English card does NOT change color.
   - Penalty: No points awarded for this word if hint is used.
 
 7. AUDIO
@@ -98,10 +100,10 @@ Logic:
 - Header Layout: Single line, compressed.
 - Header Elements (Must include ALL of the following):
   0. "openlang.ai" (bold linked to "/")  
-  1. Score Display: "Score X (Y%)".
+  1. Score Display: "Score X (Learned Y%)".
   2. Mute Button: The exact text "MUTE". Toggles `isMuted` state, mutes all sound, text toggles to "UNMUTE". 
   3. Info icon (large question mark, inside black circle): Opens Info modal.
-  5. Source Button: Button in the upper right corner (strict), strict Link `<a href="/_LANGUAGE/_GAME/build-instructions.txt" download>SOURCE</a>`.
+  5. Source Button: Button in the upper right corner (strict), strict Link `<a href="/_TARGET_LANGUAGE/_GAME/build-instructions.txt" download>SOURCE</a>`.
 - Info Modal: 
 1. Explain rules (point scoring for correct and penalty for wrong answer, streak bonus, hint rules, no points for hint).
 2. Describe how to install on mobile: iOS: share icon (show the icon) -> Add to Home Screen, Android: Three dot menu -> Add to Home Screen.
