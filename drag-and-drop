@@ -109,7 +109,18 @@ Logic:
 
 7. AUDIO
 --------
-- Generation: Web Speech API. Filter voices for `localService: true` (offline support).
+- Generation: Web Speech API (`window.speechSynthesis`).
+- Smart Directionality Logic:
+  1. Detect User Context: `const isEnglishBrowser = navigator.language.toLowerCase().includes('en');`
+  2. IF `isEnglishBrowser` is TRUE: 
+     - User is an English speaker learning the Target Language.
+     - Content to Speak: The Target Language text (the `translation` field).
+     - Voice Locale: Map the global `LANGUAGE_CODE` to a valid BCP 47 tag (e.g., if 'RU' use 'ru-RU', if 'ES' use 'es-ES').
+  3. ELSE (`isEnglishBrowser` is FALSE):
+     - User is a speaker of the Target Language learning English.
+     - Content to Speak: The English text (the `text` field).
+     - Voice Locale: Set explicitly to 'en-US'.
+- Attributes: Set rate to 0.9. Filter for `localService: true` voices to ensure offline functionality.
 
 
 8. HEADER & POPUPS
