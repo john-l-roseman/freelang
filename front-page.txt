@@ -9,7 +9,7 @@ GLOBAL CONFIGURATION
 --------------------
 - BRANDING: An SVG logo of "文" (28pt) followed by "openlang.ai" in large bold text.
 - SOURCE: Right-justified button with the text "SOURCE" that downloads the front-page.txt file.
-- SLOGAN: "Open-source language-learning games, driven by AI"
+- SLOGAN: "Open-source language-learning games, driven by AI" (serif italic)
 
 
 -----------------
@@ -19,8 +19,8 @@ Title: "OpenLang.ai".
 Favicon: A data URI containing the character "文" (serif, deep red on white).
 
 Top Bar
-Mobile: BRANDING, SOURCE, SLOGAN (italics, centered on the second line)
-Desktop: BRANDING, SLOGAN in large italics, SOURCE 
+Mobile: BRANDING, SOURCE, SLOGAN (centered on the second line)
+Desktop: BRANDING, SLOGAN, SOURCE 
 
 ------------
 Main Content (Two Column Layout) 
