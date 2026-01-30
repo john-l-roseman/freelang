@@ -34,7 +34,7 @@ Language Grid: Display buttons as cards (same color) in a 4-column grid. Each ca
 "More Languages" (Collapsible, Default Hidden): Azerbaijani, Belarusian, Bengali, Bulgarian, Burmese, Catalan, Czech, Danish, Dutch, Estonian, German, Georgian, Greek, Hausa, Hungarian, Italian, Japanese, Korean, Lao, Latin, Latvian, Lithuanian, Madurese, Malay, Malayalam, Norwegian, Pashto, Polish, Portuguese, Punjabi, Romanian, Russian, Serbo-Croatian, Sindhi, Slovak, Somali, Swedish, Tagalog, Tamil, Telugu, Thai, Turkish, Urdu, Vietnamese.
 
 Technology Stack:
-Create a table with three columns: 
+Create a table with three columns (middle column reduced point size):  
 Product|How It's Used|Owner/Standards Body
 
 Products (use exact names as written):
