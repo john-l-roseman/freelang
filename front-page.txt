@@ -2,7 +2,7 @@
 Theme & Style
 ------------- 
 Use the Tailwind 'Stone' palette. Headings should be deep red and serif; body text sans-serif. Do not display any comments. 
-Links: Bold font Deep Red. Links must open in the current window.
+Links: Bold font, dark blue color. Links must open in the current window.
 Screen width limited to 1366 pixels.
 
 --------------------
@@ -28,9 +28,9 @@ Main Content (Two Column Layout)
 ------------	
 Column 1: Languages & Tech
 
-Language Grid: Display buttons as cards (same color) in a 4-column grid (2 column on mobile). Each card links to /LANGUAGE and shows the Native Name (large, bold) above the English Name.
+Language Grid: Display buttons as cards (same color) in a 5-column grid (3 column on mobile). Each card links to /LANGUAGE and shows the Native Name (large, bold) above the English Name.
 
-"Language Chooser" (Do not display heading): Chinese, Spanish, French, Ukrainian, Persian, Hindi, Arabic, Swahili.
+"Language Chooser" (Do not display heading): Chinese, Spanish, French, Ukrainian, Korean, Persian, Hindi, Arabic, Swahili.
 
 "More Languages" (Collapsible, Default Hidden): Azerbaijani, Belarusian, Bengali, Bulgarian, Burmese, Catalan, Czech, Danish, Dutch, Estonian, German, Georgian, Greek, Hausa, Hungarian, Italian, Japanese, Korean, Lao, Latin, Latvian, Lithuanian, Madurese, Malay, Malayalam, Norwegian, Pashto, Polish, Portuguese, Punjabi, Romanian, Russian, Serbo-Croatian, Sindhi, Slovak, Somali, Swedish, Tagalog, Tamil, Telugu, Thai, Turkish, Urdu, Vietnamese.
 
