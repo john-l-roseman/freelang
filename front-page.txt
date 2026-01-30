@@ -33,7 +33,7 @@ Each card links to /LANGUAGE. The Native Name should be on top (13em, bold). For
 
 "Language Chooser" (Do not display heading): Chinese, Spanish, French, German, Ukrainian, Portuguese, Korean, Vietnamese, Hindi, Persian, Arabic, Swahili.
 
-"More Languages" (Collapsible, Default Hidden): Azerbaijani, Belarusian, Bengali, Bulgarian, Burmese, Catalan, Czech, Danish, Dutch, Estonian, Georgian, Greek, Hausa, Hungarian, Italian, Japanese, Korean, Lao, Latin, Latvian, Lithuanian, Madurese, Malay, Malayalam, Norwegian, Pashto, Polish, Punjabi, Romanian, Russian, Serbo-Croatian, Sindhi, Slovak, Somali, Swedish, Tagalog, Tamil, Telugu, Thai, Turkish, Urdu. 
+"More Languages" (Collapsible, Default Hidden): Azerbaijani, Belarusian, Bengali, Bulgarian, Burmese, Catalan, Czech, Danish, Dutch, Estonian, Georgian, Greek, Hausa, Hungarian, Italian, Japanese, Korean, Lao, Latin, Latvian, Lithuanian, Madurese, Malay, Norwegian, Pashto, Polish, Punjabi, Romanian, Russian, Serbo-Croatian, Sindhi, Slovak, Somali, Swedish, Tagalog, Tamil, Telugu, Thai, Turkish, Urdu. 
 
 Technology Stack:
 Create a table with three columns.
