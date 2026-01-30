@@ -28,7 +28,7 @@ Main Content (Two Column Layout)
 ------------	
 Column 1: Languages & Tech
 
-Language Grid: Display buttons as cards (same color) in a 6-column grid (3 column on mobile). Each card links to /LANGUAGE and shows the Native Name (large, bold) above the English Name.
+Language Grid: Display minimal height buttons as cards (same color) in a 4-column grid (3 column on mobile). Each card links to /LANGUAGE and shows the Native Name (large, bold) above the English Name.
 
 "Language Chooser" (Do not display heading): Chinese, Spanish, French, German, Ukrainian, Portuguese, Korean, Vietnamese, Hindi, Persian, Arabic, Swahili.
 
@@ -70,7 +70,7 @@ Footer
 Left: Title "About the Site Logo". Text: "The Chinese wén character (文) signifies literature, culture, or writing. It is part of the name of the Chinese language itself (中文).".
 
 Right:
-Copyright text as footer on a single line in small print. 
+Copyright text in small print. 
 Link for “Functional AI Inc”: https://functional.by
 Link for “MIT License”: https://opensource.org/licenses/MIT
 The text should appear exactly as below, with the above href link markup added as underlined link.
