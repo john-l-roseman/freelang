@@ -105,24 +105,26 @@ Logic:
 - Reset Option: Add a hidden mechanism or check (e.g., if `RAW_DATA` version changes) to clear storage, but for now, assume permanent storage until the user clears browser cache.
 
 
-7. AUDIO
---------
-- API: Web Speech API (`window.speechSynthesis`).
-- Initialization & State:
-  1. Create a state variable `ttsEnabled` (default `false`).
-  2. Implement a `useEffect` that triggers on mount AND on `speechSynthesis.onvoiceschanged`.
-- Runtime Capability Check (The "Smart" Logic):
-  Inside the effect, perform these steps to determine if Audio should play:
-  1. Detect User Context: `const isEnglishBrowser = navigator.language.toLowerCase().includes('en');`
-  2. Determine Required Voice:
-     - IF `isEnglishBrowser` is TRUE: Target is the global `LANGUAGE_CODE` mapped to BCP-47 (e.g., 'RU'->'ru-RU', 'BE'->'be-BY').
-     - ELSE: Target is 'en-US'.
-  3. Scan Voices: `const voices = window.speechSynthesis.getVoices();`
-  4. Check Availability: Search `voices` for any voice where `voice.lang` starts with the *Required Voice*.
-  5. Set State: If a matching voice exists, set `ttsEnabled(true)`. Otherwise, set `ttsEnabled(false)`.
-- Playback:
-  - Only attempt to speak if `ttsEnabled` is true.
-  - If `ttsEnabled` is false, the game remains silent (visual feedback only).
+7. AUDIO SYSTEM (SMART AUTO-DETECT)
+-----------------------------------
+- API: `window.speechSynthesis`.
+- Configuration:
+  1. Define a strict allow-list: `const HQ_LANGS = ['EN', 'ES', 'FR', 'DE', 'IT', 'PT', 'RU', 'ZH', 'JA', 'KO'];`
+  2. Derive Global State: `const AUDIO_ENABLED = HQ_LANGS.includes(LANGUAGE_CODE);`
+- Implementation Logic (`speakCard` function):
+  1. Strict Guard: If `!AUDIO_ENABLED`, return immediately (do not run any Speech logic).
+  2. User Context: Detect `const isEnglishBrowser = navigator.language.toLowerCase().includes('en');`
+  3. Directionality (If Enabled):
+     - IF `isEnglishBrowser` is TRUE: 
+       -> Target: The Foreign Language (the `translation` field).
+       -> Locale: Map `LANGUAGE_CODE` to standard BCP-47 (e.g. 'RU'->'ru-RU', 'CN'->'zh-CN', 'BE'->'be-BY').
+     - ELSE (`isEnglishBrowser` is FALSE):
+       -> Target: English (the `text` field).
+       -> Locale: Force 'en-US'.
+  4. Runtime Safety:
+     - Check `window.speechSynthesis.getVoices()` for the required Locale.
+     - If the specific voice is missing on the device, fail silently (catch errors).
+     - Filter for `localService: true` voices if available for lower latency.
 
 
 8. HEADER & POPUPS
