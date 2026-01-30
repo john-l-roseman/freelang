@@ -4,6 +4,14 @@ Theme & Style
 Use the Tailwind 'Stone' palette. Headings should be deep red and serif; body text sans-serif. Do not display any comments. Links must open in the current window.
 Screen width limited to 1366 pixels.
 
+--------------------
+GLOBAL CONFIGURATION
+--------------------
+- BRANDING: An SVG logo of "文" (28pt) followed by "openlang.ai" in large bold text.
+- SOURCE: Right-justified button with the text "SOURCE" that downloads the front-page.txt file.
+- SLOGAN: "Open-source language-learning games, driven by AI"
+
+
 -----------------
 Header Components
 -----------------
@@ -11,9 +19,8 @@ Title: "OpenLang.ai".
 Favicon: A data URI containing the character "文" (serif, deep red on white).
 
 Top Bar
-Left: An SVG logo of "文" (24pt serif) followed by "openlang.ai" in large bold text.
-Center: "Open-source language-learning games, driven by AI" (large italic serif).
-Top right corner: A "Source" button that downloads the front-page.txt file. On mobile, assure that this element is on the top line.
+Mobile: BRANDING, SOURCE, SLOGAN (italics, centered on the second line)
+Desktop: BRANDING, SLOGAN in large italics, SOURCE 
 
 ------------
 Main Content (Two Column Layout) 
