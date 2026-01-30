@@ -130,7 +130,7 @@ Logic:
 
 8. HEADER & POPUPS
 ------------------
-- Header Layout: Single line, compressed.
+- Header Layout: Single line, compressed. CSS width (viewport): 400px
 - Header Elements (Must include ALL of the following):
   0. "openlang.ai" (bold linked to "/")  
   1. Score Display: "Score X (Learned Y%)".
