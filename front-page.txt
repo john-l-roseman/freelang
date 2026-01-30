@@ -22,9 +22,9 @@ Column 1: Languages & Tech
 
 Language Grid: Display buttons as cards (same color) in a 4-column grid. Each card links to /LANGUAGE and shows the Native Name (large, bold) above the English Name.
 
-"Choose a Language" (Visible): Chinese, Spanish, French, German, Portuguese, Ukrainian, Korean, Japanese, Persian, Hindi, Arabic, Swahili.
+"Choose a Language" (Visible): Chinese, Spanish, French, Ukrainian, Persian, Hindi, Arabic, Swahili.
 
-"More Languages" (Collapsible, Default Hidden): Azerbaijani, Belarusian, Bengali, Bulgarian, Burmese, Catalan, Czech, Danish, Dutch, Estonian, Georgian, Greek, Hausa, Hungarian, Italian, Lao, Latin, Latvian, Lithuanian, Madurese, Malay, Malayalam, Norwegian, Pashto, Polish, Punjabi, Romanian, Russian, Serbo-Croatian, Sindhi, Slovak, Somali, Swedish, Tagalog, Tamil, Telugu, Thai, Turkish, Urdu, Vietnamese.
+"More Languages" (Collapsible, Default Hidden): Azerbaijani, Belarusian, Bengali, Bulgarian, Burmese, Catalan, Czech, Danish, Dutch, Estonian, German, Georgian, Greek, Hausa, Hungarian, Italian, Japanese, Korean, Lao, Latin, Latvian, Lithuanian, Madurese, Malay, Malayalam, Norwegian, Pashto, Polish, Portuguese, Punjabi, Romanian, Russian, Serbo-Croatian, Sindhi, Slovak, Somali, Swedish, Tagalog, Tamil, Telugu, Thai, Turkish, Urdu, Vietnamese.
 
 Technology Stack:
 Create a table with three columns: 
@@ -46,10 +46,10 @@ The Open Source movement was a revolution for programmers, allowing them to reus
 
 Create Use_Cases table with three columns:
 Use Case|Prompt|Game Link
-American venture capitalist in Ukraine||/Ukrainian/venture.html|
-Polish tourist visiting Germany||/Polish/tourist.html/|
-Philosophy Student Studying French||/French/philsophy.html|
-Virusoligist attending Chinese conference||/Chinese/virusology.html|
+American venture capitalist in Ukraine||/Ukrainian/Venture
+Polish tourist visiting Germany||/Polish/Tourist
+Philosophy Student Studying French||/French/Philsophy_Study
+Virusoligist attending Chinese conference||/Chinese/virusology
 
 Populate the "Prompt" field with a prompt to generate words and short phrases that are appropriate for the use case.
 The "Game Link" field should have a button that says "Play" linked to the URL in the field.
