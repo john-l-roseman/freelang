@@ -107,18 +107,22 @@ Logic:
 
 7. AUDIO
 --------
-- Generation: Web Speech API (`window.speechSynthesis`).
-- Smart Directionality Logic:
+- API: Web Speech API (`window.speechSynthesis`).
+- Initialization & State:
+  1. Create a state variable `ttsEnabled` (default `false`).
+  2. Implement a `useEffect` that triggers on mount AND on `speechSynthesis.onvoiceschanged`.
+- Runtime Capability Check (The "Smart" Logic):
+  Inside the effect, perform these steps to determine if Audio should play:
   1. Detect User Context: `const isEnglishBrowser = navigator.language.toLowerCase().includes('en');`
-  2. IF `isEnglishBrowser` is TRUE: 
-     - User is an English speaker learning the Target Language.
-     - Content to Speak: The Target Language text (the `translation` field).
-     - Voice Locale: Map the global `LANGUAGE_CODE` to a valid BCP 47 tag (e.g., if 'RU' use 'ru-RU', if 'ES' use 'es-ES').
-  3. ELSE (`isEnglishBrowser` is FALSE):
-     - User is a speaker of the Target Language learning English.
-     - Content to Speak: The English text (the `text` field).
-     - Voice Locale: Set explicitly to 'en-US'.
-- Attributes: Set rate to 0.9. Filter for `localService: true` voices to ensure offline functionality.
+  2. Determine Required Voice:
+     - IF `isEnglishBrowser` is TRUE: Target is the global `LANGUAGE_CODE` mapped to BCP-47 (e.g., 'RU'->'ru-RU', 'BE'->'be-BY').
+     - ELSE: Target is 'en-US'.
+  3. Scan Voices: `const voices = window.speechSynthesis.getVoices();`
+  4. Check Availability: Search `voices` for any voice where `voice.lang` starts with the *Required Voice*.
+  5. Set State: If a matching voice exists, set `ttsEnabled(true)`. Otherwise, set `ttsEnabled(false)`.
+- Playback:
+  - Only attempt to speak if `ttsEnabled` is true.
+  - If `ttsEnabled` is false, the game remains silent (visual feedback only).
 
 
 8. HEADER & POPUPS
