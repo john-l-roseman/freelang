@@ -29,7 +29,7 @@ Main Content (Two Column Layout)
 Column 1: Languages & Tech
 
 Language Grid: Display minimal height buttons as cards (same color) in a 4-column grid (3 column on mobile). 
-Each card links to /LANGUAGE. The Native Name should be on top (13em, bold). For any Native Name longer than 15 characters, reduce the font size to 11em to ensure it fits inside the button without overflowing.
+Each card links to /LANGUAGE. The Native Name should be on top (13em, bold). For any Native Name longer than 15 characters, reduce the font size to 10em to ensure it fits inside the button without overflowing.
 
 "Language Chooser" (Do not display heading): Chinese, Spanish, French, German, Ukrainian, Portuguese, Korean, Vietnamese, Hindi, Persian, Arabic, Swahili.
 
