@@ -7,7 +7,7 @@ Screen width limited to 1366 pixels.
 --------------------
 GLOBAL CONFIGURATION
 --------------------
-- BRANDING: SVG logo of "文" (1.4em) followed by "openlang.ai" in large bold text.
+- BRANDING: SVG logo of "文" (2.2em) followed by "openlang.ai" in large bold text.
 - SOURCE: Right-justified button with the text "SOURCE" that downloads the front-page.txt file.
 - SLOGAN: "Open-source language-learning games, driven by AI" (serif italic)
 
@@ -19,7 +19,7 @@ Title: "OpenLang.ai".
 Favicon: A data URI containing the character "文" (deep red on white).
 
 Top Bar
-Mobile: BRANDING, SOURCE, SLOGAN (centered and scaled to fit on a single line)
+Mobile: BRANDING and SOURCE (on a single line), SLOGAN (centered and scaled to fit exactly on the next line)
 Desktop: BRANDING, SLOGAN, SOURCE 
 
 ------------
