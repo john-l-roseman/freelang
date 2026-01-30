@@ -68,9 +68,10 @@ System B: Mobile (Touch)
   3. Style the clone with `position: fixed`, `z-index: 9999`, `pointer-events: none`, and `opacity: 0.8`.
   4. The Original Card MUST remain in the column (do not hide it, do not move it).
 - Movement: Update the `top/left` CSS properties of the CLONE during `onTouchMove` to follow the finger.
-- Event Propagation: Inside `onTouchStart`, you MUST call `e.stopPropagation()` immediately to prevent the column from scrolling/dragging.
-- CSS Safety: Apply `touch-action: none` to the `.game-card` class to disable native browser scrolling on the card.
+- Event Propagation: Inside onTouchStart, if a valid drag is detected (and it is not a double-tap), you MUST call e.preventDefault() to lock the native scroll immediately, followed by e.stopPropagation().
+- CSS Safety: Apply touch-action: none AND -webkit-touch-callout: none to the .game-card class. You must also apply user-select: none to the body or container to prevent text selection during drag.
 - Cleanup: Remove the clone from the DOM on `onTouchEnd`.
+- Scroll Locking: You MUST call e.preventDefault() inside onTouchMove. This is critical to stop the browser viewport from scrolling while the user is dragging the clone card.
 
 Double-Tap Implementation (CRITICAL):
 Do NOT use a custom hook (e.g., useDoubleTap) inside the .map loop.
