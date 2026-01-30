@@ -29,16 +29,16 @@ Column 1: Languages & Tech
 
 Language Grid: Display buttons as cards (same color) in a 4-column grid. Each card links to /LANGUAGE and shows the Native Name (large, bold) above the English Name.
 
-"Choose a Language" (Visible): Chinese, Spanish, French, Ukrainian, Persian, Hindi, Arabic, Swahili.
+"Language Chooser" (Do not display heading): Chinese, Spanish, French, Ukrainian, Persian, Hindi, Arabic, Swahili.
 
 "More Languages" (Collapsible, Default Hidden): Azerbaijani, Belarusian, Bengali, Bulgarian, Burmese, Catalan, Czech, Danish, Dutch, Estonian, German, Georgian, Greek, Hausa, Hungarian, Italian, Japanese, Korean, Lao, Latin, Latvian, Lithuanian, Madurese, Malay, Malayalam, Norwegian, Pashto, Polish, Portuguese, Punjabi, Romanian, Russian, Serbo-Croatian, Sindhi, Slovak, Somali, Swedish, Tagalog, Tamil, Telugu, Thai, Turkish, Urdu, Vietnamese.
 
 Technology Stack:
-Create a table with three columns (middle column reduced point size):  
-Product|How It's Used|Owner/Standards Body
+Create a table with three columns (middle column at 10em):  
+Product|How It's Used|Owner
 
 Products (use exact names as written):
-Gemini 3 Pro,JavaScript,React,TailwindCSS,PWA,Web Speech
+Gemini 3 Pro,JavaScript,React,Tailwind,PWA,Web Speech
 
 Populate the second and third columns yourself.
 Link the Technology field to its homepage or to a site that describes the technology.
