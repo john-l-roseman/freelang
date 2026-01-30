@@ -36,7 +36,8 @@ Each card links to /LANGUAGE. The Native Name should be on top (13em, bold). For
 "More Languages" (Collapsible, Default Hidden): Azerbaijani, Belarusian, Bengali, Bulgarian, Burmese, Catalan, Czech, Danish, Dutch, Estonian, Georgian, Greek, Hausa, Hungarian, Italian, Japanese, Korean, Lao, Latin, Latvian, Lithuanian, Madurese, Malay, Malayalam, Norwegian, Pashto, Polish, Punjabi, Romanian, Russian, Serbo-Croatian, Sindhi, Slovak, Somali, Swedish, Tagalog, Tamil, Telugu, Thai, Turkish, Urdu. 
 
 Technology Stack:
-Create a table with three columns (middle column at 10em):  
+Create a table with three columns.
+Middle column: make it wider, with text at 10em  
 Product|How It's Used|Owner
 
 Products (use exact names as written):
