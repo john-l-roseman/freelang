@@ -15,8 +15,7 @@ echo "0. CONTENT GENERATION"
 echo "---------------------";
 cat "../../Rules/$GAME/dataset";
 cat "../../Scripts/$TRANSLATE";
-cat $PROMPT ;
-cat ../addendum
+cat $PROMPT;
 )| sed "s/_TARGET_LANGUAGE/$LANGUAGE/g" |
 	sed "s/_BASE_LANGUAGE/English/g" |
 	sed "s/_CARD_COUNT/$CARD_COUNT/" | 
