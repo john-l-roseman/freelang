@@ -12,8 +12,8 @@ Favicon: A data URI containing the character "文" (serif, deep red on white).
 
 Top Bar
 Left: An SVG logo of "文" (24pt serif) followed by "openlang.ai" in large bold text.
-Center: "Open-source language-learning games, produced by AI" (large italic serif).
-Right: A "Source" button that downloads the front-page.txt file.
+Center: "Open-source language-learning games, driven by AI" (large italic serif).
+Top right corner: A "Source" button that downloads the front-page.txt file. On mobile, assure that this element is on the top line.
 
 ------------
 Main Content (Two Column Layout) 
