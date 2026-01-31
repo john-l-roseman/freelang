@@ -61,20 +61,28 @@ System A: Desktop (Mouse)
 - Events: Use `onDragStart` and `onDrop`.
 - PROHIBITED: Do NOT use `onMouseDown` or `onMouseMove` for dragging logic on Desktop.
 
-System B: Mobile (Touch)
-- Events: Use `onTouchStart`, `onTouchMove`, `onTouchEnd`.
-- Drag Logic (CLONE METHOD): 
-  1. On `onTouchStart`, create a visual CLONE of the card. 
-  2. Append this clone to the document `<body>`.
-  3. Style the clone with `position: fixed`, `z-index: 9999`, `pointer-events: none`, and `opacity: 0.8`.
-  4. The Original Card MUST remain in the column (do not hide it, do not move it).
-- Movement: Update the `top/left` CSS properties of the CLONE during `onTouchMove` to follow the finger.
-- Event Propagation: Inside onTouchStart, if a valid drag is detected (and it is not a double-tap), you MUST call e.preventDefault() to lock the native scroll immediately, followed by e.stopPropagation().
-- CSS Safety: Apply touch-action: none AND -webkit-touch-callout: none to the .game-card class. You must also apply user-select: none to the body or container to prevent text selection during drag.
-- Cleanup: Remove the clone from the DOM on `onTouchEnd`.
-- Scroll Locking: You MUST call e.preventDefault() inside onTouchMove. This is critical to stop the browser viewport from scrolling while the user is dragging the clone card.
+System B: Mobile (Touch) - ROBUST IMPLEMENTATION
+- CSS Requirement: You MUST apply `touch-action: none;` to the .game-card class. This is non-negotiable to prevent browser scrolling.
+- Logic Pattern: Use the "Global Window Listener" pattern.
+  1. Trigger: Use the React `onTouchStart` prop on the Card element.
+  2. Inside `onTouchStart`:
+     a. Call `e.preventDefault()` IMMEDIATELY. This prevents the browser from taking over the gesture.
+     b. Check for Double Tap (Guard Clause).
+     c. Create the visual CLONE appended to `document.body` (fixed position, z-index 9999).
+     d. Store the initial touch coordinates.
+     e. MANUALLY attach native listeners to the window:
+        - `window.addEventListener('touchmove', activeTouchMove, { passive: false });`
+        - `window.addEventListener('touchend', activeTouchEnd);`
+  3. The `activeTouchMove` function:
+     a. Must be defined outside or memoized (to be removable).
+     b. Updates the Clone's `style.top` and `style.left`.
+  4. The `activeTouchEnd` function:
+     a. Removes the window event listeners immediately.
+     b. Removes the Clone from the DOM.
+     c. Calculates the drop target using `document.elementFromPoint()`.
+     d. Triggers the match/fail logic.
+  5. Cleanup: Ensure listeners are removed even if the component unmounts.
 
-Double-Tap Implementation (CRITICAL):
 Do NOT use a custom hook (e.g., useDoubleTap) inside the .map loop.
 Implementation: Use a single useRef at the component level to store { id: null, time: 0 }.
 Logic:
