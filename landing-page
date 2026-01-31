@@ -36,9 +36,9 @@ Each block contains a header on a single line, with SVG Graphic and Category nam
 
 Under the header, display a grid of Game buttons that contain NAME. Link each button to this URL: “/LANGUAGE/NAME”. The grid should use at least 2 columns on mobile devices. 
 The Game Buttons are distributed in the categories in this way: 
+Word Match: Beginner,Beginner-2,Beginner-3, Neologisms
+Phrase Match: Idiomatic Phrases,Short Phrases,Longer Phrases,Longest Phrases
 Quote Match: Capitalist,Leftist,Philosophy,Religious
-Word Match: Beginner,Intermediate,Neologisms
-Phrase Match: Idiomatic Phrases,Short Phrases,Longer PhrasesLongest Phrases
 
 ------
 Footer
