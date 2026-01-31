@@ -145,8 +145,20 @@ Logic:
 - Closing: Add a global `window.addEventListener('keydown')` to close all modals when "Escape" is pressed.
 - Buttons: Uniform color (Blue).
 
+9. DEBUGGING & SAFETY (CRITICAL)
+---------------------------------
+To prevent "Blank Screen" errors, you MUST implement a global error handler at the VERY TOP of the <script> tag (before any React code or const definitions).
+Code to insert:
+window.onerror = function(message, source, lineno, colno, error) {
+    document.body.innerHTML = '<div style="background:white;color:red;padding:20px;font-family:sans-serif;"><h1>Application Error</h1><p>' + message + '</p><p>Line: ' + lineno + '</p></div>';
+};
 
-9. COPYRIGHT (Footer)
+Additionally, for the PWA Icon:
+- Ensure the `pwaIcon` variable is defined as a single-line string. 
+- Do NOT insert line breaks or concatenation (`+`) inside the Base64 string.
+
+
+10. COPYRIGHT (Footer)
 ---------------------
 Place the copyright text verbatim in the Footer (small print, centered):
 - Link "Functional AI Inc" to: https://functional.by
