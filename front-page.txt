@@ -32,7 +32,7 @@ Language Grid: Display minimal height buttons as cards (same color) in a 4-colum
 Format: 
 --------------------------
 Native Name (12em, bold) 
-English Name (10em)
+English Name (10em, roman)
 -------------------------
 Each card links to /LANGUAGE. 
 For any Native Name longer than 13 characters, reduce the font size to 10em to ensure it fits inside the button without overflowing.
