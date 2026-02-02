@@ -46,7 +46,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - Card Content (Strict):
    - Left (English) Card: Display the English text.
    - Right (_LANGUAGE) Card: Display the _LANGUAGE translation.
-   - All cards should have minimal white space above and below the text.
+   - All cards must use dense padding (Tailwind p-1.5 or p-2) and tight line-height (leading-tight) to strictly minimize vertical whitespace.
 - Animations: Use a `.card-wrapper` class. On match, transition `max-height`, `opacity`, and `margin` to 0 to make cards slide up smoothly.
 - Mobile View: The entire UI must fit on a single screen without horizontal or vertical scrolling.
 - Desktop: Set CSS width (viewport) to 400px.
