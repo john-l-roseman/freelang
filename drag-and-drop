@@ -47,17 +47,16 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
   1. Header: Fixed height. Contains Score and ALL action buttons (defined below).
   2. Game Area: Flex-1, overflow-y: auto. Contains the two card columns.
 - Columns: Two columns (50% width). 
-  - CSS Logic: You MUST apply `flex flex-col justify-between min-h-full` to each column container.
-  - Behavior: This ensures cards are spaced evenly vertically to occupy the full height of the container when they don't overflow.
-  - Content: Left = English, Right = _LANGUAGE.
+  - CSS Logic: You MUST apply `flex flex-col justify-between min-h-full` to each column container. 
+  - Behavior: This ensures cards are spaced evenly vertically to occupy the full height of the container when they don't overflow, while still allowing scrolling if content is dense.
+  - Content: Left = English, Right = French.
 - Card Content (Strict):
    - Left (English) Card: Display the English text.
    - Right (_LANGUAGE) Card: Display the _LANGUAGE translation.
-   - Card Styling (Strict): You must use `py-2.5` (0.625rem) for vertical padding and `px-2` (0.5rem) for horizontal padding.
-   - Text Styling: Use `leading-snug` (do not use leading-tight) to provide balanced line spacing.
-   - Result: This ensures the text has breathing room (more than the previous tight version) without making the cards unnecessarily large.
+   - Card Styling (Strict): You must use p-2 (0.5rem) padding and leading-tight for line height. Do NOT apply any fixed height, min-height, or vertical flex-grow to the cards. The card's white background must tightly 'hug' the text content.
+   - All cards must use dense padding (Tailwind p-1.5 or p-2) and tight line-height (leading-tight) to strictly minimize vertical whitespace within the card itself.
 - Animations: Use a `.card-wrapper` class. On match, transition `max-height`, `opacity`, and `margin` to 0 to make cards slide up smoothly.
-- Mobile View: The entire UI must fit on a single screen without horizontal scrolling.
+- Mobile View: The entire UI must fit on a single screen without horizontal scrolling. Vertical scrolling is allowed but should be minimized by the `justify-between` logic where possible.
 - Desktop: Set CSS width (viewport) to 400px.
   3. Footer: Fixed height. Contains Copyright (defined below).
 
