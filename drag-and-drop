@@ -19,6 +19,10 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - Analytics: Include the standard Google Analytics 4 (gtag.js) script in the <head>. Initialize `window.dataLayer` and config using the `GA_MEASUREMENT_ID`. 
 - PWA: Include an embedded `manifest.json` (Blob) and Service Worker.
 - PWA Icon: Generate a Base64 SVG (Green square, white text "LANGUAGE_CODE") for the manifest. Short name: "_GAME".
+- Cache Control: You MUST include the following three <meta> tags in the <head> to prevent client-side caching:
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 
 
 3. ARCHITECTURE & STATE MANAGEMENT (CRITICAL)
