@@ -157,7 +157,7 @@ Logic:
   4. Download icon: Launch PWA install process. Display only on Android.
   5. Source Button: Button in the upper right corner (strict), strict Link `<a href="/_TARGET_LANGUAGE/_GAME/build-instructions.txt" download>SOURCE</a>`.
 - Info Modal: 
-    - Explain rules in detail (point scoring for correct and penalty for wrong answer, streak bonus and its size, hint rules, no points for hint, game is won when all cards are guessed).
+    - Explain rules in detail (point scoring for correct and penalty for wrong answer, streak bonus and how many points it adds, hint rules, no points for hint, hint resets streak, game is won when all cards are guessed).
     - Closing: Add a global `window.addEventListener('keydown')` to close modal when "Escape" is pressed.
 - Buttons: Uniform color (Blue).
 
