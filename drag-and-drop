@@ -109,8 +109,9 @@ Logic:
 6. GAME LOGIC
 -------------
 - Matching: Drag English to _TARGET_LANGUAGE.
-- Success: IDs match -> Flash Green 1 second -> _TARGET_LANGUAGE text is spoken (if no hint was given for this card) -> Cards Collapse/Slide Up -> Update Score.
-- Fail: IDs mismatch -> Play Buzzer -> Flash Red -> Reset Streak -> Deduct Score.
+- Success: IDs match -> Flash Green 1 second -> _TARGET_LANGUAGE text is spoken (if no hint was given for this card) -> Cards Collapse/Slide Up -> Update Score (+10 + Streak Bonus)..
+- Streak bonus: equal to the length of the streak.
+- Fail: IDs mismatch -> Play Buzzer -> Flash Red -> Reset Streak -> Deduct Score (-5).
 - Hints:
   - Input: Triggered via the manual Double-Click/Tap logic defined in Section 5.
   - Visuals: The *_TARGET_LANGUAGE* card with that ID flashes bright Orange. The English card does NOT change color.
@@ -153,12 +154,11 @@ Logic:
   1. Score Display: "Score X (Learned Y%)".
   2. Mute Button: The exact text "MUTE". Toggles `isMuted` state, mutes all sound, text toggles to "UNMUTE". 
   3. Info icon (large question mark, inside black circle): Opens Info modal.
+  4. Download icon: Launch PWA install process. Display only on Android.
   5. Source Button: Button in the upper right corner (strict), strict Link `<a href="/_TARGET_LANGUAGE/_GAME/build-instructions.txt" download>SOURCE</a>`.
 - Info Modal: 
-1. Explain rules (point scoring for correct and penalty for wrong answer, streak bonus, hint rules, no points for hint).
-2. Describe how to install on mobile: iOS: share icon (show the iOS share icon) -> Add to Home Screen; Android: "Three dot menu -> Add to Home Screen [or click INSTALL if available below]".
-3. Add a button "INSTALL" at the bottom that is hidden by default. You only show that button if the browser says the app is installable. The INSTALL button launches the install process on Android phones where automatic PWA install is supported.
-- Closing: Add a global `window.addEventListener('keydown')` to close all modals when "Escape" is pressed.
+    - Explain rules in detail (point scoring for correct and penalty for wrong answer, streak bonus and its size, hint rules, no points for hint).
+    - Closing: Add a global `window.addEventListener('keydown')` to close modal when "Escape" is pressed.
 - Buttons: Uniform color (Blue).
 
 9. DEBUGGING & SAFETY (CRITICAL)
