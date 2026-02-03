@@ -76,13 +76,14 @@ System B: Mobile (Touch) - ROBUST IMPLEMENTATION
   2. Inside `onTouchStart`:
      a. Call `e.preventDefault()` IMMEDIATELY. This prevents the browser from taking over the gesture.
      b. Check for Double Tap (Guard Clause).
-     c. Create the visual CLONE appended to `document.body` (fixed position, z-index 9999).
+     c. Create the visual CLONE appended to document.body (fixed position, z-index 9999, pointer-events: none). CRITICAL: You MUST explicitly set clone.style.width to match the source element's offsetWidth (px) and set background: white.
      d. Store the initial touch coordinates.
      e. MANUALLY attach native listeners to the window:
         - `window.addEventListener('touchmove', activeTouchMove, { passive: false });`
         - `window.addEventListener('touchend', activeTouchEnd);`
   3. The `activeTouchMove` function:
      a. Updates the Clone's `style.top` and `style.left`.
+     b. Updates the Clone's position. CRITICAL: Set style.top to (touch.clientY - 80) + 'px'. This negative offset ensures the card floats ABOVE the finger, making it visible to the user. Set style.left to touch.clientX (centered).
   4. The `activeTouchEnd` function:
      a. Removes the window event listeners immediately.
      b. Removes the Clone from the DOM.
