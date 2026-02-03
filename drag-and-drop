@@ -45,7 +45,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 -------------------
 - Structure: A flex-column container (h-100dvh).
   1. Header: Fixed height. Contains Score and ALL action buttons (defined below).
-  2. Game Area: Flex-1, overflow-y: auto. Contains the two card columns.
+  2.  Game Area: Flex-1, overflow-y: auto. Critical: This container MUST have the class flex (display: flex) so that its children (the two columns) automatically stretch to fill the full available height of the viewport.
 - Columns: Two columns (50% width). 
   - CSS Logic: You MUST apply `flex flex-col justify-between min-h-full` to each column container. 
   - Behavior: This ensures cards are spaced evenly vertically to occupy the full height of the container when they don't overflow, while still allowing scrolling if content is dense.
