@@ -88,7 +88,7 @@ System B: Mobile (Touch) - ROBUST IMPLEMENTATION
      a. Removes the window event listeners immediately.
      b. Removes the Clone from the DOM.
      c. Calculates the drop target using `document.elementFromPoint()`.
-     d. Triggers the match/fail logic by reading dataset.id. CRITICAL: Do NOT attempt to call target.onDrop() on the found element; it will fail. Call your handleMatch function directly.
+     d. Triggers the logic by reading dataset.id. CRITICAL: Do NOT attempt to call methods on the DOM element. Call handleMatch(id) or handleFail(id) directly.
   5. Cleanup: Ensure listeners are removed even if the component unmounts.
 
 Do NOT use a custom hook (e.g., useDoubleTap) inside the .map loop.
