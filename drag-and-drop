@@ -93,7 +93,7 @@ System B: Mobile (Touch) - ROBUST IMPLEMENTATION
 Do NOT use a custom hook (e.g., useDoubleTap) inside the .map loop.
 Implementation: Use a single useRef at the component level to store { id: null, time: 0 }.
 Logic:
-1. Desktop: Handle logic inside the standard `onClick` event.
+1.  Desktop: Use the native React onDoubleClick prop on the card. (Do not use the custom timestamp logic for Desktop; it conflicts with Dragging).
 2. Mobile: Handle logic at the very top of `onTouchStart` as a Guard Clause.
    - Check if `id === ref.current.id` and `Date.now() - ref.current.time < 300`.
    - IF YES (Double Tap): 
