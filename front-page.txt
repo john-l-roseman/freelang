@@ -35,7 +35,7 @@ Native Name (12em, bold)
 English Name (10em, roman)
 -------------------------
 Each card links to /LANGUAGE. 
-For any Native Name longer than 13 characters, reduce the font size to 10em to ensure it fits inside the button without overflowing.
+For any Native Name longer than 13 characters, reduce the font size to 9.5em to ensure it fits inside the button without overflowing.
 
 
 "Language Chooser" (Do not display heading): Chinese, Spanish, French, German, Ukrainian, Portuguese, Korean, Vietnamese, Hindi, Persian, Arabic, Swahili.
