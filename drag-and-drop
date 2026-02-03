@@ -82,7 +82,7 @@ System B: Mobile (Touch) - ROBUST IMPLEMENTATION
         - `window.addEventListener('touchmove', activeTouchMove, { passive: false });`
         - `window.addEventListener('touchend', activeTouchEnd);`
   3. The `activeTouchMove` function:
-     a. Must be defined outside or memoized (to be removable).
+     a. Define this inside the component so it can access your useRef variables.
      b. Updates the Clone's `style.top` and `style.left`.
   4. The `activeTouchEnd` function:
      a. Removes the window event listeners immediately.
