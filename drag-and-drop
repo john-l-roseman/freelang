@@ -47,7 +47,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
   1. Header: Fixed height. Contains Score and ALL action buttons (defined below).
   2.  Game Area: Flex-1, overflow-y: auto. Critical: This container MUST have the class flex (display: flex) so that its children (the two columns) automatically stretch to fill the full available height of the viewport.
 - Columns: Two columns (50% width). 
-  - CSS Logic: You MUST apply `flex flex-col justify-between min-h-full` to each column container. 
+  - CSS Logic: You MUST apply flex flex-col justify-between to each column. CRITICAL: Instead of min-h-full, you MUST use min-h-[calc(100dvh-5.5rem)]. (This logic ensures the columns are always at least the height of the viewport minus the Header/Footer, forcing justify-between to spread the cards evenly).
   - Behavior: This ensures cards are spaced evenly vertically to occupy the full height of the container when they don't overflow, while still allowing scrolling if content is dense.
   - Content: Left = English, Right = French.
 - Card Content (Strict):
