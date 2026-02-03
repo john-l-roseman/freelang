@@ -82,8 +82,7 @@ System B: Mobile (Touch) - ROBUST IMPLEMENTATION
         - `window.addEventListener('touchmove', activeTouchMove, { passive: false });`
         - `window.addEventListener('touchend', activeTouchEnd);`
   3. The `activeTouchMove` function:
-     a. Define this inside the component so it can access your useRef variables.
-     b. Updates the Clone's `style.top` and `style.left`.
+     a. Updates the Clone's `style.top` and `style.left`.
   4. The `activeTouchEnd` function:
      a. Removes the window event listeners immediately.
      b. Removes the Clone from the DOM.
@@ -170,11 +169,28 @@ window.onerror = function(message, source, lineno, colno, error) {
     document.body.innerHTML = '<div style="background:white;color:red;padding:20px;font-family:sans-serif;"><h1>Application Error</h1><p>' + message + '</p><p>Line: ' + lineno + '</p></div>';
 };
 For the PWA Icon:
-   - Global Scope & Order: Define const pwaIcon at the very top of the script (global scope), before the manifest object is created.
    - Ensure it is defined as a single-line string (no concatenation).
 
 
-10. COPYRIGHT (Footer)
+10. STRICT CODE ORGANIZATION (NON-NEGOTIABLE)
+----------------------------------------------
+To ensure consistency and prevent Scope/Reference errors, you MUST structure the <script> tag in this EXACT order:
+
+1. Global Error Handler (window.onerror).
+2. Global Constants & Config (RAW_DATA, CONFIG, AUDIO_ENABLED).
+3. PWA Assets (Define `const pwaIcon` first, THEN the manifest blob logic).
+4. Pure Helper Functions (shuffle, getDerangement) - defined OUTSIDE the component.
+5. The Main Component (`const App = () => { ... }`):
+   a. State Definitions (`useState`).
+   b. Refs (`useRef`).
+   c. Initial Effect (`useEffect` for mounting/loading storage).
+   d. Core Logic Functions (`startRound`, `saveProgress`, `speakCard`).
+   e. Interaction Handlers (`handleMatch`, `handleFail` - defined INSIDE component).
+   f. Event Wrappers (`onTouchStart`, `onDragStart` - defined INSIDE component).
+   g. The JSX Return.
+6. ReactDOM.createRoot / render.
+
+11. COPYRIGHT (Footer)
 ---------------------
 Place the copyright text verbatim in the Footer (small print, centered):
 - Link "Functional AI Inc" to: https://functional.by
