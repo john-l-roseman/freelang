@@ -21,7 +21,7 @@ Favicon: A data URI containing the character "文" (deep red on white).
 
 Top Bar
 Mobile: BRANDING and SOURCE (on a single line), SLOGAN (centered. Use the arbitrary Tailwind class 'text-[3.8vw]' to force the text to scale exactly to the screen width on a single line).
-Desktop: BRANDING, SLOGAN, SOURCE 
+Desktop (strictly in this order): BRANDING, SLOGAN, SOURCE 
 
 ------------
 Main Content (Two Column Layout) 
@@ -31,12 +31,11 @@ Column 1: Languages & Tech
 Language Grid: Display minimal height buttons as cards (same color) in a 4-column grid (3 column on mobile). 
 Format: 
 --------------------------
-Native Name (12em, bold) 
-English Name (10em, roman, deep red)
+Native Name (12em, arial, bold) 
+English Name (10em, arial, deep red)
 -------------------------
 Each card links to /LANGUAGE. 
-For any Native Name longer than 13 characters, reduce the font size to 9.5em to ensure it fits inside the button without overflowing.
-
+For any Native Name longer than 13 characters, reduce the font size to 9.5em to ensure it fits inside the button without overflowing. Do not scale up Native Name.
 
 "Language Chooser" (Do not display heading): Chinese, Spanish, French, German, Ukrainian, Portuguese, Korean, Vietnamese, Hindi, Persian, Arabic, Swahili.
 
