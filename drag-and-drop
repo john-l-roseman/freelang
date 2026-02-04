@@ -27,7 +27,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 
 3. ARCHITECTURE & STATE MANAGEMENT (CRITICAL)
 ---------------------------------------------
-- Storage Key: Use const `STORAGE_KEY = 'openlang__TARGET_LANGUAGE__GAME_STRING_progress'`.
+- Storage Key: Use const `STORAGE_KEY = 'openlang_Ukrainian_Beginner_progress'`.
 - Persistence Schema: `{ score: number, streak: number, learnedIds: [] }`.
 - Initialization Logic (Order of Operations):
   1. On mount, read `localStorage`.
@@ -35,9 +35,16 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
   3. Filter `RAW_DATA` to exclude any IDs found in `learnedIds`.
   4. Initialize `deckRef` using a Fisher-Yates shuffle of the *remaining* (unlearned) items.
   5. If no items remain (all learned), trigger the Win Condition immediately.
-- Round State: Use `useState` only for the current CARDS_PER_ROUND pairs.
+  6. If items remain, call `startRound()` to load the first batch.
+- Round State: Use `useState` (`roundData`) for the current CARDS_PER_ROUND pairs.
 - Mastery Logic: When a match is made (no hint), remove the word from `deckRef.current` immediately.
-- Round Transition: When last pair matches, slice next batch from `deckRef`.
+- Round Transition (useEffect Pattern): 
+  - You MUST use a `useEffect` hook to handle transitions. Do NOT trigger the next round inside `handleMatch`.
+  - Watch dependency: `[roundData.left.length, isWon]`.
+  - Logic: IF `roundData.left.length === 0` AND `!isWon` AND `deckRef.current` is initialized:
+    a. Check if `deckRef.current.length > 0`.
+    b. If YES: Call `startRound()`.
+    c. If NO: Set `isWon(true)`.
 - _LANGUAGE Column Logic: Must be a VALID DERANGEMENT (shuffled so no _LANGUAGE card lines up horizontally with its English counterpart). If batch size < 2, return as-is.
 
 
