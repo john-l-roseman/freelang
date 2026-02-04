@@ -22,19 +22,19 @@ Right: A "SOURCE" button that downloads the file "/LANGUAGE/build-instructions.t
 ------------
 Main Content
 ------------
-Create a dataset of Categories: "Quote Match","Word Match","Phrase Match"
+Create a dataset of Categories: "Word Match","Phrase Match","Quote Match"
 Add an SVG clip art graphic field to the dataset, based on these hints:
-Quote: Large centered double quote, ASCII character (U+0022) 
 Word: "ABC" in a box.
 Phrase: Speach bubble with three lines inside.
+Quote: Large centered double quote, ASCII character (U+0022) 
 
 Create a dataset of Games with a field NAME.
-Populate the NAME field with these games: ALL_GAMES.
+Populate the NAME field with these games: Beginner,Beginner-2,Beginner-3, Neologisms,Idiomatic Phrases,Short Phrases,Longer Phrases,Longest Phrases,Capitalist,Leftist,Philosophy,Religious
 
 Create three blocks, one for each category.
 Each block contains a header on a single line, with SVG Graphic and Category name.
 
-Under the header, display a grid of Game buttons that contain NAME. Link each button to this URL: “/LANGUAGE/NAME”. The grid should use at least 2 columns on mobile devices. 
+Under the header, display a grid of Game buttons that contain NAME. Link each button to this URL: "/LANGUAGE/NAME". The grid should use at least 2 columns on mobile devices. 
 The Game Buttons are distributed in the categories in this way: 
 Word Match: Beginner,Beginner-2,Beginner-3, Neologisms
 Phrase Match: Idiomatic Phrases,Short Phrases,Longer Phrases,Longest Phrases
@@ -47,8 +47,8 @@ Left: Title "About the Site Logo". Text: "The Chinese wén character (文) signi
 
 Right:
 Copyright text as footer on a single line in small print. 
-Link for “Functional AI Inc”: https://functional.by
-Link for “MIT License”: https://opensource.org/licenses/MIT
+Link for "Functional AI Inc": https://functional.by
+Link for "MIT License": https://opensource.org/licenses/MIT
 The text should appear exactly as below, with the above href link markup added as underlined link.
 
 Copyright (C) 2026 by Functional AI Inc. Licensed under the MIT License.
