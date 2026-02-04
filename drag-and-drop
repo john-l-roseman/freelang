@@ -124,26 +124,27 @@ Logic:
 - Reset Option: Add a hidden mechanism or check (e.g., if `RAW_DATA` version changes) to clear storage, but for now, assume permanent storage until the user clears browser cache.
 
 
+
 7. AUDIO SYSTEM (SMART AUTO-DETECT)
 -----------------------------------
 - API: `window.speechSynthesis`.
 - Configuration:
-  1. Define a strict allow-list: `const HQ_LANGS = ['EN', 'ES', 'FR', 'DE', 'IT', 'PT', 'RU', 'ZH', 'JA', 'KO'];`
-  2. Derive Global State: `const AUDIO_ENABLED = HQ_LANGS.includes(LANGUAGE_CODE);`
+  1. Immutable Allow-List: `const HQ_LANGS = ['EN', 'ES', 'FR', 'DE', 'IT', 'PT', 'RU', 'ZH', 'JA', 'KO'];`
+  2. STRICT CONSTRAINT: You are PROHIBITED from modifying `HQ_LANGS`. Do NOT add the target language to this array. Output the array exactly as written above.
+  3. Derive Global State: `const AUDIO_ENABLED = HQ_LANGS.includes(LANGUAGE_CODE);`
 - Implementation Logic (`speakCard` function):
   1. Strict Guard: If `!AUDIO_ENABLED`, return immediately (do not run any Speech logic).
   2. User Context: Detect `const isEnglishBrowser = navigator.language.toLowerCase().includes('en');`
   3. Directionality (If Enabled):
      - IF `isEnglishBrowser` is TRUE: 
-       -> Target: The Foreign Language (the `translation` field).
-       -> Locale: Map `LANGUAGE_CODE` to standard BCP-47 (e.g. 'RU'->'ru-RU', 'CN'->'zh-CN', 'BE'->'be-BY').
+       -> Target: The Foreign Language.
+       -> Locale: Map `LANGUAGE_CODE` to standard BCP-47.
      - ELSE (`isEnglishBrowser` is FALSE):
-       -> Target: English (the `text` field).
+       -> Target: English.
        -> Locale: Force 'en-US'.
   4. Runtime Safety:
      - Check `window.speechSynthesis.getVoices()` for the required Locale.
-     - If the specific voice is missing on the device, fail silently (catch errors).
-     - Filter for `localService: true` voices if available for lower latency.
+     - If the specific voice is missing on the device, fail silently.
 
 
 8. HEADER & POPUPS
