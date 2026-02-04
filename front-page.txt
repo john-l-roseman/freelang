@@ -20,7 +20,7 @@ Title: "OpenLang.ai".
 Favicon: A data URI containing the character "文" (deep red on white).
 
 Top Bar
-Mobile: BRANDING and SOURCE (on a single line), SLOGAN (centered. Use the arbitrary Tailwind class 'text-[3.8vw]' to force the text to scale exactly to the screen width on a single line).
+Mobile and Tablet: BRANDING and SOURCE (on a single line), SLOGAN (centered. Use the arbitrary Tailwind class 'text-[3.8vw]' to force the text to scale exactly to the screen width on a single line).
 Desktop (strictly in this order): BRANDING, SLOGAN, SOURCE 
 
 ------------
