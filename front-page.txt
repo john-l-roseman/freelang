@@ -28,7 +28,7 @@ Main Content (Two Column Layout)
 ------------	
 Column 1: Languages & Tech
 
-Language Grid: Display minimal height buttons as cards (same color) in a 4-column grid (3 column on mobile). 
+Language Grid: Display minimal height buttons as cards (same color) in a 4-column grid (3 column on mobile and tablet). 
 Format: 
 --------------------------
 Native Name (12em, arial, bold, deep red) 
