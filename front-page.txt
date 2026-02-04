@@ -32,10 +32,10 @@ Language Grid: Display minimal height buttons as cards (same color) in a 4-colum
 Format: 
 --------------------------
 Native Name (12em, arial, bold) 
-English Name (10em, arial, deep red)
+English Name (9.5em, arial, deep red)
 -------------------------
 Each card links to /LANGUAGE. 
-For any Native Name longer than 13 characters, reduce the font size to 9.5em to ensure it fits inside the button without overflowing. Do not scale up Native Name.
+Treat space character in Native Name as unbreakable. For any Native Name longer than 13 characters, reduce the font size to 10.0em to ensure it fits inside the button without overflowing. Do not scale up Native Name.
 
 "Language Chooser" (Do not display heading): Chinese, Spanish, French, German, Ukrainian, Portuguese, Korean, Vietnamese, Hindi, Persian, Arabic, Swahili.
 
