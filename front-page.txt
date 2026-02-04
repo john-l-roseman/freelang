@@ -8,7 +8,7 @@ Screen width limited to 1366 pixels.
 --------------------
 GLOBAL CONFIGURATION
 --------------------
-- BRANDING: SVG logo of "文" (2.2em, deep red) followed by "openlang.ai" in large bold text.
+- BRANDING: SVG logo of "文" (2.5em, deep red) followed by "openlang.ai" in large bold text.
 - SOURCE: Right-justified button with the text "SOURCE" that downloads the front-page.txt file.
 - SLOGAN: "Open-source language-learning games, driven by AI" (serif italic)
 
