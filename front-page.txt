@@ -8,7 +8,7 @@ Screen width limited to 1366 pixels.
 --------------------
 GLOBAL CONFIGURATION
 --------------------
-- BRANDING: SVG logo of "文" (2.2em) followed by "openlang.ai" in large bold text.
+- BRANDING: SVG logo of "文" (2.2em, deep red) followed by "openlang.ai" in large bold text.
 - SOURCE: Right-justified button with the text "SOURCE" that downloads the front-page.txt file.
 - SLOGAN: "Open-source language-learning games, driven by AI" (serif italic)
 
@@ -32,7 +32,7 @@ Language Grid: Display minimal height buttons as cards (same color) in a 4-colum
 Format: 
 --------------------------
 Native Name (12em, bold) 
-English Name (10em, roman)
+English Name (10em, roman, deep red)
 -------------------------
 Each card links to /LANGUAGE. 
 For any Native Name longer than 13 characters, reduce the font size to 9.5em to ensure it fits inside the button without overflowing.
@@ -44,7 +44,7 @@ For any Native Name longer than 13 characters, reduce the font size to 9.5em to 
 
 Technology Stack:
 Create a table with three columns.
-Middle column: make it wider, with text at 10em  
+Middle column: make it wider, with text at 9.5em  
 Product|How It's Used|Owner
 
 Products (use exact names as written):
@@ -57,7 +57,7 @@ For Gemini, use this text for the "How It's Used" field: "Top level design and c
 --------
 Column 2: 
 --------
-Create "Open Source for Everyone" block with a light background (bg-white) and border. Include the following text:
+Create "Open Source for Everyone" block with a light background (bg-white) and border. Include the following text and Use Cases:
 
 The Open Source movement was a revolution for programmers, allowing them to reuse existing tools and systems. 
 
