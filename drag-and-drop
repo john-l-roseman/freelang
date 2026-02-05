@@ -27,7 +27,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 
 3. ARCHITECTURE & STATE MANAGEMENT (CRITICAL)
 ---------------------------------------------
-- Storage Key: Use const `STORAGE_KEY = 'openlang__LANGUAGE__GAME'`.
+- Storage Key: Use const `STORAGE_KEY = 'openlang_Ukrainian_Beginner_progress'`.
 - Persistence Schema: `{ score: number, streak: number, learnedIds: [] }`.
 - Initialization Logic (Order of Operations):
   1. On mount, read `localStorage`.
@@ -69,62 +69,67 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 
 5. INTERACTION & EVENTS (STRICT CONSTRAINTS)
 --------------------------------------------
-You must implement two completely separate event handling systems.
-SHARED IMPLEMENTATION DETAILS:
-- Do NOT use a custom hook (e.g., useDoubleTap).
-- State: Use a single `useRef` at the component level: `const touchRef = useRef({ id: null, time: 0 });`
+You must implement two completely separate event handling systems. Do not unify them.
 
 System A: Desktop (Mouse)
-- Draggable Attribute: Conditionally set `draggable={!isTouch}`. 
-- Events: 
-  1. Use `onDragStart` and `onDrop`.
-  2. Use the native `onDoubleClick` prop to trigger `handleHint(id)`.
-- PROHIBITED: Do NOT use `onMouseDown` or `onMouseMove`.
+- Draggable Attribute: You MUST conditionally set `draggable={!isTouch}`. Detect touch capability on mount. If the device is touch-enabled, `draggable` MUST be false. This is critical to prevent the native "Long Press to Drag" behavior on mobile.
+- Events: Use `onDragStart` and `onDrop`.
+- PROHIBITED: Do NOT use `onMouseDown` or `onMouseMove` for dragging logic on Desktop.
 
 System B: Mobile (Touch) - ROBUST IMPLEMENTATION
-- CSS Requirement: Apply `touch-action: none;` to the .game-card class.
+- CSS Requirement: You MUST apply `touch-action: none;` to the .game-card class. This is non-negotiable to prevent browser scrolling.
 - Logic Pattern: Use the "Global Window Listener" pattern.
-  1. Trigger: Use `onTouchStart` on the Card element.
-  2. Guard Clause (Double Tap Detection):
-     - Check if `id === touchRef.current.id` AND `Date.now() - touchRef.current.time < 300`.
-     - IF YES (It is a Double Tap):
-       a. Call `handleHint(id)`.
-       b. Reset ref to `{ id: null, time: 0 }`.
-       c. Call `e.preventDefault()`.
-       d. CRITICAL: return; (STOP EXECUTION IMMEDIATELY. Do not run any drag logic).
-     - IF NO:
-       a. Update ref to `{ id, time: Date.now() }`.
-       b. Proceed to Step 3.
-  3. Drag Logic (Only runs if Step 2 did not return):
-     a. Call `e.preventDefault()`.
-     b. Create the visual CLONE (fixed position, z-index 9999, pointer-events: none, background: white, width: source width).
-     c. MANUALLY attach native listeners (`touchmove`, `touchend`) to the window.
-  4. The `activeTouchMove` function:
-     - Updates clone position to `touch.clientY - 80` (offset for visibility) and `touch.clientX`.
-  5. The `activeTouchEnd` function:
+  1. Trigger: Use the React `onTouchStart` prop on the Card element.
+  2. Inside `onTouchStart`:
+     a. Call `e.preventDefault()` IMMEDIATELY. This prevents the browser from taking over the gesture.
+     b. Check for Double Tap (Guard Clause).
+     c. Create the visual CLONE appended to document.body (fixed position, z-index 9999, pointer-events: none). CRITICAL: You MUST explicitly set clone.style.width to match the source element's offsetWidth (px) and set background: white.
+     d. Store the initial touch coordinates.
+     e. MANUALLY attach native listeners to the window:
+        - `window.addEventListener('touchmove', activeTouchMove, { passive: false });`
+        - `window.addEventListener('touchend', activeTouchEnd);`
+  3. The `activeTouchMove` function:
+     a. Updates the Clone's `style.top` and `style.left`.
+     b. Updates the Clone's position. CRITICAL: Set style.top to (touch.clientY - 80) + 'px'. This negative offset ensures the card floats ABOVE the finger, making it visible to the user. Set style.left to touch.clientX (centered).
+  4. The `activeTouchEnd` function:
      a. Removes the window event listeners immediately.
      b. Removes the Clone from the DOM.
-     c. Calculates drop target using `document.elementFromPoint()`.
-     d. Logic: IF target is found AND target ID != source ID, call `handleMatch` or `handleFail`. IF target ID == source ID (user just tapped), do NOTHING.
+     c. Calculates the drop target using `document.elementFromPoint()`.
+     d. Triggers the logic by reading dataset.id. CRITICAL: Do NOT attempt to call methods on the DOM element. Call handleMatch(id) or handleFail(id) directly.
+  5. Cleanup: Ensure listeners are removed even if the component unmounts.
 
+Do NOT use a custom hook (e.g., useDoubleTap) inside the .map loop.
+Implementation: Use a single useRef at the component level to store { id: null, time: 0 }.
+Logic:
+1.  Desktop: Use the native React onDoubleClick prop on the card. (Do not use the custom timestamp logic for Desktop; it conflicts with Dragging).
+2. Mobile: Handle logic at the very top of `onTouchStart` as a Guard Clause.
+   - Check if `id === ref.current.id` and `Date.now() - ref.current.time < 300`.
+   - IF YES (Double Tap): 
+     a) Trigger the hint.
+     b) Reset the ref to { id: null, time: 0 }.
+     c) Call `e.preventDefault()`.
+     d) RETURN IMMEDIATELY. (Do not execute the card creation or drag logic).
+   - IF NO: 
+     a) Update the ref with { id, time: Date.now() }.
+     b) Proceed to execute the standard Card/Drag logic.
 
 6. GAME LOGIC
 -------------
-- Matching: Drag English to _LANGUAGE.
-- Success: IDs match -> Flash Green 1 second -> _LANGUAGE text is spoken (if no hint was given for this card) -> Cards Collapse/Slide Up -> Update Score (+10 + Streak Bonus).
+- Matching: Drag English to _TARGET_LANGUAGE.
+- Success: IDs match -> Flash Green 1 second -> _TARGET_LANGUAGE text is spoken (if no hint was given for this card) -> Cards Collapse/Slide Up -> Update Score (+10 + Streak Bonus)..
 - Streak bonus: equal to the length of the streak.
 - Fail: IDs mismatch -> Play Buzzer -> Flash Red -> Reset Streak -> Deduct Score (-5).
 - Hints:
-  - Input: Triggered via the Double-Click (Desktop) or Double-Tap (Mobile) logic defined in Section 5.
-  - Logic Constraint (CRITICAL): The `handleHint` function MUST be "Read Only". It must NEVER remove cards, NEVER award points, and NEVER trigger `handleMatch`.
-  - Visuals: The *_LANGUAGE* card with that ID flashes bright Orange for 2 seconds. The English card does NOT change color.
-  - Effect: Set a global state `hintTargetId`. Speak the _LANGUAGE text immediately.
-  - Penalty: Reset Streak to 0. Mark this specific Card ID as "hinted" in state so that 0 points are awarded when it is eventually matched.
-- Persistence: On every successful match (handleMatch), immediately update `localStorage`. 
+  - Input: Triggered via the manual Double-Click/Tap logic defined in Section 5.
+  - Visuals: The *_TARGET_LANGUAGE* card with that ID flashes bright Orange. The English card does NOT change color.
+  - Penalty: No points awarded for this word if hint is used.
+  - Effect: Set a global state `hintTargetId`. The *_TARGET_LANGUAGE* card with that ID flashes Orange for 2 seconds. The English card does NOT change color. The _TARGET_LANGUAGE card is spoken.
+  - Persistence: On every successful match (handleMatch), immediately update `localStorage`. 
   1. Add the matched ID to the list of `learnedIds` (merge with existing).
   2. Save the new `score` and `streak`.
   3. This ensures that if the user closes the app mid-game, their progress is not lost.
 - Reset Option: Add a hidden mechanism or check (e.g., if `RAW_DATA` version changes) to clear storage, but for now, assume permanent storage until the user clears browser cache.
+
 
 
 7. AUDIO SYSTEM (SMART AUTO-DETECT)
