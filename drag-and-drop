@@ -110,15 +110,15 @@ System B: Mobile (Touch) - ROBUST IMPLEMENTATION
 
 6. GAME LOGIC
 -------------
-- Matching: Drag English to Ukrainian.
-- Success: IDs match -> Flash Green 1 second -> Ukrainian text is spoken (if no hint was given for this card) -> Cards Collapse/Slide Up -> Update Score (+10 + Streak Bonus).
+- Matching: Drag English to _LANGUAGE.
+- Success: IDs match -> Flash Green 1 second -> _LANGUAGE text is spoken (if no hint was given for this card) -> Cards Collapse/Slide Up -> Update Score (+10 + Streak Bonus).
 - Streak bonus: equal to the length of the streak.
 - Fail: IDs mismatch -> Play Buzzer -> Flash Red -> Reset Streak -> Deduct Score (-5).
 - Hints:
   - Input: Triggered via the Double-Click (Desktop) or Double-Tap (Mobile) logic defined in Section 5.
   - Logic Constraint (CRITICAL): The `handleHint` function MUST be "Read Only". It must NEVER remove cards, NEVER award points, and NEVER trigger `handleMatch`.
-  - Visuals: The *Ukrainian* card with that ID flashes bright Orange for 2 seconds. The English card does NOT change color.
-  - Effect: Set a global state `hintTargetId`. Speak the Ukrainian text immediately.
+  - Visuals: The *_LANGUAGE* card with that ID flashes bright Orange for 2 seconds. The English card does NOT change color.
+  - Effect: Set a global state `hintTargetId`. Speak the _LANGUAGE text immediately.
   - Penalty: Reset Streak to 0. Mark this specific Card ID as "hinted" in state so that 0 points are awarded when it is eventually matched.
 - Persistence: On every successful match (handleMatch), immediately update `localStorage`. 
   1. Add the matched ID to the list of `learnedIds` (merge with existing).
