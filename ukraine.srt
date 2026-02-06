@@ -1,0 +1,7 @@
+1
+00:00:00,599 --> 00:00:04,160
+We will use the "Neologisms" game as the basis for this project.
+
+2
+00:00:04,160 --> 00:00:06,770
+Click on "Source" to get the source prompt.
