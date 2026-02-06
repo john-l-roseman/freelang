@@ -161,12 +161,11 @@ Logic:
   0. "openlang.ai" (bold linked to "/")  
   1. Score Display: "Score X (Learned Y%)".
   2. Mute Button: The exact text "MUTE". Toggles `isMuted` state, mutes all sound, text toggles to "UNMUTE". 
-  3. Info icon (large question mark, inside black circle): Opens Info modal.
-  4. Download icon: Launch PWA install process. Display only on Android.
-  5. Source Button: Button in the upper right corner (strict), strict Link `<a href="/_TARGET_LANGUAGE/_GAME/build-instructions.txt" download>SOURCE</a>`.
+  3. Source Button: Button in the upper right corner (strict), strict Link <a href="/_TARGET_LANGUAGE/_GAME/build-instructions.txt" download>SOURCE</a>. Reset all data in local store.
+  4. Info icon (large question mark, inside black circle): Opens Info modal.
 - Info Modal: 
     - Explain rules in detail (point scoring for correct and penalty for wrong answer, streak bonus = length of the streak, hint rules, no points when hint is used, hint resets streak, game is won when all cards are guessed).
-    - Closing: Add a global `window.addEventListener('keydown')` to close modal when "Escape" is pressed.
+    - Closing: Add a global `window.addEventListener('keydown')` to close modal when "Escape" is pressed or on any tap or mouse click.
 - Buttons: Uniform color (Blue).
 
 
