@@ -56,7 +56,7 @@ IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom 
 - Columns: Two columns (50% width). 
   - CSS Logic: You MUST apply flex flex-col justify-between to each column. CRITICAL: Instead of min-h-full, you MUST use min-h-[calc(100dvh-5.5rem)]. (This logic ensures the columns are always at least the height of the viewport minus the Header/Footer, forcing justify-between to spread the cards evenly).
   - Behavior: This ensures cards are spaced evenly vertically to occupy the full height of the container when they don't overflow, while still allowing scrolling if content is dense.
-  - Content: Left = English, Right = French.
+  - Content: Left = English, Right = _LANGUAGE.
 - Card Content (Strict):
    - Left (English) Card: Display the English text.
    - Right (_LANGUAGE) Card: Display the _LANGUAGE translation.
