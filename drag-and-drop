@@ -134,27 +134,32 @@ Logic:
   - Effect: Set a global state `hintTargetId`. The *_TARGET_LANGUAGE* card with that ID flashes Orange for 2 seconds. The English card does NOT change color. The _TARGET_LANGUAGE card is spoken.
 
 
-
-7. AUDIO SYSTEM (SMART AUTO-DETECT)
------------------------------------
-- API: `window.speechSynthesis`.
-- Configuration:
-  1. Immutable Allow-List: `const HQ_LANGS = ['EN', 'ES', 'FR', 'DE', 'IT', 'PT', 'RU', 'ZH', 'JA', 'KO'];`
-  2. STRICT CONSTRAINT: You are PROHIBITED from modifying `HQ_LANGS`. Do NOT add the target language to this array. Output the array exactly as written above.
-  3. Derive Global State: `const AUDIO_ENABLED = HQ_LANGS.includes(LANGUAGE_CODE);`
-- Implementation Logic (`speakCard` function):
-  1. Strict Guard: If `!AUDIO_ENABLED`, return immediately (do not run any Speech logic).
-  2. User Context: Detect `const isEnglishBrowser = navigator.language.toLowerCase().includes('en');`
-  3. Directionality (If Enabled):
-     - IF `isEnglishBrowser` is TRUE: 
+7. AUDIO SYSTEM (SMART HYBRID)
+------------------------------
+- API: Hybrid System (Pre-hydrated Audio -> Fallback to window.speechSynthesis).
+- Immutable Allow-List: const HQ_LANGS = ['EN', 'ES', 'FR', 'DE', 'IT', 'PT', 'RU', 'ZH', 'JA', 'KO'];
+- Initialization Logic (Must run before Component render):
+  1. Detect Context: const isEnglishBrowser = navigator.language.toLowerCase().includes('en');
+  2. Directionality (Determine Locale):
+     - IF isEnglishBrowser is TRUE:
        -> Target: The Foreign Language.
-       -> Locale: Map `LANGUAGE_CODE` to standard BCP-47.
-     - ELSE (`isEnglishBrowser` is FALSE):
+       -> Locale: 'uk-UA' (Map LANGUAGE_CODE 'UK' to 'uk-UA').
+     - ELSE (isEnglishBrowser is FALSE):
        -> Target: English.
        -> Locale: Force 'en-US'.
-  4. Runtime Safety:
-     - Check `window.speechSynthesis.getVoices()` for the required Locale.
-     - If the specific voice is missing on the device, fail silently.
+  3. Derive Global State: 
+     const AUDIO_ENABLED = HQ_LANGS.some(lang => Locale.toUpperCase().startsWith(lang)) || RAW_DATA.some(item => item.audio !== null);
+- Implementation (speakCard(item)):
+  1. Strict Guard: If !AUDIO_ENABLED, return immediately.
+  2. Execution:
+     - IF isEnglishBrowser is TRUE (Foreign Target):
+       a. Priority 1 (Hydrated): Check item.audio. If not null, create new Audio(item.audio).play() and return.
+       b. Priority 2 (Synthesis Fallback): 
+          - Check if browser has voice for Locale. 
+          - If YES: Speak item.translation.
+          - If NO: Fail silently (Do not crash).
+     - ELSE (English Target):
+       a. Synthesis Only: Speak item.text (Locale 'en-US').
 
 
 8. HEADER & POPUPS
