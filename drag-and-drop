@@ -138,30 +138,28 @@ Logic:
 ------------------------------
 - API: Hybrid System (Pre-hydrated Audio -> Fallback to window.speechSynthesis).
 - Immutable Allow-List: const HQ_LANGS = ['EN', 'ES', 'FR', 'DE', 'IT', 'PT', 'RU', 'ZH', 'JA', 'KO'];
-- State Management: You MUST use a `useRef` (e.g., `audioRef`) to store the current `HTMLAudioElement`.
-- Initialization Logic:
+- Initialization Logic (Must run before Component render):
   1. Detect Context: const isEnglishBrowser = navigator.language.toLowerCase().includes('en');
   2. Directionality (Determine Locale):
-     - IF isEnglishBrowser is TRUE: -> Target: Foreign. Locale: 'uk-UA' (Map LANGUAGE_CODE 'UK' to 'uk-UA').
-     - ELSE: -> Target: English. Locale: Force 'en-US'.
+     - IF isEnglishBrowser is TRUE:
+       -> Target: The Foreign Language.
+       -> Locale: 'uk-UA' (Map LANGUAGE_CODE 'UK' to 'uk-UA').
+     - ELSE (isEnglishBrowser is FALSE):
+       -> Target: English.
+       -> Locale: Force 'en-US'.
   3. Derive Global State: 
      const AUDIO_ENABLED = HQ_LANGS.some(lang => Locale.toUpperCase().startsWith(lang)) || RAW_DATA.some(item => item.audio !== null);
 - Implementation (speakCard(item)):
-  1. Strict Guard: If !AUDIO_ENABLED, return.
-  2. Cleanup: IF `audioRef.current` exists, call `audioRef.current.pause()` and set to null. 
-  3. Cancel Synthesis: Call `window.speechSynthesis.cancel()`.
-  4. Execution:
+  1. Strict Guard: If !AUDIO_ENABLED, return immediately.
+  2. Execution:
      - IF isEnglishBrowser is TRUE (Foreign Target):
-       a. Priority 1 (Hydrated): 
-          - Check item.audio. If exists:
-          - Set `audioRef.current = new Audio(item.audio);`
-          - Call `audioRef.current.play().catch(e => console.warn("Audio play failed", e));`
-          - Return.
-       b. Priority 2 (Fallback): 
-          - Check if browser has voice for Locale. If YES: Speak item.translation.
+       a. Priority 1 (Hydrated): Check item.audio. If not null, create new Audio(item.audio).play() and return.
+       b. Priority 2 (Synthesis Fallback): 
+          - Check if browser has voice for Locale. 
+          - If YES: Speak item.translation.
+          - If NO: Fail silently (Do not crash).
      - ELSE (English Target):
-       a. Speak item.text (Locale 'en-US').
-  5. Runtime Safety: Fail silently if browser voice is missing.
+       a. Synthesis Only: Speak item.text (Locale 'en-US').
 
 
 8. HEADER & POPUPS
