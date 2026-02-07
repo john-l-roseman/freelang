@@ -1,3 +1,6 @@
+Dataset Fields: id | text (English) | translation (LANGUAGE Translation) | audio (set explicitly to null)
+Elminate any duplicates in the dataset.
+
 Act as an expert Frontend Engineer. 
 Build a single, standalone HTML file (index.html) for a language learning game.
 IMPORTANT: Do not add any notes, markdown, or explanations at the top or bottom of the HTML file. Output ONLY the raw HTML.
