@@ -16,7 +16,7 @@ Favicon: A data URI containing the character "文" (serif, deep red on white).
 
 Top Bar (single line)
 Left: An SVG logo of "文" (28pt serif) followed by "openlang.ai" in bold text. Link both of those elements to "/".
-Center: "LANGUAGE" at 12pt.
+Center: "LANGUAGE" at text-sm.
 Right: A "SOURCE" button that downloads the file "/LANGUAGE/build-instructions.txt".
 
 ------------
